@@ -1,0 +1,361 @@
+/*
+  Kit chrome that is awkward as utilities: theme variables, atmosphere,
+  focus rings, phosphor type, native range thumbs, and shared av-* roles.
+  Component chrome lives on the primitives as Tailwind classes (see
+  tailwind.css / theme.css).
+*/
+
+/*
+  Dark assignment (default). Future themes: `[data-av-theme='light'] { … }`.
+  `.av-theme` without a data attribute stays dark for body.av-theme pages.
+*/
+.av-theme,
+[data-av-theme='dark'] {
+  --av-page: #0a0b0d;
+  --av-surface: #16181c;
+  --av-surface-2: #1e2126;
+  --av-hairline: #2c3038;
+  --av-border: #5a606a;
+  --av-text: #eee1e0;
+  --av-body: #eee1e0;
+  --av-muted: #a4a8b0;
+  --av-prose-muted: color-mix(in srgb, #eee1e0 70%, #a4a8b0);
+  --av-signal: #ffa88f;
+  --av-signal-hot: #e64a19;
+  --av-phosphor: #ff9a68;
+  --av-phosphor-bright: #ffb08a;
+  --av-audio: #07b682;
+  --av-sync: #3aa5ff;
+  --av-focus: #3aa5ff;
+  --av-focus-width: 2px;
+  --av-focus-offset: 2px;
+  --av-meter: #f7cd1b;
+  --av-accent-soft: #ffb7f1;
+  --av-danger: #fca5a5;
+  --av-font:
+    'Doto Variable', 'Doto', ui-monospace, SFMono-Regular, Menlo, Monaco,
+    Consolas, 'Liberation Mono', 'Courier New', monospace;
+  --av-font-body:
+    'IBM Plex Mono', ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas,
+    'Liberation Mono', 'Courier New', monospace;
+}
+
+.av-theme
+  :where(
+    a,
+    button,
+    input,
+    select,
+    textarea,
+    summary,
+    [role='button'],
+    [tabindex]:not([tabindex='-1'])
+  ):focus {
+  outline: none;
+}
+
+.av-theme
+  :where(
+    a,
+    button,
+    input,
+    select,
+    textarea,
+    summary,
+    [role='button'],
+    [tabindex]:not([tabindex='-1'])
+  ):focus-visible {
+  outline: var(--av-focus-width) solid var(--av-focus);
+  outline-offset: var(--av-focus-offset);
+}
+
+/*
+  Film-leak atmosphere: vignette + signal/sync washes on the page plate.
+  Grain is a background-image layer (faint SVG, overlay blend) — not a
+  covering mix-blend node (axe samples that through opaque chrome) and
+  not mix-blend on .av-theme itself (that would paint through type).
+  Scoped to dark theme so a future light theme is not forced into phosphor.
+*/
+.av-theme,
+[data-av-theme='dark'] {
+  font-family: var(--av-font-body);
+  font-weight: 400;
+  letter-spacing: 0.025em;
+  color: var(--av-text);
+  background-color: var(--av-page);
+  background-image:
+    url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.045'/%3E%3C/svg%3E"),
+    radial-gradient(
+      120% 80% at 10% 100%,
+      rgb(255 168 143 / 0.07) 0%,
+      transparent 45%
+    ),
+    radial-gradient(
+      90% 70% at 95% 40%,
+      rgb(58 165 255 / 0.06) 0%,
+      transparent 50%
+    ),
+    radial-gradient(ellipse at center, transparent 40%, rgb(0 0 0 / 0.55) 100%);
+  background-size: 180px 180px, auto, auto, auto;
+  background-repeat: repeat, no-repeat, no-repeat, no-repeat;
+  background-blend-mode: overlay, normal, normal, normal;
+  line-height: 1.55;
+  font-variation-settings: normal;
+  font-feature-settings: 'tnum' 1;
+  color-scheme: dark;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .av-theme,
+  [data-av-theme='dark'] {
+    background-image:
+      radial-gradient(
+        120% 80% at 10% 100%,
+        rgb(255 168 143 / 0.07) 0%,
+        transparent 45%
+      ),
+      radial-gradient(
+        90% 70% at 95% 40%,
+        rgb(58 165 255 / 0.06) 0%,
+        transparent 50%
+      ),
+      radial-gradient(
+        ellipse at center,
+        transparent 40%,
+        rgb(0 0 0 / 0.55) 100%
+      );
+    background-size: auto, auto, auto;
+    background-repeat: no-repeat;
+    background-blend-mode: normal, normal, normal;
+  }
+}
+
+.av-theme button:not(:disabled) {
+  cursor: pointer;
+}
+
+.av-theme button:disabled {
+  cursor: not-allowed;
+}
+
+@layer base {
+  .av-theme :is(h1, h2, h3, h4) {
+    @apply font-bold tracking-wider text-white;
+    font-feature-settings: 'tnum' 1;
+  }
+
+  .av-theme :is(h1, h2) {
+    @apply font-doto;
+    font-variation-settings: 'ROND' 0;
+    text-rendering: geometricPrecision;
+    -webkit-font-smoothing: auto;
+    -moz-osx-font-smoothing: auto;
+  }
+
+  .av-theme :is(h3, h4) {
+    @apply font-body;
+    font-variation-settings: normal;
+    text-rendering: optimizeLegibility;
+  }
+
+  .av-theme h1 {
+    @apply text-3xl sm:text-4xl;
+  }
+
+  .av-theme h2 {
+    @apply text-xl tracking-wider;
+  }
+
+  .av-theme h3 {
+    @apply text-sm font-semibold;
+  }
+
+  .av-theme h4 {
+    @apply text-sm font-semibold;
+  }
+
+  .av-theme a {
+    @apply text-av-signal hover:text-av-phosphor-bright;
+  }
+}
+
+/* Lit LED copy — restrained phosphor, matrix-readable. Dark-theme chrome. */
+.av-led-text {
+  color: var(--av-phosphor);
+  text-shadow:
+    0 0 1px color-mix(in srgb, var(--av-phosphor-bright) 55%, transparent),
+    0 0 6px color-mix(in srgb, var(--av-signal-hot) 35%, transparent);
+}
+
+/* Soft bloom that preserves the element's color (status / band readouts). */
+.av-led-glow {
+  text-shadow:
+    0 0 1px color-mix(in srgb, var(--av-phosphor-bright) 45%, transparent),
+    0 0 6px color-mix(in srgb, var(--av-signal-hot) 28%, transparent);
+}
+
+/* Doto — bitmap display face for LED chrome + key interactive controls. */
+.av-doto,
+.av-bpm-digits {
+  font-family: var(--av-font);
+  font-weight: 700;
+  letter-spacing: 0.05em;
+  font-variation-settings: 'ROND' 0;
+  font-feature-settings: 'tnum' 1;
+  text-rendering: geometricPrecision;
+}
+
+/* Hot phosphor core — light bloom so Doto dots stay crisp. */
+.av-bpm-digits.av-led-text {
+  color: var(--av-phosphor-bright);
+  text-shadow:
+    0 0 1px color-mix(in srgb, var(--av-phosphor-bright) 70%, white),
+    0 0 5px color-mix(in srgb, var(--av-signal-hot) 40%, transparent),
+    0 0 12px color-mix(in srgb, var(--av-signal-hot) 20%, transparent);
+}
+
+.av-divider {
+  @apply border-av-hairline;
+}
+
+.av-section-muted {
+  background: color-mix(in srgb, var(--av-page) 55%, var(--av-surface));
+}
+
+/* Role chrome: cards contain, tiles list, buttons act */
+.av-card,
+.av-tile {
+  @apply font-body font-normal tracking-wide;
+  font-variation-settings: normal;
+  font-feature-settings: 'tnum' 1;
+  text-rendering: optimizeLegibility;
+}
+
+.av-card :is(h1, h2, h3, h4),
+.av-tile :is(h1, h2, h3, h4) {
+  @apply tracking-wider;
+}
+
+.av-card :is(legend, label, button, input, select, th),
+.av-tile :is(button) {
+  @apply font-bold tracking-wider;
+}
+
+@utility av-card {
+  @apply border-av-hairline bg-av-surface overflow-hidden rounded-lg border;
+}
+
+@utility av-prose {
+  @apply font-body text-av-text max-w-prose text-base leading-relaxed font-normal tracking-wide;
+  font-variation-settings: normal;
+  font-feature-settings: 'tnum' 1;
+  text-rendering: optimizeLegibility;
+}
+
+.av-prose strong {
+  @apply font-bold text-white;
+}
+
+@utility av-prose-muted {
+  @apply font-body text-av-prose-muted max-w-prose text-sm leading-relaxed font-normal tracking-wide;
+  font-variation-settings: normal;
+  font-feature-settings: 'tnum' 1;
+  text-rendering: optimizeLegibility;
+}
+
+@utility av-meta {
+  @apply font-body font-medium tracking-wider uppercase;
+  font-variation-settings: normal;
+  font-feature-settings: 'tnum' 1;
+  text-rendering: optimizeLegibility;
+}
+
+.av-tile {
+  border: 1px solid transparent;
+  background: rgb(255 255 255 / 0.03);
+}
+
+.av-tile[data-active='true'] {
+  border-color: color-mix(in srgb, var(--av-audio) 45%, transparent);
+  background: color-mix(in srgb, var(--av-audio) 10%, var(--av-surface));
+}
+
+/* Native range thumbs — webkit/moz pseudo-elements. */
+.tool-slider {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 100%;
+  height: 28px;
+  background: transparent;
+  cursor: pointer;
+  margin: 0;
+}
+
+.tool-slider:focus {
+  outline: none;
+}
+
+.tool-slider:focus-visible {
+  outline: var(--av-focus-width, 2px) solid var(--av-focus, #3aa5ff);
+  outline-offset: var(--av-focus-offset, 2px);
+}
+
+.tool-slider::-webkit-slider-runnable-track {
+  height: var(--slider-track-h, 12px);
+  border-radius: 0;
+  background: transparent;
+}
+
+.tool-slider::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: var(--slider-track-h, 12px);
+  height: var(--slider-track-h, 12px);
+  margin-top: 0;
+  border-radius: 0;
+  background: var(--av-signal);
+  border: 1px solid var(--av-surface);
+  box-shadow:
+    0 0 1px color-mix(in srgb, var(--av-phosphor-bright) 85%, transparent),
+    0 0 6px color-mix(in srgb, var(--av-signal-hot) 45%, transparent);
+}
+
+.tool-slider::-moz-range-track {
+  height: var(--slider-track-h, 12px);
+  border-radius: 0;
+  background: transparent;
+}
+
+.tool-slider::-moz-range-progress {
+  height: var(--slider-track-h, 12px);
+  border-radius: 0;
+  background: transparent;
+}
+
+.tool-slider::-moz-range-thumb {
+  width: var(--slider-track-h, 12px);
+  height: var(--slider-track-h, 12px);
+  border-radius: 0;
+  background: var(--av-signal);
+  border: 1px solid var(--av-surface);
+  box-shadow:
+    0 0 1px color-mix(in srgb, var(--av-phosphor-bright) 85%, transparent),
+    0 0 6px color-mix(in srgb, var(--av-signal-hot) 45%, transparent);
+}
+
+.tool-slider--quality::-webkit-slider-thumb {
+  background: var(--slider-accent, #22c55e);
+  box-shadow:
+    0 0 1px var(--slider-accent, #22c55e),
+    0 0 6px color-mix(in srgb, var(--slider-accent, #22c55e) 45%, transparent);
+}
+
+.tool-slider--quality::-moz-range-thumb {
+  background: var(--slider-accent, #22c55e);
+  box-shadow:
+    0 0 1px var(--slider-accent, #22c55e),
+    0 0 6px color-mix(in srgb, var(--slider-accent, #22c55e) 45%, transparent);
+}

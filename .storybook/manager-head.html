@@ -1,0 +1,68 @@
+<script>
+  ;(function () {
+    var content = 'width=device-width, initial-scale=1, viewport-fit=cover, shrink-to-fit=no'
+    var meta = document.querySelector('meta[name="viewport"]')
+    if (!meta) {
+      meta = document.createElement('meta')
+      meta.setAttribute('name', 'viewport')
+      document.head.appendChild(meta)
+    }
+    meta.setAttribute('content', content)
+
+    function syncVisibleHeight() {
+      var viewport = window.visualViewport
+      var height = viewport && viewport.height ? viewport.height : window.innerHeight
+      document.documentElement.style.setProperty('--sb-visible-height', height + 'px')
+    }
+    syncVisibleHeight()
+    window.addEventListener('resize', syncVisibleHeight)
+    if (window.visualViewport) {
+      window.visualViewport.addEventListener('resize', syncVisibleHeight)
+      window.visualViewport.addEventListener('scroll', syncVisibleHeight)
+    }
+  })()
+</script>
+<style>
+  html {
+    -webkit-text-size-adjust: 100%;
+    text-size-adjust: 100%;
+  }
+
+  html,
+  body,
+  #root {
+    max-width: 100%;
+    height: 100%;
+    height: 100dvh;
+    max-height: 100dvh;
+  }
+
+  html,
+  body {
+    overflow-x: clip;
+  }
+
+  /*
+    Storybook's mobile menu is a bottom drawer with height/max-height: 80vh.
+    iOS Safari's vh includes the area behind the toolbar, so the last stories
+    sit under the browser chrome and cannot be scrolled into view.
+  */
+  #storybook-mobile-menu {
+    height: min(92svh, calc(var(--sb-visible-height, 100dvh) - 8px)) !important;
+    max-height: min(92svh, calc(var(--sb-visible-height, 100dvh) - 8px)) !important;
+    padding-bottom: max(24px, env(safe-area-inset-bottom, 0px)) !important;
+    box-sizing: border-box !important;
+    animation: none !important;
+  }
+
+  #storybook-mobile-menu #storybook-explorer-menu {
+    padding-bottom: 5rem;
+  }
+
+  #storybook-mobile-addon-panel {
+    max-height: min(42svh, calc(var(--sb-visible-height, 100dvh) * 0.42)) !important;
+    padding-bottom: env(safe-area-inset-bottom, 0px);
+    box-sizing: border-box;
+    animation: none !important;
+  }
+</style>

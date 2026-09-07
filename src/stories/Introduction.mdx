@@ -1,0 +1,47 @@
+import { Meta } from '@storybook/addon-docs/blocks'
+
+<Meta title="Introduction" />
+
+# `@harrydiamond/signal-ui`
+
+Phosphor console chrome — locked here so sites like [avtech.fyi](https://avtech.fyi) can share the same aesthetic.
+
+Install from GitHub: `github:harrydiamond/signal-ui`.
+
+## How to use
+
+1. Import theme, styles, and fonts CSS once at the app root.
+2. Wrap the page in `Theme` (or use `body.av-theme`) so atmosphere, type, and focus apply.
+3. Compose with the React primitives.
+
+```tsx
+import '@harrydiamond/signal-ui/theme.css'
+import '@harrydiamond/signal-ui/styles.css'
+import '@harrydiamond/signal-ui/fonts.css'
+import { Theme, PageHeader, Card, CardBody, Button } from '@harrydiamond/signal-ui'
+
+export function Page() {
+  return (
+    <Theme asPage>
+      <PageHeader
+        title="Delay"
+        description="ms ↔ meters from speed of sound."
+      />
+      <Card>
+        <CardBody>
+          <Button variant="primary">Calculate</Button>
+        </CardBody>
+      </Card>
+    </Theme>
+  )
+}
+```
+
+## Visual rules
+
+- **Fill, not chrome.** Operable controls have no default border. Shape comes from surface fill against the page.
+- **Hairline is structure.** `#2C3038` is for cards, section rules, and list rows — not buttons.
+- **Signal is the accent.** Links and tool icons use phosphor orange; selected chips use audio green.
+- **Focus is opaque sync.** 2px `#3AA5FF` outline, 2px offset. Prefer outline over translucent rings.
+- **Doto is the display face.** Bitmap dots for h1–h2, controls, and LED readouts. IBM Plex Mono is for h3+, body prose (`Prose`, `ProseMuted`), and micro hints (`Meta`).
+- **Theme-ready tokens.** Semantic utilities (`bg-av-page`, `text-av-signal`, …) map to CSS variables on `.av-theme`. Only dark ships today.

@@ -1,0 +1,34 @@
+@import 'tailwindcss';
+
+/* Scan this package so consumers do not need to know the folder layout. */
+@source './**/*.{ts,tsx}';
+
+/*
+  Semantic utilities (bg-av-page, text-av-signal, …) map to CSS variables.
+  Hex values live on `.av-theme` / `[data-av-theme]` in styles.css so a later
+  light (or alternate) theme can reassign without rewriting components.
+*/
+@theme {
+  --color-av-page: var(--av-page);
+  --color-av-surface: var(--av-surface);
+  --color-av-surface-2: var(--av-surface-2);
+  --color-av-hairline: var(--av-hairline);
+  --color-av-border: var(--av-border);
+  --color-av-text: var(--av-text);
+  --color-av-body: var(--av-body);
+  --color-av-muted: var(--av-muted);
+  --color-av-prose-muted: var(--av-prose-muted);
+  --color-av-signal: var(--av-signal);
+  --color-av-signal-hot: var(--av-signal-hot);
+  --color-av-phosphor: var(--av-phosphor);
+  --color-av-phosphor-bright: var(--av-phosphor-bright);
+  --color-av-audio: var(--av-audio);
+  --color-av-sync: var(--av-sync);
+  --color-av-focus: var(--av-focus);
+  --color-av-meter: var(--av-meter);
+  --color-av-accent-soft: var(--av-accent-soft);
+  --color-av-danger: var(--av-danger);
+
+  --font-doto: var(--av-font);
+  --font-body: var(--av-font-body);
+}

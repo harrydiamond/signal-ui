@@ -1,0 +1,56 @@
+name: Chromatic
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - '*'
+
+concurrency:
+  group: chromatic-${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+permissions:
+  contents: read
+  pull-requests: read
+
+jobs:
+  chromatic:
+    name: Publish Storybook
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v7
+        with:
+          # TurboSnap needs full git history to detect changed files reliably.
+          fetch-depth: 0
+          ref: ${{ github.event.pull_request.head.sha || github.sha }}
+
+      - name: Setup Bun
+        uses: oven-sh/setup-bun@v2
+        with:
+          bun-version: latest
+
+      - name: Install dependencies
+        run: bun install --frozen-lockfile
+
+      - name: Build Storybook
+        run: bun run build:storybook:chromatic
+
+      - name: Publish to Chromatic
+        uses: chromaui/action@latest
+        with:
+          projectToken: ${{ secrets.CHROMATIC_PROJECT_TOKEN }}
+          token: ${{ secrets.GITHUB_TOKEN }}
+          storybookBuildDir: storybook-static
+          storybookConfigDir: .storybook
+          onlyChanged: true
+          exitZeroOnChanges: true
+          autoAcceptChanges: true
+        env:
+          CHROMATIC_BRANCH: ${{ github.event.pull_request.head.ref || github.ref_name }}
+          CHROMATIC_SHA: ${{ github.event.pull_request.head.sha || github.sha }}
+          CHROMATIC_SLUG: ${{ github.repository }}
