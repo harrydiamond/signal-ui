@@ -5,6 +5,10 @@
   tailwind.css / theme.css).
 */
 
+/* Storybook (and other separate Vite CSS entries) process this file alone —
+   load theme/utilities for @apply without duplicating the Tailwind sheet. */
+@reference './tailwind.css';
+
 /*
   Dark assignment (default). Future themes: `[data-av-theme='light'] { … }`.
   `.av-theme` without a data attribute stays dark for body.av-theme pages.
