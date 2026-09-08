@@ -1,4 +1,6 @@
-/** Kit palette — keep in sync with `styles.css` theme assignment (dark) and `tailwind.css`. */
+/** Kit palette — keep in sync with `styles.css` theme assignment (dark) and `tailwind.css`.
+ *  Canvas/LED/slider fills use this map (dark kit semantics). Editorial theming is CSS-var only.
+ */
 export const AV = {
   /** Page plate under atmosphere — not a fill utility. */
   page: '#0A0B0D',
@@ -41,5 +43,8 @@ export const AV_RGB = {
   sync: '58,165,255',
   text: '238,225,224',
 } as const
+
+/** Stagger delay for `animate-fade-in-up` sequences (theme-agnostic). */
+export const AV_STAGGER_MS = 75
 
 export type AvColorName = keyof typeof AV

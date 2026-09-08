@@ -13,7 +13,7 @@ const meta = {
     docs: {
       description: {
         component:
-          'Quiet vignette (signal wash bottom-left, sync wash right) and faint grain on the page plate. Keyboard focus is an opaque sync outline.',
+          'Quiet vignette and faint grain on the dark page plate. Editorial uses a solid page color instead — switch the Theme toolbar to compare.',
       },
     },
   },

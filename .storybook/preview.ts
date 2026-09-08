@@ -8,14 +8,24 @@ import '../src/stories/story.css'
 
 const preview: Preview = {
   tags: ['autodocs'],
-  parameters: {
-    layout: 'fullscreen',
-    backgrounds: {
-      options: {
-        avtech: { name: 'avtech', value: AV.page },
-        surface: { name: 'surface', value: AV.surface },
+  globalTypes: {
+    theme: {
+      description: 'Kit theme',
+      toolbar: {
+        title: 'Theme',
+        icon: 'paintbrush',
+        items: [
+          { value: 'dark', title: 'Dark' },
+          { value: 'editorial', title: 'Editorial' },
+        ],
+        dynamicTitle: true,
       },
     },
+  },
+  parameters: {
+    layout: 'fullscreen',
+    // Theme toolbar owns the canvas plate — hide Storybook backgrounds.
+    backgrounds: { disable: true },
     a11y: {
       test: 'error',
     },
@@ -37,15 +47,22 @@ const preview: Preview = {
     },
   },
   initialGlobals: {
-    backgrounds: { value: 'avtech' },
+    theme: 'dark',
     viewport: { value: RESPONSIVE_VIEWPORT_VALUE, isRotated: false },
   },
   decorators: [
-    Story => {
+    (Story, context) => {
+      const theme = context.globals.theme ?? 'dark'
       const root = document.documentElement
-      root.style.background = AV.page
-      root.style.colorScheme = 'dark'
-      document.body.style.background = AV.page
+      if (theme === 'editorial') {
+        root.style.background = '#F0F0F0'
+        root.style.colorScheme = 'light dark'
+        document.body.style.background = '#F0F0F0'
+      } else {
+        root.style.background = AV.page
+        root.style.colorScheme = 'dark'
+        document.body.style.background = AV.page
+      }
       document.body.style.margin = '0'
       document.body.style.minHeight = '100%'
       return Story()

@@ -1,19 +1,25 @@
 import type { ReactNode } from 'react'
 import type { Decorator } from '@storybook/react-vite'
 import { Container } from '../components/Container.tsx'
-import { Theme } from '../components/Theme.tsx'
+import { Theme, type ThemeName } from '../components/Theme.tsx'
 
 type Props = {
   children: ReactNode
   /** Constrain and pad like a tool page. */
   pad?: boolean
-  /** Full-viewport page chrome. Off on docs so previews shrink to content. */
+  /** Full-viewport page shell. Off on docs so previews shrink to content. */
   asPage?: boolean
+  theme?: ThemeName
 }
 
-export function StoryPad({ children, pad = true, asPage = false }: Props) {
+export function StoryPad({
+  children,
+  pad = true,
+  asPage = false,
+  theme = 'dark',
+}: Props) {
   return (
-    <Theme asPage={asPage}>
+    <Theme asPage={asPage} theme={theme}>
       {pad ? (
         asPage ? (
           <Container>{children}</Container>
@@ -29,8 +35,11 @@ export function StoryPad({ children, pad = true, asPage = false }: Props) {
   )
 }
 
-export const withStoryPad: Decorator = (Story, context) => (
-  <StoryPad asPage={context.viewMode === 'story'}>
-    <Story />
-  </StoryPad>
-)
+export const withStoryPad: Decorator = (Story, context) => {
+  const theme = (context.globals.theme as ThemeName | undefined) ?? 'dark'
+  return (
+    <StoryPad asPage={context.viewMode === 'story'} theme={theme}>
+      <Story />
+    </StoryPad>
+  )
+}

@@ -43,4 +43,43 @@
   --font-body: var(--av-font-body);
   --font-body--font-feature-settings: 'tnum' 1;
   --font-body--font-variation-settings: normal;
+
+  --radius-av: var(--av-radius, 0.5rem);
+  --shadow-av-card: var(--av-shadow-card);
+  --shadow-av-card-light: var(--av-shadow-card-light);
+  --shadow-av-card-on-light: var(--av-shadow-card-on-light);
+  --shadow-av-card-dark: var(--av-shadow-card-dark);
+
+  --animate-fade-in-up: fade-in-up 0.4s ease-out forwards;
+}
+
+@keyframes fade-in-up {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@utility shadow-av-card {
+  box-shadow: var(--av-shadow-card);
+}
+
+@utility shadow-av-card-light {
+  box-shadow: var(--av-shadow-card-light);
+}
+
+@utility shadow-av-card-on-light {
+  box-shadow: var(--av-shadow-card-on-light);
+}
+
+@utility shadow-av-card-dark {
+  box-shadow: var(--av-shadow-card-dark);
+}
+
+@utility animate-fade-in-up {
+  animation: var(--animate-fade-in-up);
 }
