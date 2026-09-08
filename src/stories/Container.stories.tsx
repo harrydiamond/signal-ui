@@ -1,5 +1,6 @@
 import type { Meta, StoryObj } from '@storybook/react-vite'
 import { Container } from '../components/Container.tsx'
+import { type ThemeName } from '../components/Theme.tsx'
 import { Prose, ProseMuted } from '../components/Text.tsx'
 import { StoryPad } from './StoryPad.tsx'
 
@@ -8,7 +9,11 @@ const meta = {
   component: Container,
   decorators: [
     (Story, context) => (
-      <StoryPad pad={false} asPage={context.viewMode === 'story'}>
+      <StoryPad
+        pad={false}
+        asPage={context.viewMode === 'story'}
+        theme={(context.globals.theme as ThemeName | undefined) ?? 'dark'}
+      >
         <Story />
       </StoryPad>
     ),

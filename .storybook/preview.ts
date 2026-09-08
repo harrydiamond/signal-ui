@@ -1,6 +1,7 @@
 import type { Preview } from '@storybook/react-vite'
 import { RESPONSIVE_VIEWPORT_VALUE } from 'storybook/viewport'
 import { AV } from '../src/tokens.ts'
+import { allModes } from './modes.ts'
 import '../src/fonts.css'
 import '../src/tailwind.css'
 import '../src/styles.css'
@@ -26,6 +27,12 @@ const preview: Preview = {
     layout: 'fullscreen',
     // Theme toolbar owns the canvas plate — hide Storybook backgrounds.
     backgrounds: { disable: true },
+    chromatic: {
+      modes: {
+        dark: allModes.dark,
+        editorial: allModes.editorial,
+      },
+    },
     a11y: {
       test: 'error',
     },

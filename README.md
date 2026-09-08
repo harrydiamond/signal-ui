@@ -111,7 +111,7 @@ bun run build:storybook
 bun run deploy
 ```
 
-Use the **Theme** toolbar to switch `dark` / `editorial`.
+Use the **Theme** toolbar to switch `dark` / `editorial`. Chromatic captures both themes per story via [modes](https://www.chromatic.com/docs/modes/) (`.storybook/modes.ts`).
 
 - Local MCP: http://localhost:6006/mcp
 - Published main MCP: https://main--6a9ecc9629e322e1385e7b36.chromatic.com/mcp
