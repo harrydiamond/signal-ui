@@ -1,5 +1,3 @@
-import { cx } from '../cx.ts'
-
 type Props = {
   name?: string
   tld?: string

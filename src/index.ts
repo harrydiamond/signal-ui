@@ -65,3 +65,6 @@ export {
   SLIDER_LED_ROWS,
   SLIDER_LED_COLS_FALLBACK,
 } from './components/RangeSlider.tsx'
+export { Dropzone } from './components/Dropzone.tsx'
+export { Step, Steps } from './components/Steps.tsx'
+export { Progress } from './components/Progress.tsx'

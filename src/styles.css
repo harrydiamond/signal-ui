@@ -314,6 +314,54 @@
     color-mix(in srgb, var(--av-audio) 25%, transparent);
 }
 
+.av-dropzone:enabled:hover {
+  background: color-mix(in srgb, var(--av-muted) 8%, var(--av-surface));
+}
+
+.av-dropzone[data-dragging='true'] {
+  border-color: color-mix(in srgb, var(--av-signal) 45%, transparent);
+  background: color-mix(in srgb, var(--av-signal) 8%, var(--av-surface));
+}
+
+.av-dropzone[data-has-files='true'] {
+  background: color-mix(in srgb, var(--av-audio) 8%, var(--av-surface));
+}
+
+.av-step {
+  color: var(--av-muted);
+}
+
+.av-step-index {
+  background: var(--av-surface-2);
+  color: var(--av-muted);
+}
+
+.av-step[data-complete='true'] {
+  color: var(--av-audio);
+}
+
+.av-step[data-complete='true'] .av-step-index {
+  background: color-mix(in srgb, var(--av-audio) 14%, var(--av-surface));
+  color: var(--av-audio);
+}
+
+.av-step[aria-current='step'] {
+  color: var(--av-text);
+}
+
+.av-step[aria-current='step'] .av-step-index {
+  background: var(--av-ink);
+  color: var(--av-on-primary);
+}
+
+.av-step:enabled:hover .av-step-index {
+  background: color-mix(in srgb, var(--av-muted) 14%, var(--av-surface-2));
+}
+
+.av-step[aria-current='step']:enabled:hover .av-step-index {
+  background: var(--av-text);
+}
+
 /* Checkbox: mark is sibling after the sr-only input (peer). */
 input.peer:checked + .av-check-mark {
   background: color-mix(in srgb, var(--av-audio) 10%, var(--av-surface));
