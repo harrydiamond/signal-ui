@@ -1,0 +1,12 @@
+---
+description: Use Storybook MCP when writing kit primitives or stories
+globs: src/**/*.{tsx,ts,mdx}
+alwaysApply: false
+---
+
+When creating or updating `@harrydiamond/signal-ui` primitives or stories, use the Storybook MCP tools. Storybook must be running (`bun run storybook`, http://localhost:6006/mcp).
+
+- Never hallucinate component properties. Call `docs-list` / `docs-show` before using a prop.
+- Call `get-storybook-story-instructions` before creating or updating stories.
+- Check work with `test-run` when Storybook Test is available.
+- Export new primitives from `src/index.ts` and add a CSF story under `src/stories/`.

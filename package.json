@@ -8,7 +8,9 @@
     "./styles.css": "./src/styles.css",
     "./fonts.css": "./src/fonts.css"
   },
-  "sideEffects": ["**/*.css"],
+  "sideEffects": [
+    "**/*.css"
+  ],
   "files": [
     "src"
   ],
@@ -42,6 +44,7 @@
     "@vitejs/plugin-react": "^6.0.4",
     "jsdom": "^30.0.0",
     "prettier": "^3.0.0",
+    "prettier-plugin-tailwindcss": "^0.8.0",
     "storybook": "10.6.0",
     "tailwindcss": "^4.3.3",
     "typescript": "~6.0.0",

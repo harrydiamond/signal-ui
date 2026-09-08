@@ -1,0 +1,17 @@
+---
+description: Update feature branches onto main with rebase only
+alwaysApply: true
+---
+
+# Rebase onto main (never merge main)
+
+When updating a feature/PR branch with the latest `main`:
+
+1. `git fetch origin main`
+2. `git rebase origin/main`
+
+Do **not** `git merge origin/main` into feature branches.
+
+After a rebase rewrites history, push with `git push --force-with-lease`. Never force-push `main` or `master`.
+
+If rebase conflicts occur, resolve them normally and continue the rebase. Do not abort the rebase and switch to merging `main` without asking the user first.

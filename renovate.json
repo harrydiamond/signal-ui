@@ -1,0 +1,29 @@
+{
+  "$schema": "https://docs.renovatebot.com/renovate-schema.json",
+  "extends": ["config:recommended"],
+  "separateMultipleMajor": true,
+  "packageRules": [
+    {
+      "description": "Do not jump more than one major version at a time",
+      "matchDatasources": ["npm"],
+      "allowedVersions": "<{{add major 2}}.0.0"
+    }
+  ],
+  "bun": {
+    "major": {
+      "addLabels": ["major"]
+    },
+    "lockFileMaintenance": {
+      "automerge": true,
+      "enabled": true,
+      "minimumReleaseAge": "3 days"
+    },
+    "packageRules": [
+      {
+        "matchDepTypes": ["devDependencies"],
+        "automerge": true,
+        "matchPackageNames": ["/lint/", "/prettier/"]
+      }
+    ]
+  }
+}

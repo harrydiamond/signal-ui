@@ -32,10 +32,7 @@ describe('Toast', () => {
         onDismiss={() => {}}
       />,
     )
-    expect(screen.getByRole('status')).toHaveAttribute(
-      'aria-live',
-      'assertive',
-    )
+    expect(screen.getByRole('status')).toHaveAttribute('aria-live', 'assertive')
   })
 
   it('auto-dismisses after the default delay', () => {

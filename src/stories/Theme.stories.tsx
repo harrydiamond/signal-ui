@@ -44,7 +44,9 @@ export const AsPage: Story = {
   render: args => (
     <Theme {...args}>
       <div className="flex-1 px-4 py-6">
-        <Prose>asPage stretches Theme to the viewport and stacks as a column.</Prose>
+        <Prose>
+          asPage stretches Theme to the viewport and stacks as a column.
+        </Prose>
       </div>
     </Theme>
   ),

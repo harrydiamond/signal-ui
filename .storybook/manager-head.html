@@ -1,6 +1,7 @@
 <script>
   ;(function () {
-    var content = 'width=device-width, initial-scale=1, viewport-fit=cover, shrink-to-fit=no'
+    var content =
+      'width=device-width, initial-scale=1, viewport-fit=cover, shrink-to-fit=no'
     var meta = document.querySelector('meta[name="viewport"]')
     if (!meta) {
       meta = document.createElement('meta')
@@ -11,8 +12,12 @@
 
     function syncVisibleHeight() {
       var viewport = window.visualViewport
-      var height = viewport && viewport.height ? viewport.height : window.innerHeight
-      document.documentElement.style.setProperty('--sb-visible-height', height + 'px')
+      var height =
+        viewport && viewport.height ? viewport.height : window.innerHeight
+      document.documentElement.style.setProperty(
+        '--sb-visible-height',
+        height + 'px',
+      )
     }
     syncVisibleHeight()
     window.addEventListener('resize', syncVisibleHeight)
@@ -49,7 +54,10 @@
   */
   #storybook-mobile-menu {
     height: min(92svh, calc(var(--sb-visible-height, 100dvh) - 8px)) !important;
-    max-height: min(92svh, calc(var(--sb-visible-height, 100dvh) - 8px)) !important;
+    max-height: min(
+      92svh,
+      calc(var(--sb-visible-height, 100dvh) - 8px)
+    ) !important;
     padding-bottom: max(24px, env(safe-area-inset-bottom, 0px)) !important;
     box-sizing: border-box !important;
     animation: none !important;
@@ -60,7 +68,10 @@
   }
 
   #storybook-mobile-addon-panel {
-    max-height: min(42svh, calc(var(--sb-visible-height, 100dvh) * 0.42)) !important;
+    max-height: min(
+      42svh,
+      calc(var(--sb-visible-height, 100dvh) * 0.42)
+    ) !important;
     padding-bottom: env(safe-area-inset-bottom, 0px);
     box-sizing: border-box;
     animation: none !important;

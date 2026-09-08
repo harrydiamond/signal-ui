@@ -1,5 +1,10 @@
 import type { Meta, StoryObj } from '@storybook/react-vite'
-import { LedText, Meta as MetaLine, Prose, ProseMuted } from '../components/Text.tsx'
+import {
+  LedText,
+  Meta as MetaLine,
+  Prose,
+  ProseMuted,
+} from '../components/Text.tsx'
 import { withStoryPad } from './StoryPad.tsx'
 
 const meta = {

@@ -19,8 +19,7 @@ export function Choice({
   ...props
 }: Props) {
   const group = useChoiceGroup()
-  const isSelected =
-    group && value != null ? group.value === value : selected
+  const isSelected = group && value != null ? group.value === value : selected
   const isRadio = group?.kind === 'radio'
 
   return (

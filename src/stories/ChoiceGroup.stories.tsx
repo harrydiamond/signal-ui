@@ -41,9 +41,10 @@ export const Default: Story = {
   },
   play: async ({ canvas }) => {
     await userEvent.click(canvas.getByRole('button', { name: 'power' }))
-    await expect(
-      canvas.getByRole('button', { name: 'power' }),
-    ).toHaveAttribute('aria-pressed', 'true')
+    await expect(canvas.getByRole('button', { name: 'power' })).toHaveAttribute(
+      'aria-pressed',
+      'true',
+    )
     await expect(
       canvas.getByRole('button', { name: 'voltage' }),
     ).toHaveAttribute('aria-pressed', 'false')

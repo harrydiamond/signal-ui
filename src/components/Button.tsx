@@ -3,12 +3,7 @@ import { cx } from '../cx.ts'
 import { doto, plex } from '../type.ts'
 
 export type ButtonVariant =
-  | 'default'
-  | 'primary'
-  | 'ghost'
-  | 'panel'
-  | 'pad'
-  | 'danger'
+  'default' | 'primary' | 'ghost' | 'panel' | 'pad' | 'danger'
 export type ButtonSize = 'sm' | 'md' | 'lg'
 
 type Props = ButtonHTMLAttributes<HTMLButtonElement> & {

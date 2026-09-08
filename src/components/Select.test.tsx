@@ -22,7 +22,9 @@ describe('Select', () => {
         <option value="h265">H.265</option>
       </Select>,
     )
-    fireEvent.change(screen.getByLabelText('Codec'), { target: { value: 'h265' } })
+    fireEvent.change(screen.getByLabelText('Codec'), {
+      target: { value: 'h265' },
+    })
     expect(onChange).toHaveBeenCalled()
     expect(screen.getByLabelText('Codec')).toHaveValue('h265')
   })

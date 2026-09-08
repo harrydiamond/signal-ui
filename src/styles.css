@@ -100,7 +100,11 @@
       transparent 50%
     ),
     radial-gradient(ellipse at center, transparent 40%, rgb(0 0 0 / 0.55) 100%);
-  background-size: 180px 180px, auto, auto, auto;
+  background-size:
+    180px 180px,
+    auto,
+    auto,
+    auto;
   background-repeat: repeat, no-repeat, no-repeat, no-repeat;
   background-blend-mode: overlay, normal, normal, normal;
   line-height: 1.55;

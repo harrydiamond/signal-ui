@@ -23,10 +23,7 @@ export { Input } from './components/Input.tsx'
 export { Select } from './components/Select.tsx'
 export { Textarea } from './components/Textarea.tsx'
 export { Choice } from './components/Choice.tsx'
-export {
-  ChoiceGroup,
-  RadioGroup,
-} from './components/ChoiceGroup.tsx'
+export { ChoiceGroup, RadioGroup } from './components/ChoiceGroup.tsx'
 export { Checkbox } from './components/Checkbox.tsx'
 export { Switch } from './components/Switch.tsx'
 export { Field } from './components/Field.tsx'

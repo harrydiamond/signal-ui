@@ -9,7 +9,8 @@ const meta = {
   parameters: {
     docs: {
       description: {
-        component: 'Signal name, quieter white TLD. Size inherits from the parent.',
+        component:
+          'Signal name, quieter white TLD. Size inherits from the parent.',
       },
     },
   },

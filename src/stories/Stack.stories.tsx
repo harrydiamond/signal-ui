@@ -26,7 +26,9 @@ export const Default: Story = {
       <Prose>First block in the stack.</Prose>
       <Card>
         <CardBody>
-          <ProseMuted>Second block — a card sitting in the same column.</ProseMuted>
+          <ProseMuted>
+            Second block — a card sitting in the same column.
+          </ProseMuted>
         </CardBody>
       </Card>
       <ProseMuted>Third block after the default gap.</ProseMuted>

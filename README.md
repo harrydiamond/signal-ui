@@ -36,7 +36,7 @@ export function App() {
 Or attach the class directly:
 
 ```html
-<body class="av-theme">
+<body class="av-theme"></body>
 ```
 
 Only the `dark` theme ships today (`ThemeName`).
@@ -61,7 +61,20 @@ bun run build:storybook
 bun run deploy
 ```
 
-Chromatic publishes from `bun run build:storybook:chromatic` (`CHROMATIC_PROJECT_TOKEN`). `bun run deploy` ships the Storybook build to Worker `signal-ui`. With Storybook running, the MCP endpoint is `http://localhost:6006/mcp`.
+- Local MCP: http://localhost:6006/mcp
+- Hosted Storybook Worker: https://signal-ui.harrydiamond.workers.dev
+- Chromatic publishes from `bun run build:storybook:chromatic` (`CHROMATIC_PROJECT_TOKEN` on this repo). Kit CI owns Storybook visual review — not avtech.fyi.
+
+### Continuous deploy (Workers Builds)
+
+The Worker is live. To redeploy on every push to `main`, connect Git in the dashboard:
+
+1. [Workers → signal-ui → Settings → Builds → Connect](https://dash.cloudflare.com/518219b906fb0db47fc25f5f5bd2724b/workers/services/view/signal-ui/production/settings)
+2. Select `harrydiamond/signal-ui`
+3. Build command: `bun run build:storybook`
+4. Deploy command: `npx wrangler deploy`
+
+Until Builds is connected, deploy manually with `bun run deploy` (requires wrangler login).
 
 ## Import
 
