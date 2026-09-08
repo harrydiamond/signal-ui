@@ -3,12 +3,12 @@ import { cx } from '../cx.ts'
 
 type Props = AnchorHTMLAttributes<HTMLAnchorElement>
 
-/** Theme-colored text link. Hover uses `--av-link-hover` (phosphor-bright / signal-hot). */
+/** Theme-colored text link. Underlined so it stays distinguishable in body copy. */
 export function Link({ className, ...props }: Props) {
   return (
     <a
       className={cx(
-        'av-link text-av-signal hover:text-av-link-hover',
+        'av-link text-av-signal underline underline-offset-2 hover:text-av-link-hover',
         className,
       )}
       {...props}

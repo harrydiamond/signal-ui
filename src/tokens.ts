@@ -1,5 +1,12 @@
-/** Kit palette — keep in sync with `styles.css` theme assignment (dark) and `tailwind.css`.
- *  Canvas/LED/slider fills use this map (dark kit semantics). Editorial theming is CSS-var only.
+/**
+ * Kit palettes — keep hex values in sync with `styles.css` theme assignments.
+ *
+ * - `AV` ↔ `[data-av-theme='phosphor']` (and `.av-theme` default)
+ * - `AV_EDITORIAL` ↔ `[data-av-theme='editorial']` light defaults
+ * - `AV_EDITORIAL_DARK` ↔ editorial `@media (prefers-color-scheme: dark)`
+ *
+ * Canvas/LED/slider fills use `AV` (phosphor). Editorial UI reads CSS variables;
+ * these maps exist so docs, stories, and agents share the same hexes.
  */
 export const AV = {
   /** Page plate under atmosphere — not a fill utility. */
@@ -33,6 +40,58 @@ export const AV = {
   accentSoft: '#FFB7F1',
   /** Errors, destructive actions, field/toast error copy. */
   danger: '#FCA5A5',
+} as const
+
+/** Editorial light — WCAG-tuned accents; hairline/border are solid stand-ins (CSS uses color-mix). */
+export const AV_EDITORIAL = {
+  page: '#F0F0F0',
+  surface: '#FFFFFF',
+  surface2: '#F5F5F5',
+  hairline: '#161618',
+  border: '#161618',
+  text: '#161618',
+  body: '#161618',
+  muted: '#5C5F66',
+  ink: '#161618',
+  onPrimary: '#FFFFFF',
+  panel: '#FFFFFF',
+  pad: '#F0F0F0',
+  signal: '#9B1C1C',
+  phosphor: '#9B1C1C',
+  phosphorBright: '#B71C1C',
+  signalHot: '#7F1515',
+  audio: '#057A56',
+  sync: '#161618',
+  focus: '#161618',
+  meter: '#7A5F00',
+  accentSoft: '#F5C2C2',
+  danger: '#9B1C1C',
+} as const
+
+/** Editorial dark (prefers-color-scheme: dark). */
+export const AV_EDITORIAL_DARK = {
+  page: '#161618',
+  surface: '#2C2D30',
+  surface2: '#36373B',
+  hairline: '#FFFFFF',
+  border: '#FFFFFF',
+  text: '#E6E6E6',
+  body: '#E6E6E6',
+  muted: '#A4A7AD',
+  ink: '#FFFFFF',
+  onPrimary: '#161618',
+  panel: '#2C2D30',
+  pad: '#161618',
+  signal: '#FF8585',
+  phosphor: '#FF8585',
+  phosphorBright: '#FFB0B0',
+  signalHot: '#FF9A9A',
+  audio: '#1EC995',
+  sync: '#FFFFFF',
+  focus: '#FFFFFF',
+  meter: '#F0D45A',
+  accentSoft: '#5A3030',
+  danger: '#FF8585',
 } as const
 
 export const AV_RGB = {

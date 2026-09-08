@@ -1,0 +1,32 @@
+---
+description: Keep JS color tokens (tokens.ts) in sync with styles.css theme CSS variables
+globs: src/tokens.ts,src/styles.css,src/tailwind.css
+alwaysApply: true
+---
+
+# Theme token sync (critical)
+
+Hex palettes live in **two places**. Changing one without the other is a bug.
+
+| JS (`src/tokens.ts`) | CSS (`src/styles.css`) |
+| --- | --- |
+| `AV` | `[data-av-theme='phosphor']` / `.av-theme` default |
+| `AV_EDITORIAL` | `[data-av-theme='editorial']` (light) |
+| `AV_EDITORIAL_DARK` | editorial `@media (prefers-color-scheme: dark)` |
+
+## Required workflow
+
+1. Edit the CSS `--av-*` assignment **and** the matching JS map in the same change.
+2. Match keys: `surface2` ↔ `--av-surface-2`, `signalHot` ↔ `--av-signal-hot`, `phosphorBright` ↔ `--av-phosphor-bright`, `onPrimary` ↔ `--av-on-primary`, `accentSoft` ↔ `--av-accent-soft`.
+3. Prefer `#RRGGBB` uppercase in JS; CSS may be lowercase — same digits.
+4. If CSS uses `color-mix(...)` for hairline/border, keep a solid stand-in hex in JS and leave a one-line comment.
+5. Update `AV_RGB` when phosphor `AV` RGB-consuming colors change (canvas/LED).
+6. Export new maps from `src/index.ts` when adding them.
+
+```ts
+// ❌ BAD — CSS-only accent tweak
+// styles.css: --av-signal: #9b1c1c;  (tokens.ts left at old value)
+
+// ✅ GOOD — both updated together
+// styles.css + tokens.ts AV_EDITORIAL.signal = '#9B1C1C'
+```

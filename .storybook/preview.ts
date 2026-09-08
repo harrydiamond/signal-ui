@@ -1,4 +1,5 @@
-import type { Preview } from '@storybook/react-vite'
+import type { Preview, ReactRenderer } from '@storybook/react-vite'
+import { withThemeByDataAttribute } from '@storybook/addon-themes'
 import { allModes } from './modes.ts'
 import '../src/fonts.css'
 import '../src/tailwind.css'
@@ -7,20 +8,6 @@ import '../src/stories/story.css'
 
 const preview: Preview = {
   tags: ['autodocs'],
-  globalTypes: {
-    theme: {
-      description: 'Kit theme',
-      toolbar: {
-        title: 'Theme',
-        icon: 'paintbrush',
-        items: [
-          { value: 'phosphor', title: 'Phosphor' },
-          { value: 'editorial', title: 'Editorial' },
-        ],
-        dynamicTitle: true,
-      },
-    },
-  },
   parameters: {
     layout: 'fullscreen',
     // Theme toolbar owns the canvas plate — hide Storybook backgrounds.
@@ -61,6 +48,17 @@ const preview: Preview = {
   initialGlobals: {
     theme: 'phosphor',
   },
+  decorators: [
+    // Kit themes toggle via `data-av-theme` (see Theme + styles.css), not Tailwind `.dark`.
+    withThemeByDataAttribute<ReactRenderer>({
+      themes: {
+        phosphor: 'phosphor',
+        editorial: 'editorial',
+      },
+      defaultTheme: 'phosphor',
+      attributeName: 'data-av-theme',
+    }),
+  ],
 }
 
 export default preview

@@ -34,6 +34,8 @@ const meta = {
   component: Color,
   decorators: [withStoryPad],
   parameters: {
+    // Documents phosphor `AV` hexes; not the live editorial CSS theme tokens.
+    a11y: { test: 'off' },
     docs: {
       description: {
         component:

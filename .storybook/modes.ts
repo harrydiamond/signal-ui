@@ -1,7 +1,8 @@
-/** Chromatic snapshot modes — one capture per kit theme (and editorial dark). */
+/** Shared Storybook modes for Chromatic snapshots and Vitest a11y projects. */
 export const allModes = {
   phosphor: {
     theme: 'phosphor',
+    colorScheme: 'dark',
   },
   editorial: {
     theme: 'editorial',
@@ -12,3 +13,5 @@ export const allModes = {
     colorScheme: 'dark',
   },
 } as const
+
+export type StorybookModeName = keyof typeof allModes

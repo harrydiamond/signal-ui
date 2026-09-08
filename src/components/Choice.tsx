@@ -10,7 +10,7 @@ type Props = ButtonHTMLAttributes<HTMLButtonElement> & {
 }
 
 const choice = tv({
-  base: `${body} av-choice bg-av-surface text-av-text cursor-pointer rounded-lg border border-av-hairline p-3 transition-[background-color,border-color,box-shadow] duration-90 disabled:cursor-not-allowed`,
+  base: `${body} bg-av-surface text-av-text border-av-hairline enabled:hover:bg-[color-mix(in_srgb,var(--av-muted)_8%,var(--av-surface))] data-[selected=true]:border-[color-mix(in_srgb,var(--av-audio)_45%,transparent)] data-[selected=true]:bg-[color-mix(in_srgb,var(--av-audio)_10%,var(--av-surface))] data-[selected=true]:shadow-[inset_0_0_0_1px_color-mix(in_srgb,var(--av-audio)_25%,transparent)] cursor-pointer rounded-lg border p-3 transition-[background-color,border-color,box-shadow] duration-90 disabled:cursor-not-allowed`,
 })
 
 export function Choice({

@@ -15,7 +15,8 @@ const switchTrack = tv({
   base: 'relative inline-block h-5 w-9 shrink-0 rounded-full transition-[background-color,box-shadow] duration-[90ms] ease-linear motion-reduce:transition-none',
   variants: {
     checked: {
-      true: 'av-switch-track-on',
+      true:
+        'bg-[color-mix(in_srgb,var(--av-audio)_10%,var(--av-surface))] shadow-[inset_0_0_0_1px_color-mix(in_srgb,var(--av-audio)_25%,transparent)]',
       false: 'bg-av-surface-2',
     },
   },
