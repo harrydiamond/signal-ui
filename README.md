@@ -1,6 +1,6 @@
 # `@harrydiamond/signal-ui`
 
-Phosphor console chrome for React. Install from GitHub (not the npm registry):
+Phosphor console chrome for React — plus an `editorial` theme for content sites. Install from GitHub (not the npm registry):
 
 ```bash
 bun add github:harrydiamond/signal-ui
@@ -17,6 +17,8 @@ Import kit CSS once at the app root (order matters — theme tokens before chrom
 @import '@harrydiamond/signal-ui/styles.css';
 ```
 
+Skip `fonts.css` for editorial-only apps unless you also want Doto + IBM Plex Mono.
+
 ## Theme
 
 Wrap the page (or mount on `body`) so atmosphere, type, and focus rules apply:
@@ -26,7 +28,7 @@ import { Theme, Button } from '@harrydiamond/signal-ui'
 
 export function App() {
   return (
-    <Theme asPage>
+    <Theme asPage theme="phosphor">
       <Button variant="primary">Calculate</Button>
     </Theme>
   )
@@ -39,7 +41,55 @@ Or attach the class directly:
 <body class="av-theme"></body>
 ```
 
-Only the `dark` theme ships today (`ThemeName`).
+`ThemeName` is `'phosphor' | 'editorial'`.
+
+- **`phosphor`** — phosphor console (grain, Doto display, kit palette). Default.
+- **`editorial`** — solid page color, soft-elevation cards, system light/dark via `prefers-color-scheme`.
+
+### Editorial fonts (consumer-owned)
+
+Editorial defaults to system stacks. Load your faces, then override:
+
+```css
+@import '@harrydiamond/signal-ui/theme.css';
+@import '@harrydiamond/signal-ui/styles.css';
+
+.av-theme[data-av-theme='editorial'] {
+  --av-font: 'Your Sans', ui-sans-serif, system-ui, sans-serif;
+  --av-font-body: 'Your Sans', ui-sans-serif, system-ui, sans-serif;
+}
+```
+
+### Editorial page shell
+
+```tsx
+import {
+  Theme,
+  SiteNav,
+  PageShell,
+  SiteFooter,
+  MetaLabel,
+  Card,
+  CardBody,
+} from '@harrydiamond/signal-ui'
+
+export function Site() {
+  return (
+    <Theme asPage theme="editorial">
+      <SiteNav
+        brand={<MetaLabel tone="ink">Brand</MetaLabel>}
+        links={<a href="/">Home</a>}
+      />
+      <PageShell>
+        <Card>
+          <CardBody>…</CardBody>
+        </Card>
+      </PageShell>
+      <SiteFooter>©</SiteFooter>
+    </Theme>
+  )
+}
+```
 
 ## Local override
 
@@ -60,6 +110,8 @@ bun run storybook
 bun run build:storybook
 bun run deploy
 ```
+
+Use the **Theme** toolbar to switch `phosphor` / `editorial`. Chromatic captures both themes per story via [modes](https://www.chromatic.com/docs/modes/) (`.storybook/modes.ts`).
 
 - Local MCP: http://localhost:6006/mcp
 - Published main MCP: https://main--6a9ecc9629e322e1385e7b36.chromatic.com/mcp
@@ -82,27 +134,34 @@ Until Builds is connected, deploy manually with `bun run deploy` (requires wrang
 ```ts
 import {
   AV,
+  AV_STAGGER_MS,
   Button,
   Choice,
   RadioGroup,
   Container,
   Field,
   Heading,
+  MetaLabel,
+  PageShell,
   plex,
+  SiteNav,
   Stack,
+  TagLink,
   Theme,
   type ThemeName,
 } from '@harrydiamond/signal-ui'
 ```
 
-`Container` / `Stack` handle column width and section gaps. Type helpers (`doto`, `plex`, `prose`, `proseMuted`, `meta`, `fieldLabel`, `fieldHint`, `fieldError`, `ledText`, `ledHot`) match the classes the primitives use.
+`Container` / `Stack` handle column width and section gaps. `PageShell` is the wider editorial main rhythm. Type helpers (`doto`, `plex`, `prose`, `proseMuted`, `meta`, `fieldLabel`, `fieldHint`, `fieldError`, `ledText`, `ledHot`) match the classes the primitives use.
+
+Motion: `animate-fade-in-up` (Tailwind utility) + `AV_STAGGER_MS` for staggered delays. Shadows: `shadow-av-card` (theme-assigned; soft elevation under editorial).
 
 ## Files
 
-- `src/tokens.ts` — JS palette (`AV`, `AV_RGB`)
+- `src/tokens.ts` — JS palette (`AV`, `AV_RGB`) + `AV_STAGGER_MS`
 - `src/type.ts` — shared type-face class strings
 - `src/tailwind.css` — Tailwind `@theme` tokens (`theme.css` export)
-- `src/styles.css` — atmosphere, focus rings, phosphor type, native range thumbs
+- `src/styles.css` — theme assignment, atmosphere, focus rings, phosphor / editorial type
 - `src/fonts.css` — self-hosted Doto + IBM Plex Mono
 - `src/components` — React primitives
 - `src/stories` — CSF specimens (every primitive needs a story for MCP docs)

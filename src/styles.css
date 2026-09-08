@@ -10,12 +10,12 @@
 @reference './tailwind.css';
 
 /*
-  Dark assignment (default).
-  `.av-theme` without a data attribute stays dark for body.av-theme pages.
-  Future light theme: `[data-av-theme='light'] { … }` (reassign tokens only).
+  Phosphor assignment (default).
+  `.av-theme` without a data attribute stays phosphor for body.av-theme pages.
+  Editorial is a separate brand theme — see `[data-av-theme='editorial']`.
 */
-.av-theme,
-[data-av-theme='dark'] {
+.av-theme:not([data-av-theme]),
+[data-av-theme='phosphor'] {
   --av-page: #0a0b0d;
   --av-surface: #16181c;
   --av-surface-2: #1e2126;
@@ -41,6 +41,17 @@
   --av-meter: #f7cd1b;
   --av-accent-soft: #ffb7f1;
   --av-danger: #fca5a5;
+  --av-radius: 0.5rem;
+  --av-shadow-card: none;
+  --av-shadow-card-light:
+    0 0 0 1px rgba(17, 24, 28, 0.08), 0 1px 2px -1px rgba(17, 24, 28, 0.08),
+    0 2px 4px rgba(17, 24, 28, 0.04);
+  --av-shadow-card-on-light:
+    0 0 0 1px rgba(17, 24, 28, 0.15), 0 2px 8px -2px rgba(17, 24, 28, 0.2),
+    0 4px 12px -4px rgba(17, 24, 28, 0.15);
+  --av-shadow-card-dark:
+    0 0 0 1px hsla(0, 0%, 100%, 0.1), 0 1px 2px -1px hsla(0, 0%, 100%, 0.16),
+    0 2px 4px rgba(0, 0, 0, 0.32);
   --av-font:
     'Doto Variable', 'Doto', ui-monospace, SFMono-Regular, Menlo, Monaco,
     Consolas, 'Liberation Mono', 'Courier New', monospace;
@@ -49,7 +60,75 @@
     'Liberation Mono', 'Courier New', monospace;
 }
 
-/* [data-av-theme='light'] { … } — assign the same token names when light ships. */
+/*
+  Editorial (dotcom-derived). Light defaults; dark via prefers-color-scheme.
+  Consumers override --av-font / --av-font-body after loading their own faces.
+*/
+[data-av-theme='editorial'] {
+  --av-page: #f0f0f0;
+  --av-surface: #ffffff;
+  --av-surface-2: #f5f5f5;
+  --av-hairline: color-mix(in srgb, #161618 12%, transparent);
+  --av-border: color-mix(in srgb, #161618 12%, transparent);
+  --av-text: #161618;
+  --av-body: #161618;
+  --av-muted: #8a8d93;
+  --av-prose-muted: color-mix(in srgb, #161618 70%, #8a8d93);
+  --av-ink: #161618;
+  --av-on-primary: #ffffff;
+  --av-panel: #ffffff;
+  --av-pad: #f0f0f0;
+  --av-signal: #ff4242;
+  --av-signal-hot: #e60000;
+  --av-phosphor: #ff4242;
+  --av-phosphor-bright: #ff6b6b;
+  --av-audio: #07b682;
+  --av-sync: #161618;
+  --av-focus: #161618;
+  --av-focus-width: 2px;
+  --av-focus-offset: 2px;
+  --av-meter: #f7cd1b;
+  --av-accent-soft: #ffb3b3;
+  --av-danger: #ff4242;
+  --av-radius: 0.5rem;
+  --av-shadow-card-light:
+    0 0 0 1px rgba(17, 24, 28, 0.08), 0 1px 2px -1px rgba(17, 24, 28, 0.08),
+    0 2px 4px rgba(17, 24, 28, 0.04);
+  --av-shadow-card-on-light:
+    0 0 0 1px rgba(17, 24, 28, 0.15), 0 2px 8px -2px rgba(17, 24, 28, 0.2),
+    0 4px 12px -4px rgba(17, 24, 28, 0.15);
+  --av-shadow-card-dark:
+    0 0 0 1px hsla(0, 0%, 100%, 0.1), 0 1px 2px -1px hsla(0, 0%, 100%, 0.16),
+    0 2px 4px rgba(0, 0, 0, 0.32);
+  --av-shadow-card: var(--av-shadow-card-on-light);
+  --av-font: ui-sans-serif, system-ui, sans-serif;
+  --av-font-body:
+    ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, 'Liberation Mono',
+    'Courier New', monospace;
+  color-scheme: light;
+}
+
+@media (prefers-color-scheme: dark) {
+  [data-av-theme='editorial'] {
+    --av-page: #161618;
+    --av-surface: #2c2d30;
+    --av-surface-2: #36373b;
+    --av-hairline: color-mix(in srgb, #ffffff 8%, transparent);
+    --av-border: color-mix(in srgb, #ffffff 8%, transparent);
+    --av-text: #e6e6e6;
+    --av-body: #e6e6e6;
+    --av-muted: #8a8d93;
+    --av-prose-muted: color-mix(in srgb, #e6e6e6 70%, #8a8d93);
+    --av-ink: #ffffff;
+    --av-on-primary: #161618;
+    --av-panel: #2c2d30;
+    --av-pad: #161618;
+    --av-sync: #ffffff;
+    --av-focus: #ffffff;
+    --av-shadow-card: var(--av-shadow-card-dark);
+    color-scheme: dark;
+  }
+}
 
 .av-theme
   :where(
@@ -80,20 +159,28 @@
   outline-offset: var(--av-focus-offset);
 }
 
-/*
-  Film-leak atmosphere: vignette + signal/sync washes on the page plate.
-  Grain is a background-image layer (faint SVG, overlay blend) — not a
-  covering mix-blend node (axe samples that through opaque chrome) and
-  not mix-blend on .av-theme itself (that would paint through type).
-  Scoped to dark theme so a future light theme is not forced into phosphor.
-*/
-.av-theme,
-[data-av-theme='dark'] {
+/* Shared theme root plate (all themes). */
+.av-theme {
   font-family: var(--av-font-body);
   font-weight: 400;
   letter-spacing: 0.025em;
   color: var(--av-text);
   background-color: var(--av-page);
+  line-height: 1.55;
+  font-variation-settings: normal;
+  font-feature-settings: 'tnum' 1;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
+}
+
+/*
+  Film-leak atmosphere: vignette + signal/sync washes on the page plate.
+  Grain is a background-image layer (faint SVG, overlay blend).
+  Scoped to phosphor only — editorial uses a solid page color.
+*/
+.av-theme:not([data-av-theme]),
+[data-av-theme='phosphor'] {
   background-image:
     url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.045'/%3E%3C/svg%3E"),
     radial-gradient(
@@ -114,18 +201,12 @@
     auto;
   background-repeat: repeat, no-repeat, no-repeat, no-repeat;
   background-blend-mode: overlay, normal, normal, normal;
-  line-height: 1.55;
-  font-variation-settings: normal;
-  font-feature-settings: 'tnum' 1;
   color-scheme: dark;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-rendering: optimizeLegibility;
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .av-theme,
-  [data-av-theme='dark'] {
+  .av-theme:not([data-av-theme]),
+  [data-av-theme='phosphor'] {
     background-image:
       radial-gradient(
         120% 80% at 10% 100%,
@@ -146,6 +227,13 @@
     background-repeat: no-repeat;
     background-blend-mode: normal, normal, normal;
   }
+}
+
+/* Editorial: solid page plate (no grain / washes). */
+[data-av-theme='editorial'] {
+  background-image: none;
+  background-blend-mode: normal;
+  letter-spacing: 0;
 }
 
 .av-theme button:not(:disabled) {
@@ -192,9 +280,58 @@
   .av-theme a {
     @apply text-av-signal hover:text-av-phosphor-bright;
   }
+
+  /* Editorial: sans display, tighter title tracking, muted link underline. */
+  [data-av-theme='editorial'] :is(h1, h2, h3, h4) {
+    font-family: var(--av-font);
+    font-weight: 500;
+    letter-spacing: -0.025em;
+    text-rendering: optimizeLegibility;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  [data-av-theme='editorial'] h1 {
+    @apply text-3xl sm:text-4xl;
+  }
+
+  [data-av-theme='editorial'] h2 {
+    @apply text-xl tracking-tight;
+  }
+
+  [data-av-theme='editorial'] h3,
+  [data-av-theme='editorial'] h4 {
+    @apply text-base font-medium tracking-tight;
+  }
+
+  [data-av-theme='editorial'] a {
+    @apply text-av-signal hover:text-av-signal-hot;
+  }
+
+  [data-av-theme='editorial'] .av-prose a,
+  [data-av-theme='editorial'] .av-prose-muted a {
+    text-decoration-line: underline;
+    text-decoration-color: var(--av-muted);
+    text-decoration-thickness: 0.1em;
+    text-underline-offset: 2px;
+  }
+
+  [data-av-theme='editorial'] :where(code):not(pre code) {
+    @apply bg-av-surface-2 rounded-sm px-1 py-0.5 font-mono text-[0.9em];
+  }
+
+  [data-av-theme='editorial'] pre {
+    @apply bg-av-surface-2 text-av-text shadow-av-card overflow-x-auto rounded-lg p-4 font-mono text-sm;
+  }
 }
 
-/* Lit LED copy — restrained phosphor, matrix-readable. Dark-theme chrome. */
+/* Soft-elevation cards under editorial (no hard hairline). */
+[data-av-theme='editorial'] .av-card {
+  border-color: transparent;
+  box-shadow: var(--av-shadow-card);
+}
+
+/* Lit LED copy — restrained phosphor, matrix-readable. */
 .av-led-text {
   color: var(--av-phosphor);
   text-shadow:

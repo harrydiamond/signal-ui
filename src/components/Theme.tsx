@@ -2,18 +2,18 @@ import type { HTMLAttributes } from 'react'
 import { cx } from '../cx.ts'
 import { plex } from '../type.ts'
 
-export type ThemeName = 'dark'
+export type ThemeName = 'phosphor' | 'editorial'
 
 type Props = HTMLAttributes<HTMLDivElement> & {
   asPage?: boolean
-  /** Palette assignment. Only `dark` ships today; light lands later. */
+  /** Palette assignment. `phosphor` is console chrome; `editorial` follows system light/dark. */
   theme?: ThemeName
 }
 
 /** Applies kit atmosphere, type, and focus rules. */
 export function Theme({
   asPage = false,
-  theme = 'dark',
+  theme = 'phosphor',
   className,
   children,
   ...props
@@ -23,7 +23,8 @@ export function Theme({
       className={cx(
         'av-theme',
         plex,
-        'text-av-text relative isolate [line-height:1.55] scheme-dark [&_button:disabled]:cursor-not-allowed [&_button:not(:disabled)]:cursor-pointer',
+        'text-av-text relative isolate [line-height:1.55] [&_button:disabled]:cursor-not-allowed [&_button:not(:disabled)]:cursor-pointer',
+        theme === 'phosphor' ? 'scheme-dark' : 'scheme-light dark:scheme-dark',
         asPage && 'flex min-h-dvh flex-col',
         className,
       )}
