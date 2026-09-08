@@ -10,8 +10,9 @@
 @reference './tailwind.css';
 
 /*
-  Dark assignment (default). Future themes: `[data-av-theme='light'] { … }`.
+  Dark assignment (default).
   `.av-theme` without a data attribute stays dark for body.av-theme pages.
+  Future light theme: `[data-av-theme='light'] { … }` (reassign tokens only).
 */
 .av-theme,
 [data-av-theme='dark'] {
@@ -24,6 +25,10 @@
   --av-body: #eee1e0;
   --av-muted: #a4a8b0;
   --av-prose-muted: color-mix(in srgb, #eee1e0 70%, #a4a8b0);
+  --av-ink: #ffffff;
+  --av-on-primary: #0a0b0d;
+  --av-panel: #090a0c;
+  --av-pad: #050607;
   --av-signal: #ffa88f;
   --av-signal-hot: #e64a19;
   --av-phosphor: #ff9a68;
@@ -43,6 +48,8 @@
     'IBM Plex Mono', ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas,
     'Liberation Mono', 'Courier New', monospace;
 }
+
+/* [data-av-theme='light'] { … } — assign the same token names when light ships. */
 
 .av-theme
   :where(
@@ -151,7 +158,7 @@
 
 @layer base {
   .av-theme :is(h1, h2, h3, h4) {
-    @apply font-bold tracking-wider text-white;
+    @apply text-av-ink font-bold tracking-wider;
     font-feature-settings: 'tnum' 1;
   }
 
@@ -273,7 +280,7 @@
 }
 
 .av-prose strong {
-  @apply font-bold text-white;
+  @apply text-av-ink font-bold;
 }
 
 @utility av-prose-muted {
@@ -374,13 +381,13 @@ input.peer:checked + .av-check-mark {
 .av-btn-panel {
   border: 1px solid
     color-mix(in srgb, var(--av-signal-hot) 28%, var(--av-hairline));
-  background: #090a0c;
+  background: var(--av-panel);
   color: var(--av-phosphor);
 }
 
 .av-btn-panel:enabled:hover {
   border-color: color-mix(in srgb, var(--av-signal-hot) 55%, transparent);
-  background: color-mix(in srgb, var(--av-signal-hot) 10%, #090a0c);
+  background: color-mix(in srgb, var(--av-signal-hot) 10%, var(--av-panel));
   color: #ffc19a;
   box-shadow: 0 0 18px rgb(230 74 25 / 0.12);
 }
@@ -388,7 +395,7 @@ input.peer:checked + .av-check-mark {
 .av-btn-panel:enabled:active,
 .av-btn-panel:enabled[data-pressed] {
   border-color: color-mix(in srgb, var(--av-signal-hot) 65%, transparent);
-  background: color-mix(in srgb, var(--av-signal-hot) 16%, #090a0c);
+  background: color-mix(in srgb, var(--av-signal-hot) 16%, var(--av-panel));
   color: #ffd2b4;
   box-shadow:
     inset 0 0 28px rgb(230 74 25 / 0.22),
@@ -403,7 +410,7 @@ input.peer:checked + .av-check-mark {
       rgb(230 74 25 / 0.07),
       transparent 70%
     ),
-    #050607;
+    var(--av-pad);
   box-shadow: inset 0 0 80px rgb(230 74 25 / 0.05);
 }
 
@@ -421,7 +428,7 @@ input.peer:checked + .av-check-mark {
       rgb(230 74 25 / 0.16),
       transparent 70%
     ),
-    #0a0b0e;
+    var(--av-page);
   box-shadow:
     inset 0 0 56px rgb(230 74 25 / 0.2),
     0 0 24px rgb(230 74 25 / 0.12);

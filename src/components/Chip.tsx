@@ -1,6 +1,7 @@
 import type { ReactNode } from 'react'
-import { cx } from '../cx.ts'
 import { plex, proseMuted } from '../type.ts'
+import { tv } from '../tv.ts'
+import { cx } from '../cx.ts'
 
 export type ChipTone = 'sync' | 'audio' | 'signal' | 'meter'
 
@@ -10,26 +11,23 @@ type ChipProps = {
   children: ReactNode
 }
 
-const TONE: Record<ChipTone, string> = {
-  sync: 'text-av-sync bg-av-sync/15',
-  audio: 'text-av-audio bg-av-audio/15',
-  signal: 'text-av-signal bg-av-signal/15',
-  meter: 'text-av-meter bg-av-meter/15',
-}
+const chip = tv({
+  base: `${plex} inline-flex items-center self-start rounded-md px-2 py-0.5 text-xs`,
+  variants: {
+    tone: {
+      sync: 'text-av-sync bg-av-sync/15',
+      audio: 'text-av-audio bg-av-audio/15',
+      signal: 'text-av-signal bg-av-signal/15',
+      meter: 'text-av-meter bg-av-meter/15',
+    },
+  },
+  defaultVariants: {
+    tone: 'signal',
+  },
+})
 
 export function Chip({ tone = 'signal', className, children }: ChipProps) {
-  return (
-    <span
-      className={cx(
-        plex,
-        'inline-flex items-center self-start rounded-md px-2 py-0.5 text-xs',
-        TONE[tone],
-        className,
-      )}
-    >
-      {children}
-    </span>
-  )
+  return <span className={chip({ tone, className })}>{children}</span>
 }
 
 type ChipCardProps = {
@@ -40,30 +38,32 @@ type ChipCardProps = {
   className?: string
 }
 
-const CARD_TONE: Record<ChipTone, string> = {
-  sync: 'border-av-sync/40',
-  audio: 'border-av-audio/40',
-  signal: 'border-av-signal/40',
-  meter: 'border-av-meter/40',
-}
+const chipCard = tv({
+  base: 'bg-av-surface-2 rounded-lg border p-3',
+  variants: {
+    tone: {
+      sync: 'border-av-sync/40',
+      audio: 'border-av-audio/40',
+      signal: 'border-av-signal/40',
+      meter: 'border-av-meter/40',
+    },
+  },
+  defaultVariants: {
+    tone: 'signal',
+  },
+})
 
 export function ChipCard({
   tone = 'signal',
   title,
   description,
-  chip = 'Chip',
+  chip: chipLabel = 'Chip',
   className,
 }: ChipCardProps) {
   return (
-    <div
-      className={cx(
-        'bg-av-surface-2 rounded-lg border p-3',
-        CARD_TONE[tone],
-        className,
-      )}
-    >
-      <Chip tone={tone}>{chip}</Chip>
-      <p className="mt-2.5 mb-0 text-sm font-medium text-white">{title}</p>
+    <div className={chipCard({ tone, className })}>
+      <Chip tone={tone}>{chipLabel}</Chip>
+      <p className="text-av-ink mt-2.5 mb-0 text-sm font-medium">{title}</p>
       {description ? (
         <p className={cx(proseMuted, 'mt-1 max-w-none')}>{description}</p>
       ) : null}

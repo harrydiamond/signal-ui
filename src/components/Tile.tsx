@@ -1,6 +1,7 @@
 import type { ReactNode } from 'react'
-import { cx } from '../cx.ts'
 import { plex, proseMuted } from '../type.ts'
+import { tv } from '../tv.ts'
+import { cx } from '../cx.ts'
 import { Badge } from './Badge.tsx'
 
 type Props = {
@@ -17,6 +18,40 @@ type Props = {
   headingLevel?: 3 | 4
   className?: string
 }
+
+const tile = tv({
+  base: `${plex} group relative flex overflow-hidden rounded-lg border border-transparent text-inherit no-underline transition-[background-color,transform,box-shadow] duration-160 ease-linear hover:-translate-y-0.5 hover:text-inherit active:translate-y-0 motion-reduce:translate-y-0 motion-reduce:transition-none motion-reduce:hover:translate-y-0`,
+  variants: {
+    density: {
+      card: 'h-full min-h-[14.5rem] flex-col p-5 sm:p-6',
+      row: 'items-center gap-4 px-4 py-3.5 sm:gap-5 sm:px-5 sm:py-4',
+    },
+    variant: {
+      tool: 'av-link-tile-tool bg-av-surface',
+      reference: 'av-link-tile-ref bg-av-surface-2/60 hover:bg-av-surface',
+    },
+  },
+  defaultVariants: {
+    density: 'card',
+    variant: 'tool',
+  },
+})
+
+const tileGlyph = tv({
+  base: 'flex shrink-0 items-center justify-center transition-colors duration-150',
+  variants: {
+    density: {
+      card: 'mb-4 size-20',
+      row: 'size-12',
+    },
+    variant: {
+      tool: 'text-av-signal group-hover:text-av-phosphor-bright',
+      reference: 'text-av-muted group-hover:text-av-text',
+    },
+  },
+})
+
+const tileTitle = `${plex} text-av-ink group-hover:text-av-signal m-0 text-lg font-medium transition-colors duration-150`
 
 export function Tile({
   href,
@@ -38,45 +73,15 @@ export function Tile({
   const glyph = icon ?? children
 
   return (
-    <a
-      href={href}
-      className={cx(
-        plex,
-        'group relative flex overflow-hidden rounded-lg border border-transparent text-inherit no-underline transition-[background-color,transform,box-shadow] duration-160 ease-linear hover:-translate-y-0.5 hover:text-inherit active:translate-y-0 motion-reduce:translate-y-0 motion-reduce:transition-none motion-reduce:hover:translate-y-0',
-        isRow
-          ? 'items-center gap-4 px-4 py-3.5 sm:gap-5 sm:px-5 sm:py-4'
-          : 'h-full min-h-[14.5rem] flex-col p-5 sm:p-6',
-        isReference
-          ? 'av-link-tile-ref bg-av-surface-2/60 hover:bg-av-surface'
-          : 'av-link-tile-tool bg-av-surface',
-        className,
-      )}
-    >
+    <a href={href} className={tile({ density, variant, className })}>
       {glyph ? (
-        <div
-          className={cx(
-            'flex shrink-0 items-center justify-center transition-colors duration-150',
-            isRow ? 'size-12' : 'mb-4 size-20',
-            isReference
-              ? 'text-av-muted group-hover:text-av-text'
-              : 'text-av-signal group-hover:text-av-phosphor-bright',
-          )}
-        >
-          {glyph}
-        </div>
+        <div className={tileGlyph({ density, variant })}>{glyph}</div>
       ) : null}
       {isRow ? (
         <>
           <div className="min-w-0 flex-1">
             <div className="flex min-h-7 flex-wrap items-center gap-x-2 gap-y-1">
-              <TitleTag
-                className={cx(
-                  plex,
-                  'group-hover:text-av-signal m-0 text-lg font-medium text-white transition-colors duration-150',
-                )}
-              >
-                {title}
-              </TitleTag>
+              <TitleTag className={tileTitle}>{title}</TitleTag>
               {badge ? (
                 <Badge label={badge} tone="meter" surface="page" />
               ) : null}
@@ -93,14 +98,7 @@ export function Tile({
       ) : (
         <>
           <div className="flex min-h-7 flex-wrap items-center gap-x-2 gap-y-1">
-            <TitleTag
-              className={cx(
-                plex,
-                'group-hover:text-av-signal m-0 text-lg font-medium text-white transition-colors duration-150',
-              )}
-            >
-              {title}
-            </TitleTag>
+            <TitleTag className={tileTitle}>{title}</TitleTag>
             {badge ? <Badge label={badge} tone="meter" surface="page" /> : null}
           </div>
           <p className={cx(proseMuted, 'mt-2 max-w-none')}>{description}</p>

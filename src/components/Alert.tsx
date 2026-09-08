@@ -1,21 +1,7 @@
 import type { ReactNode } from 'react'
-import { cx } from '../cx.ts'
+import { tv } from '../tv.ts'
 
 export type AlertTone = 'info' | 'success' | 'warning' | 'error'
-
-const TONE_BAR: Record<AlertTone, string> = {
-  info: 'before:bg-av-sync',
-  success: 'before:bg-av-audio',
-  warning: 'before:bg-av-meter',
-  error: 'before:bg-av-danger',
-}
-
-const TONE_TITLE: Record<AlertTone, string> = {
-  info: 'text-av-sync',
-  success: 'text-av-audio',
-  warning: 'text-av-meter',
-  error: 'text-av-danger',
-}
 
 type Props = {
   tone?: AlertTone
@@ -25,6 +11,44 @@ type Props = {
   className?: string
 }
 
+const alert = tv({
+  slots: {
+    root: 'bg-av-surface relative flex items-start gap-3 overflow-hidden rounded-lg px-3.5 py-3 before:pointer-events-none before:absolute before:inset-y-0 before:left-0 before:w-[3px] before:content-[""]',
+    title: 'm-0 text-sm font-bold tracking-wider',
+    body: 'text-av-text text-sm leading-snug',
+  },
+  variants: {
+    tone: {
+      info: {
+        root: 'before:bg-av-sync',
+        title: 'text-av-sync',
+      },
+      success: {
+        root: 'before:bg-av-audio',
+        title: 'text-av-audio',
+      },
+      warning: {
+        root: 'before:bg-av-meter',
+        title: 'text-av-meter',
+      },
+      error: {
+        root: 'before:bg-av-danger',
+        title: 'text-av-danger',
+      },
+    },
+    hasTitle: {
+      true: {
+        body: 'mt-0.5',
+      },
+      false: {},
+    },
+  },
+  defaultVariants: {
+    tone: 'info',
+    hasTitle: false,
+  },
+})
+
 export function Alert({
   tone = 'info',
   title,
@@ -32,31 +56,16 @@ export function Alert({
   onDismiss,
   className,
 }: Props) {
+  const styles = alert({ tone, hasTitle: Boolean(title) })
+
   return (
     <div
       role={tone === 'error' ? 'alert' : 'status'}
-      className={cx(
-        'bg-av-surface relative flex items-start gap-3 overflow-hidden rounded-lg px-3.5 py-3 before:pointer-events-none before:absolute before:inset-y-0 before:left-0 before:w-[3px] before:content-[""]',
-        TONE_BAR[tone],
-        className,
-      )}
+      className={styles.root({ className })}
     >
       <div className="min-w-0 flex-1">
-        {title ? (
-          <p
-            className={cx(
-              'm-0 text-sm font-bold tracking-wider',
-              TONE_TITLE[tone],
-            )}
-          >
-            {title}
-          </p>
-        ) : null}
-        <div
-          className={cx('text-av-text text-sm leading-snug', title && 'mt-0.5')}
-        >
-          {children}
-        </div>
+        {title ? <p className={styles.title()}>{title}</p> : null}
+        <div className={styles.body()}>{children}</div>
       </div>
       {onDismiss ? (
         <button
