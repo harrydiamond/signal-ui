@@ -1,5 +1,6 @@
 export { AV, AV_RGB, type AvColorName } from './tokens.ts'
 export { cx } from './cx.ts'
+export { tv } from './tv.ts'
 export {
   doto,
   plex,

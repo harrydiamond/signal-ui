@@ -125,7 +125,7 @@ export function Tab({
       disabled={disabled}
       data-tab-value={value}
       className={cx(
-        "font-body text-av-muted hover:enabled:text-av-text aria-selected:border-av-signal aria-selected:text-av-signal -mb-px border-0 border-b-2 border-transparent bg-transparent px-3 py-2.5 [font-feature-settings:'tnum'_1] text-[0.6875rem] font-medium tracking-wider uppercase [font-variation-settings:normal] disabled:opacity-50",
+        'font-body text-av-muted hover:enabled:text-av-text aria-selected:border-av-signal aria-selected:text-av-signal -mb-px border-0 border-b-2 border-transparent bg-transparent px-3 py-2.5 text-[0.6875rem] font-medium tracking-wider uppercase [text-rendering:optimizeLegibility] disabled:opacity-50',
         className,
       )}
       {...props}

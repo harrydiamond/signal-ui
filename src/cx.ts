@@ -1,6 +1,7 @@
-type CxPart = string | false | null | undefined
+import { clsx, type ClassValue } from 'clsx'
+import { twMerge } from 'tailwind-merge'
 
-/** Join truthy class name parts. */
-export function cx(...parts: CxPart[]): string {
-  return parts.filter(Boolean).join(' ')
+/** Merge class names with Tailwind conflict resolution. */
+export function cx(...parts: ClassValue[]): string {
+  return twMerge(clsx(parts))
 }

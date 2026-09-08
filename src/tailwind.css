@@ -7,8 +7,12 @@
   Semantic utilities (bg-av-page, text-av-signal, …) map to CSS variables.
   Hex values live on `.av-theme` / `[data-av-theme]` in styles.css so a later
   light (or alternate) theme can reassign without rewriting components.
+
+  `@theme inline` is required: non-inline would set `--color-av-*: var(--av-*)`
+  on `:root`, where `--av-*` is unset, so the cascade resolves to invalid and
+  utilities never pick up theme-root assignments.
 */
-@theme {
+@theme inline {
   --color-av-page: var(--av-page);
   --color-av-surface: var(--av-surface);
   --color-av-surface-2: var(--av-surface-2);
@@ -28,7 +32,15 @@
   --color-av-meter: var(--av-meter);
   --color-av-accent-soft: var(--av-accent-soft);
   --color-av-danger: var(--av-danger);
+  --color-av-ink: var(--av-ink);
+  --color-av-on-primary: var(--av-on-primary);
+  --color-av-panel: var(--av-panel);
+  --color-av-pad: var(--av-pad);
 
   --font-doto: var(--av-font);
+  --font-doto--font-feature-settings: 'tnum' 1;
+  --font-doto--font-variation-settings: 'ROND' 0;
   --font-body: var(--av-font-body);
+  --font-body--font-feature-settings: 'tnum' 1;
+  --font-body--font-variation-settings: normal;
 }

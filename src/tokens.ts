@@ -11,6 +11,13 @@ export const AV = {
   text: '#EEE1E0',
   body: '#EEE1E0',
   muted: '#A4A8B0',
+  /** High-contrast ink (headings, strong). Dark = white. */
+  ink: '#FFFFFF',
+  /** Foreground on primary/danger fills. Dark = page plate. */
+  onPrimary: '#0A0B0D',
+  /** Panel / pad plate fills (button chrome). */
+  panel: '#090A0C',
+  pad: '#050607',
   signal: '#FFA88F',
   /** Lit LED / matrix phosphor (slightly hotter than signal fill). */
   phosphor: '#FF9A68',

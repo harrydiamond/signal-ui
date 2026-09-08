@@ -1,6 +1,6 @@
 import type { ButtonHTMLAttributes, ReactNode } from 'react'
-import { cx } from '../cx.ts'
 import { plex } from '../type.ts'
+import { tv } from '../tv.ts'
 import { useChoiceGroup } from './ChoiceGroup.tsx'
 
 type Props = ButtonHTMLAttributes<HTMLButtonElement> & {
@@ -8,6 +8,10 @@ type Props = ButtonHTMLAttributes<HTMLButtonElement> & {
   value?: string
   children: ReactNode
 }
+
+const choice = tv({
+  base: `${plex} av-choice bg-av-surface text-av-text cursor-pointer rounded-lg border border-transparent p-3 transition-[background-color,border-color,box-shadow] duration-90 disabled:cursor-not-allowed`,
+})
 
 export function Choice({
   selected = false,
@@ -31,11 +35,7 @@ export function Choice({
       aria-pressed={isRadio ? undefined : isSelected}
       data-selected={isSelected ? 'true' : undefined}
       data-value={value}
-      className={cx(
-        plex,
-        'av-choice bg-av-surface text-av-text cursor-pointer rounded-lg border border-transparent p-3 transition-[background-color,border-color,box-shadow] duration-90 disabled:cursor-not-allowed',
-        className,
-      )}
+      className={choice({ className })}
       onClick={event => {
         onClick?.(event)
         if (!event.defaultPrevented && group && value != null) {
