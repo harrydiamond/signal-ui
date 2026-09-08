@@ -52,7 +52,7 @@
   --av-shadow-card-dark:
     0 0 0 1px hsla(0, 0%, 100%, 0.1), 0 1px 2px -1px hsla(0, 0%, 100%, 0.16),
     0 2px 4px rgba(0, 0, 0, 0.32);
-  --av-font:
+  --av-font-heading:
     'Doto Variable', 'Doto', ui-monospace, SFMono-Regular, Menlo, Monaco,
     Consolas, 'Liberation Mono', 'Courier New', monospace;
   --av-font-body:
@@ -63,7 +63,7 @@
 
 /*
   Editorial (dotcom-derived). Light defaults; dark via prefers-color-scheme.
-  Consumers override --av-font / --av-font-body after loading their own faces.
+  Consumers override --av-font-heading / --av-font-body after loading their own faces.
 */
 [data-av-theme='editorial'] {
   --av-page: #f0f0f0;
@@ -102,7 +102,7 @@
     0 0 0 1px hsla(0, 0%, 100%, 0.1), 0 1px 2px -1px hsla(0, 0%, 100%, 0.16),
     0 2px 4px rgba(0, 0, 0, 0.32);
   --av-shadow-card: var(--av-shadow-card-on-light);
-  --av-font: ui-sans-serif, system-ui, sans-serif;
+  --av-font-heading: ui-sans-serif, system-ui, sans-serif;
   --av-font-body: ui-sans-serif, system-ui, sans-serif;
   --av-link-hover: var(--av-signal-hot);
   color-scheme: light;
@@ -250,7 +250,8 @@
   }
 
   .av-theme :is(h1, h2) {
-    @apply font-doto;
+    @apply font-heading;
+    font-variation-settings: 'ROND' 0;
     text-rendering: geometricPrecision;
     -webkit-font-smoothing: auto;
     -moz-osx-font-smoothing: auto;
@@ -287,7 +288,8 @@
 
   /* Editorial: sans display, tighter title tracking, muted link underline. */
   [data-av-theme='editorial'] :is(h1, h2, h3, h4) {
-    font-family: var(--av-font);
+    font-family: var(--av-font-heading);
+    font-variation-settings: normal;
     font-weight: 500;
     letter-spacing: -0.025em;
     text-rendering: optimizeLegibility;
@@ -406,11 +408,17 @@
   text-shadow: none;
 }
 
-/* Doto — bitmap display face for LED chrome + key interactive controls. */
-.av-doto,
+/* Heading face for LED chrome + key interactive controls. */
+.av-heading,
 .av-bpm-digits {
-  @apply font-doto font-bold tracking-wider;
+  @apply font-heading font-bold tracking-wider;
+  font-variation-settings: 'ROND' 0;
   text-rendering: geometricPrecision;
+}
+
+[data-av-theme='editorial'] .av-heading,
+[data-av-theme='editorial'] .av-bpm-digits {
+  font-variation-settings: normal;
 }
 
 /* Hot phosphor core — light bloom so Doto dots stay crisp. */

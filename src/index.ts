@@ -2,8 +2,8 @@ export { AV, AV_RGB, AV_STAGGER_MS, type AvColorName } from './tokens.ts'
 export { cx } from './cx.ts'
 export { tv } from './tv.ts'
 export {
-  doto,
-  plex,
+  heading,
+  body,
   prose,
   proseMuted,
   meta,

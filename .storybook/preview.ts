@@ -47,6 +47,8 @@ const preview: Preview = {
       storySort: {
         order: [
           'Introduction',
+          'Examples',
+          ['Portfolio', 'Article', 'Instrument', 'Settings', 'Studio'],
           'Foundations',
           ['Color', 'Heading', 'Text', 'Atmosphere', 'Theme'],
           'Components',

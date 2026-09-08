@@ -1,6 +1,6 @@
 import { AV } from '../tokens.ts'
 import { cx } from '../cx.ts'
-import { plex } from '../type.ts'
+import { body } from '../type.ts'
 import { LedMatrixBar } from './LedMatrixBar.tsx'
 import { Spinner } from './Spinner.tsx'
 
@@ -33,7 +33,7 @@ export function Progress({
       className={cx('flex flex-col gap-2', className)}
     >
       {label ? (
-        <span className={`${plex} text-av-muted text-xs font-medium`}>
+        <span className={`${body} text-av-muted text-xs font-medium`}>
           {label}
         </span>
       ) : null}

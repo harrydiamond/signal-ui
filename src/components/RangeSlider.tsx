@@ -8,7 +8,7 @@ import {
   LedMatrixBar,
 } from './LedMatrixBar.tsx'
 import { cx } from '../cx.ts'
-import { plex } from '../type.ts'
+import { body } from '../type.ts'
 
 export const SLIDER_LED_PITCH = LED_MATRIX_PITCH
 export const SLIDER_LED_ROWS = LED_MATRIX_ROWS
@@ -93,7 +93,7 @@ export function RangeSlider({
       </div>
       <div
         className={cx(
-          plex,
+          body,
           'text-av-muted mt-0.5 flex justify-between text-xs tabular-nums',
         )}
       >

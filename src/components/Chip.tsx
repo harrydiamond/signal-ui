@@ -1,5 +1,5 @@
 import type { ReactNode } from 'react'
-import { plex, proseMuted } from '../type.ts'
+import { body, proseMuted } from '../type.ts'
 import { tv } from '../tv.ts'
 import { cx } from '../cx.ts'
 
@@ -12,7 +12,7 @@ type ChipProps = {
 }
 
 const chip = tv({
-  base: `${plex} inline-flex items-center self-start rounded-md px-2 py-0.5 text-xs`,
+  base: `${body} inline-flex items-center self-start rounded-md px-2 py-0.5 text-xs`,
   variants: {
     tone: {
       sync: 'text-av-sync bg-av-sync/15',

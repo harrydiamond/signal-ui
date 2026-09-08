@@ -15,7 +15,7 @@ const meta = {
     docs: {
       description: {
         component:
-          'Body and captions follow `--av-font-body` (Plex under phosphor, sans under editorial). LED readouts (`LedText`) are phosphor glow — solid accent under editorial.',
+          'Body and captions follow `--av-font-body`. LED readouts (`LedText`) are phosphor glow — solid accent under editorial.',
       },
     },
   },
@@ -27,8 +27,8 @@ type Story = StoryObj<typeof meta>
 export const Body: Story = {
   render: () => (
     <Prose>
-      Body paragraph for primers and blurbs. Prefer this over muted gray so Plex
-      stays readable at length. Use <strong>strong</strong> for emphasis inside
+      Body paragraph for primers and blurbs. Prefer this over muted gray so body
+      type stays readable at length. Use <strong>strong</strong> for emphasis inside
       a sentence.
     </Prose>
   ),

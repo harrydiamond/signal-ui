@@ -1,4 +1,4 @@
-import { plex, proseMuted } from '../type.ts'
+import { body, proseMuted } from '../type.ts'
 
 /**
  * Surfaces, text, and accents. Operable chrome uses fill contrast — not a
@@ -25,7 +25,7 @@ export function Color({
         {sample === 'text' ? 'Aa' : null}
       </span>
       <div>
-        <p className={`${plex} av-swatch-name`}>{name}</p>
+        <p className={`${body} av-swatch-name`}>{name}</p>
         <p className={`${proseMuted} av-swatch-meta`}>
           {hex} · {note}
         </p>

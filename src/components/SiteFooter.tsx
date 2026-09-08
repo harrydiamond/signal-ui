@@ -1,6 +1,6 @@
 import type { ReactNode } from 'react'
 import { cx } from '../cx.ts'
-import { plex } from '../type.ts'
+import { body } from '../type.ts'
 
 type Props = {
   className?: string
@@ -40,11 +40,11 @@ export function SiteFooter({
             </div>
           ) : null}
           {copyright ? (
-            <div className={cx(plex, 'text-[11px]')}>{copyright}</div>
+            <div className={cx(body, 'text-[11px]')}>{copyright}</div>
           ) : null}
         </div>
       ) : (
-        <p className={plex}>{children}</p>
+        <p className={body}>{children}</p>
       )}
     </footer>
   )

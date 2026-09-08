@@ -17,7 +17,7 @@ Import kit CSS once at the app root (order matters — theme tokens before chrom
 @import '@harrydiamond/signal-ui/styles.css';
 ```
 
-Skip `fonts.css` for editorial-only apps unless you also want Doto + IBM Plex Mono.
+Skip `fonts.css` if you load your own faces — kit defaults are only needed for phosphor’s shipped Doto + IBM Plex Mono.
 
 ## Theme
 
@@ -43,23 +43,24 @@ Or attach the class directly:
 
 `ThemeName` is `'phosphor' | 'editorial'`.
 
-- **`phosphor`** — phosphor console (grain, Doto display, kit palette). Default.
+- **`phosphor`** — phosphor console (grain, kit palette). Default.
 - **`editorial`** — solid page color, soft-elevation cards, system light/dark via `prefers-color-scheme`.
 
-### Editorial fonts (consumer-owned)
+### Fonts (consumer-owned)
 
-Editorial defaults to system stacks. Load your faces, then override:
+Two CSS variables. Load your faces, then set them on `.av-theme` (or a theme scope):
 
 ```css
 @import '@harrydiamond/signal-ui/theme.css';
 @import '@harrydiamond/signal-ui/styles.css';
 
-.av-theme[data-av-theme='editorial'] {
-  --av-font: 'Your Sans', ui-sans-serif, system-ui, sans-serif;
+.av-theme {
+  --av-font-heading: 'Your Display', ui-sans-serif, system-ui, sans-serif;
   --av-font-body: 'Your Sans', ui-sans-serif, system-ui, sans-serif;
 }
 ```
 
+Headings / pad chrome use `--av-font-heading`. UI chrome and prose use `--av-font-body`. Phosphor ships Doto + Plex Mono as defaults; editorial ships system sans until you override.
 ### Editorial page shell
 
 ```tsx
@@ -165,7 +166,7 @@ import {
 } from '@harrydiamond/signal-ui'
 ```
 
-`Container` / `Stack` handle column width and section gaps. `PageShell` is the wider main rhythm. Content recipes: `NavLink`, `PreviewCard`, `ExternalLink`, `BackLink`, `SectionHeader`, `PulseDot`. Type helpers (`doto`, `plex`, `prose`, …) match the classes the primitives use.
+`Container` / `Stack` handle column width and section gaps. `PageShell` is the wider main rhythm. Content recipes: `NavLink`, `PreviewCard`, `ExternalLink`, `BackLink`, `SectionHeader`, `PulseDot`. Type helpers (`heading`, `body`, `prose`, …) match the classes the primitives use.
 
 Motion: `animate-fade-in-up` + `AV_STAGGER_MS`. Shadows: `shadow-av-card` (soft elevation under editorial).
 
@@ -175,7 +176,7 @@ Motion: `animate-fade-in-up` + `AV_STAGGER_MS`. Shadows: `shadow-av-card` (soft 
 - `src/type.ts` — shared type-face class strings
 - `src/tailwind.css` — Tailwind `@theme` tokens (`theme.css` export)
 - `src/styles.css` — theme assignment, atmosphere, focus rings, phosphor / editorial type
-- `src/fonts.css` — self-hosted Doto + IBM Plex Mono
+- `src/fonts.css` — optional self-hosted phosphor defaults (Doto + IBM Plex Mono)
 - `src/components` — React primitives
 - `src/stories` — CSF specimens (every primitive needs a story for MCP docs)
 - `wrangler.jsonc` — Storybook Worker (`signal-ui`)

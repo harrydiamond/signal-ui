@@ -32,7 +32,7 @@ export const Default: Story = {
               <Heading level={2}>{theme}</Heading>
               <ProseMuted className="mt-2">
                 {theme === 'editorial'
-                  ? 'Solid page color, soft-elevation cards, system light/dark. Override `--av-font` / `--av-font-body` to inject consumer faces.'
+                  ? 'Solid page color, soft-elevation cards, system light/dark. Override `--av-font-heading` / `--av-font-body` to inject consumer faces.'
                   : 'Phosphor paints the page plate, washes, grain, and focus rings.'}
               </ProseMuted>
               {theme === 'editorial' ? (
