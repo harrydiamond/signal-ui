@@ -12,10 +12,10 @@
 /*
   Phosphor assignment (default). Keep hexes in sync with `AV` in tokens.ts.
   `.av-theme` without a data attribute stays phosphor for body.av-theme pages.
-  Editorial is a separate brand theme — see `[data-av-theme='editorial']`.
+  Editorial is a separate brand theme — see `.av-theme[data-av-theme='editorial']`.
 */
 .av-theme:not([data-av-theme]),
-[data-av-theme='phosphor'] {
+.av-theme[data-av-theme='phosphor'] {
   --av-page: #0a0b0d;
   --av-surface: #16181c;
   --av-surface-2: #1e2126;
@@ -55,17 +55,14 @@
   --av-font-heading:
     'Doto Variable', 'Doto', ui-monospace, SFMono-Regular, Menlo, Monaco,
     Consolas, 'Liberation Mono', 'Courier New', monospace;
-  --av-font-body:
-    'IBM Plex Mono', ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas,
-    'Liberation Mono', 'Courier New', monospace;
+  --av-font-body: 'PP Neue Montreal', system-ui, sans-serif;
   --av-link-hover: var(--av-phosphor-bright);
 }
 
 /*
   Editorial (dotcom-derived). Light ↔ `AV_EDITORIAL`; dark media ↔ `AV_EDITORIAL_DARK`.
-  Consumers override --av-font-heading / --av-font-body after loading their own faces.
 */
-[data-av-theme='editorial'] {
+.av-theme[data-av-theme='editorial'] {
   --av-page: #f0f0f0;
   --av-surface: #ffffff;
   --av-surface-2: #f5f5f5;
@@ -103,14 +100,14 @@
     0 0 0 1px hsla(0, 0%, 100%, 0.1), 0 1px 2px -1px hsla(0, 0%, 100%, 0.16),
     0 2px 4px rgba(0, 0, 0, 0.32);
   --av-shadow-card: var(--av-shadow-card-on-light);
-  --av-font-heading: ui-sans-serif, system-ui, sans-serif;
-  --av-font-body: ui-sans-serif, system-ui, sans-serif;
+  --av-font-heading: 'PP Neue Montreal', system-ui, sans-serif;
+  --av-font-body: 'PP Neue Montreal', system-ui, sans-serif;
   --av-link-hover: var(--av-signal-hot);
   color-scheme: light;
 }
 
 @media (prefers-color-scheme: dark) {
-  [data-av-theme='editorial'] {
+  .av-theme[data-av-theme='editorial'] {
     --av-page: #161618;
     --av-surface: #2c2d30;
     --av-surface-2: #36373b;
@@ -189,7 +186,7 @@
   Scoped to phosphor only — editorial uses a solid page color.
 */
 .av-theme:not([data-av-theme]),
-[data-av-theme='phosphor'] {
+.av-theme[data-av-theme='phosphor'] {
   background-image:
     url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.045'/%3E%3C/svg%3E"),
     radial-gradient(
@@ -215,7 +212,7 @@
 
 @media (prefers-reduced-motion: reduce) {
   .av-theme:not([data-av-theme]),
-  [data-av-theme='phosphor'] {
+  .av-theme[data-av-theme='phosphor'] {
     background-image:
       radial-gradient(
         120% 80% at 10% 100%,
@@ -239,10 +236,12 @@
 }
 
 /* Editorial: solid page plate (no grain / washes). */
-[data-av-theme='editorial'] {
+.av-theme[data-av-theme='editorial'] {
   background-image: none;
   background-blend-mode: normal;
-  letter-spacing: 0;
+  -webkit-font-smoothing: auto;
+  -moz-osx-font-smoothing: auto;
+  text-rendering: auto;
 }
 
 .av-theme button:not(:disabled) {
@@ -295,96 +294,127 @@
     @apply text-av-signal hover:text-av-link-hover;
   }
 
-  /* Editorial: sans display, tighter title tracking, muted link underline. */
-  [data-av-theme='editorial'] :is(h1, h2, h3, h4) {
-    font-family: var(--av-font-heading);
-    font-variation-settings: normal;
-    font-weight: 500;
-    letter-spacing: -0.025em;
-    text-rendering: optimizeLegibility;
-    -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale;
-  }
-
-  [data-av-theme='editorial'] h1 {
-    @apply text-3xl sm:text-4xl;
-  }
-
-  [data-av-theme='editorial'] h2 {
-    @apply text-xl tracking-tight;
-  }
-
-  [data-av-theme='editorial'] h3,
-  [data-av-theme='editorial'] h4 {
-    @apply text-base font-medium tracking-tight;
-  }
-
-  [data-av-theme='editorial'] a {
+  .av-theme[data-av-theme='editorial'] a {
     @apply text-av-signal hover:text-av-signal-hot;
   }
 
-  [data-av-theme='editorial'] .av-prose a,
-  [data-av-theme='editorial'] .av-prose-muted a {
+  .av-theme[data-av-theme='editorial'] .av-prose a,
+  .av-theme[data-av-theme='editorial'] .av-prose-muted a {
     text-decoration-line: underline;
     text-decoration-color: var(--av-muted);
     text-decoration-thickness: 0.1em;
     text-underline-offset: 2px;
   }
 
-  [data-av-theme='editorial'] :where(code):not(pre code) {
+  .av-theme[data-av-theme='editorial'] :where(code):not(pre code) {
     @apply bg-av-surface-2 rounded-sm px-1 py-0.5 font-mono text-[0.9em];
   }
 
-  [data-av-theme='editorial'] pre {
+  .av-theme[data-av-theme='editorial'] pre {
     @apply bg-av-surface-2 text-av-text shadow-av-card overflow-x-auto rounded-lg p-4 font-mono text-sm;
   }
 }
 
+/*
+  Editorial type (unlayered so it wins over Heading utility classes).
+  Mirrors harrydiamond.com: medium + tracking-tight titles; body keeps kit tracking (0.025em).
+*/
+.av-theme[data-av-theme='editorial'] :is(h1, h2, h3) {
+  font-family: var(--av-font-heading);
+  font-variation-settings: normal;
+  font-weight: 500;
+  letter-spacing: -0.025em;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: auto;
+  -moz-osx-font-smoothing: auto;
+}
+
+.av-theme[data-av-theme='editorial'] h1 {
+  font-size: 1.875rem;
+  line-height: 2.25rem;
+}
+
+@media (min-width: 768px) {
+  .av-theme[data-av-theme='editorial'] h1 {
+    font-size: 2.25rem;
+    line-height: 2.5rem;
+  }
+}
+
+.av-theme[data-av-theme='editorial'] h2 {
+  font-size: 1.5rem;
+  line-height: 2rem;
+}
+
+@media (min-width: 768px) {
+  .av-theme[data-av-theme='editorial'] h2 {
+    font-size: 1.875rem;
+    line-height: 2.25rem;
+  }
+}
+
+.av-theme[data-av-theme='editorial'] h3 {
+  font-size: 1.125rem;
+  line-height: 1.75rem;
+}
+
+.av-theme[data-av-theme='editorial'] h4 {
+  font-family: var(--av-font-heading);
+  font-variation-settings: normal;
+  -webkit-font-smoothing: auto;
+  -moz-osx-font-smoothing: auto;
+}
+
+.av-theme[data-av-theme='editorial'] .av-prose :is(h1, h2, h3, h4),
+.av-theme[data-av-theme='editorial'] .av-prose-muted :is(h1, h2, h3, h4) {
+  font-weight: 400;
+}
+
 /* Soft-elevation surfaces under editorial (no hard hairline). */
-[data-av-theme='editorial'] .av-card {
+.av-theme[data-av-theme='editorial'] .av-card {
   border-color: transparent;
   box-shadow: var(--av-shadow-card);
 }
 
-[data-av-theme='editorial'] .av-card :is(h1, h2, h3, h4) {
+.av-theme[data-av-theme='editorial'] .av-card :is(h1, h2, h3) {
   letter-spacing: -0.025em;
 }
 
-[data-av-theme='editorial']
+.av-theme[data-av-theme='editorial']
   .av-card
   :is(legend, label, button, input, select, th),
-[data-av-theme='editorial'] .av-tile :is(button) {
+.av-theme[data-av-theme='editorial'] .av-tile :is(button) {
   font-weight: 500;
   letter-spacing: 0;
 }
 
-[data-av-theme='editorial'] .av-list {
+.av-theme[data-av-theme='editorial'] .av-list {
   border-color: transparent;
   box-shadow: var(--av-shadow-card);
 }
 
-[data-av-theme='editorial'] .av-choice {
+.av-theme[data-av-theme='editorial'] .av-choice {
   border-color: transparent;
   box-shadow: var(--av-shadow-card);
 }
 
-[data-av-theme='editorial'] .av-chip-card {
+.av-theme[data-av-theme='editorial'] .av-chip-card {
   border-color: transparent;
   box-shadow: var(--av-shadow-card);
 }
 
-[data-av-theme='editorial'] .av-page-header {
+.av-theme[data-av-theme='editorial'] .av-page-header {
   border-color: transparent;
 }
 
-[data-av-theme='editorial'] .av-site-footer {
+.av-theme[data-av-theme='editorial'] .av-site-footer {
   border-color: transparent;
   box-shadow: var(--av-shadow-card);
 }
 
 /* Lit LED copy — phosphor only (no CRT glow under editorial). */
 .av-theme:not([data-av-theme]) .av-led-text,
-[data-av-theme='phosphor'] .av-led-text {
+.av-theme[data-av-theme='phosphor'] .av-led-text {
   color: var(--av-phosphor);
   text-shadow:
     0 0 1px color-mix(in srgb, var(--av-phosphor-bright) 55%, transparent),
@@ -392,14 +422,14 @@
 }
 
 .av-theme:not([data-av-theme]) .av-led-glow,
-[data-av-theme='phosphor'] .av-led-glow {
+.av-theme[data-av-theme='phosphor'] .av-led-glow {
   text-shadow:
     0 0 1px color-mix(in srgb, var(--av-phosphor-bright) 45%, transparent),
     0 0 6px color-mix(in srgb, var(--av-signal-hot) 28%, transparent);
 }
 
 .av-theme:not([data-av-theme]) .av-led-hot,
-[data-av-theme='phosphor'] .av-led-hot {
+.av-theme[data-av-theme='phosphor'] .av-led-hot {
   color: var(--av-phosphor-bright);
   text-shadow:
     0 0 1px color-mix(in srgb, var(--av-phosphor-bright) 70%, white),
@@ -407,13 +437,13 @@
     0 0 12px color-mix(in srgb, var(--av-signal-hot) 20%, transparent);
 }
 
-[data-av-theme='editorial'] .av-led-text,
-[data-av-theme='editorial'] .av-led-hot {
+.av-theme[data-av-theme='editorial'] .av-led-text,
+.av-theme[data-av-theme='editorial'] .av-led-hot {
   color: var(--av-signal);
   text-shadow: none;
 }
 
-[data-av-theme='editorial'] .av-led-glow {
+.av-theme[data-av-theme='editorial'] .av-led-glow {
   text-shadow: none;
 }
 
@@ -425,14 +455,16 @@
   text-rendering: geometricPrecision;
 }
 
-[data-av-theme='editorial'] .av-heading,
-[data-av-theme='editorial'] .av-bpm-digits {
+.av-theme[data-av-theme='editorial'] .av-heading,
+.av-theme[data-av-theme='editorial'] .av-bpm-digits {
   font-variation-settings: normal;
+  font-weight: 500;
+  letter-spacing: -0.025em;
 }
 
 /* Hot phosphor core — light bloom so Doto dots stay crisp. */
 .av-theme:not([data-av-theme]) .av-bpm-digits.av-led-text,
-[data-av-theme='phosphor'] .av-bpm-digits.av-led-text {
+.av-theme[data-av-theme='phosphor'] .av-bpm-digits.av-led-text {
   color: var(--av-phosphor-bright);
   text-shadow:
     0 0 1px color-mix(in srgb, var(--av-phosphor-bright) 70%, white),
@@ -500,12 +532,12 @@
 
 /* Link tiles — CRT bloom is phosphor-only. */
 .av-theme:not([data-av-theme]) .av-link-tile-tool:hover,
-[data-av-theme='phosphor'] .av-link-tile-tool:hover {
+.av-theme[data-av-theme='phosphor'] .av-link-tile-tool:hover {
   background: color-mix(in srgb, var(--av-signal) 6%, var(--av-surface));
   box-shadow: 0 0 24px color-mix(in srgb, var(--av-signal-hot) 8%, transparent);
 }
 
-[data-av-theme='editorial'] .av-link-tile-tool:hover {
+.av-theme[data-av-theme='editorial'] .av-link-tile-tool:hover {
   background: color-mix(in srgb, var(--av-signal) 6%, var(--av-surface));
   box-shadow: none;
 }
@@ -547,20 +579,20 @@
     color-mix(in srgb, var(--av-phosphor-bright) 55%, transparent);
 }
 
-[data-av-theme='editorial'] .av-btn-pad {
+.av-theme[data-av-theme='editorial'] .av-btn-pad {
   border-color: var(--av-hairline);
   color: var(--av-ink);
   box-shadow: none;
   text-shadow: none;
 }
 
-[data-av-theme='editorial'] .av-btn-pad:enabled:hover {
+.av-theme[data-av-theme='editorial'] .av-btn-pad:enabled:hover {
   background: var(--av-surface);
   border-color: var(--av-border);
 }
 
-[data-av-theme='editorial'] .av-btn-pad:enabled:active,
-[data-av-theme='editorial'] .av-btn-pad:enabled[data-pressed] {
+.av-theme[data-av-theme='editorial'] .av-btn-pad:enabled:active,
+.av-theme[data-av-theme='editorial'] .av-btn-pad:enabled[data-pressed] {
   background: var(--av-surface-2);
   border-color: var(--av-border);
   color: var(--av-ink);

@@ -46,7 +46,7 @@ export const Muted: Story = {
 export const Micro: Story = {
   render: () => (
     <MetaLine className="av-type-meta">
-      ~100% of an I · Plex Mono chrome
+      ~100% of an I · meta chrome
     </MetaLine>
   ),
 }

@@ -6,7 +6,6 @@
       "name": "@harrydiamond/signal-ui",
       "dependencies": {
         "@fontsource-variable/doto": "^5.3.0",
-        "@fontsource/ibm-plex-mono": "^5.3.0",
         "clsx": "^2.1.1",
         "tailwind-merge": "^3.6.0",
         "tailwind-variants": "^3.3.1",
@@ -178,8 +177,6 @@
     "@exodus/bytes": ["@exodus/bytes@1.15.1", "", { "peerDependencies": { "@noble/hashes": "^1.8.0 || ^2.0.0" }, "optionalPeers": ["@noble/hashes"] }, "sha512-S6mL0yNB/Abt9Ei4tq8gDhcczc4S3+vQ4ra7vxnAf+YHC02srtqxKKZghx2Dq6p0e66THKwR6r8N6P95wEty7Q=="],
 
     "@fontsource-variable/doto": ["@fontsource-variable/doto@5.3.0", "", {}, "sha512-mzvYblQT8AD0tOdBvni6+5E25LMKXKDVqbUutGafV78rIIq1w9s4G1IBpDcHJp+u2+dzsO3zCSm75mBQLguJjw=="],
-
-    "@fontsource/ibm-plex-mono": ["@fontsource/ibm-plex-mono@5.3.0", "", {}, "sha512-eTgnZjZEGk1QtD3ZstF+Vclo2HLAni8YMy34/DxllwZvyz1lR/1RF/xTiAquOBO7MvqBx8D2Ig2WCPMVfdZu7Q=="],
 
     "@img/colour": ["@img/colour@1.1.0", "", {}, "sha512-Td76q7j57o/tLVdgS746cYARfSyxk8iEfRxewL9h4OMzYhbW4TAcppl0mT4eyqXddh6L/jwoM75mo7ixa/pCeQ=="],
 

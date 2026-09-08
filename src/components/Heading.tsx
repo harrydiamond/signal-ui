@@ -7,15 +7,15 @@ type Props = HTMLAttributes<HTMLHeadingElement> & {
   level?: Level
 }
 
-/** Sizes only — face/weight come from theme heading rules in styles.css. */
+/** Sizes/colors only — face, weight, and tracking come from theme rules in styles.css. */
 const heading = tv({
   base: 'm-0',
   variants: {
     level: {
-      1: 'text-av-ink text-[1.875rem] sm:text-[2.25rem]',
+      1: 'text-av-ink text-3xl md:text-4xl',
       2: 'text-av-ink text-xl',
-      3: 'text-av-ink text-sm font-semibold',
-      4: 'text-av-muted text-xs font-medium tracking-widest uppercase',
+      3: 'text-av-ink text-sm',
+      4: 'text-av-muted text-xs font-medium tracking-[1px] uppercase',
     },
   },
   defaultVariants: {

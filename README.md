@@ -17,7 +17,7 @@ Import kit CSS once at the app root (order matters — theme tokens before chrom
 @import '@harrydiamond/signal-ui/styles.css';
 ```
 
-Skip `fonts.css` if you load your own faces — kit defaults are only needed for phosphor’s shipped Doto + IBM Plex Mono.
+Skip `fonts.css` if you load your own faces — kit defaults ship Doto (phosphor headings) + PP Neue Montreal (body / editorial).
 
 ## Theme
 
@@ -46,11 +46,17 @@ Or attach the class directly:
 - **`phosphor`** — phosphor console (grain, kit palette). Default.
 - **`editorial`** — solid page color, soft-elevation cards, system light/dark via `prefers-color-scheme`.
 
-### Fonts (consumer-owned)
+### Fonts
 
-Two CSS variables. Load your faces, then set them on `.av-theme` (or a theme scope):
+Two CSS variables on `.av-theme` / `[data-av-theme]`:
+
+- **`--av-font-heading`** — headings / pad chrome. Phosphor: Doto. Editorial: PP Neue Montreal.
+- **`--av-font-body`** — UI chrome and prose. Both themes: PP Neue Montreal.
+
+Override after importing kit CSS if you need different faces:
 
 ```css
+@import '@harrydiamond/signal-ui/fonts.css';
 @import '@harrydiamond/signal-ui/theme.css';
 @import '@harrydiamond/signal-ui/styles.css';
 
@@ -59,8 +65,6 @@ Two CSS variables. Load your faces, then set them on `.av-theme` (or a theme sco
   --av-font-body: 'Your Sans', ui-sans-serif, system-ui, sans-serif;
 }
 ```
-
-Headings / pad chrome use `--av-font-heading`. UI chrome and prose use `--av-font-body`. Phosphor ships Doto + Plex Mono as defaults; editorial ships system sans until you override.
 ### Editorial page shell
 
 ```tsx
@@ -176,7 +180,7 @@ Motion: `animate-fade-in-up` + `AV_STAGGER_MS`. Shadows: `shadow-av-card` (soft 
 - `src/type.ts` — shared type-face class strings
 - `src/tailwind.css` — Tailwind `@theme` tokens (`theme.css` export)
 - `src/styles.css` — theme assignment, atmosphere, focus rings, phosphor / editorial type
-- `src/fonts.css` — optional self-hosted phosphor defaults (Doto + IBM Plex Mono)
+- `src/fonts.css` — Doto (self-hosted) + PP Neue Montreal (hosted CSS)
 - `src/components` — React primitives
 - `src/stories` — CSF specimens (every primitive needs a story for MCP docs)
 - `wrangler.jsonc` — Storybook Worker (`signal-ui`)
