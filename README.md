@@ -55,8 +55,8 @@ Editorial defaults to system stacks. Load your faces, then override:
 @import '@harrydiamond/signal-ui/styles.css';
 
 .av-theme[data-av-theme='editorial'] {
-  --av-font: 'PP Neue Montreal', ui-sans-serif, system-ui, sans-serif;
-  --av-font-body: 'PP Neue Montreal', ui-sans-serif, system-ui, sans-serif;
+  --av-font: 'Your Sans', ui-sans-serif, system-ui, sans-serif;
+  --av-font-body: 'Your Sans', ui-sans-serif, system-ui, sans-serif;
 }
 ```
 
