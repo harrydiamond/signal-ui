@@ -72,13 +72,13 @@ export const Article: Story = {
             />
             <div className="grid gap-4 sm:grid-cols-2">
               <PreviewCard index={0}>
-                <Heading level={3}>Theme tokens</Heading>
+                <Heading level={2}>Theme tokens</Heading>
                 <ProseMuted className="mt-2">
                   Heading and body faces as two CSS variables.
                 </ProseMuted>
               </PreviewCard>
               <PreviewCard index={1}>
-                <Heading level={3}>Nav recipes</Heading>
+                <Heading level={2}>Nav recipes</Heading>
                 <ProseMuted className="mt-2">
                   NavLink, BackLink, and SiteNav without story-local classes.
                 </ProseMuted>

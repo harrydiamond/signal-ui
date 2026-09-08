@@ -6,7 +6,7 @@ const meta = {
   title: 'Components/Select',
   component: Select,
   decorators: [withStoryPad],
-  args: { defaultValue: 'voltage' },
+  args: { defaultValue: 'voltage', 'aria-label': 'Metric' },
 } satisfies Meta<typeof Select>
 
 export default meta

@@ -62,11 +62,11 @@ export const Composition: Story = {
             </ProseMuted>
             <div className="mt-8 grid gap-6 sm:grid-cols-2">
               <PreviewCard index={0}>
-                <Heading level={3}>Project one</Heading>
+                <Heading level={2}>Project one</Heading>
                 <Prose className="mt-2">A short preview of the work.</Prose>
               </PreviewCard>
               <PreviewCard index={1}>
-                <Heading level={3}>Project two</Heading>
+                <Heading level={2}>Project two</Heading>
                 <Prose className="mt-2">Another soft card on the page.</Prose>
               </PreviewCard>
             </div>

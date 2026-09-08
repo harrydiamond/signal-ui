@@ -1,6 +1,4 @@
 import type { Preview } from '@storybook/react-vite'
-import { RESPONSIVE_VIEWPORT_VALUE } from 'storybook/viewport'
-import { AV } from '../src/tokens.ts'
 import { allModes } from './modes.ts'
 import '../src/fonts.css'
 import '../src/tailwind.css'
@@ -36,6 +34,10 @@ const preview: Preview = {
     },
     a11y: {
       test: 'error',
+      // Keep axe payloads small for Vitest — full `passes` arrays can OOM large runs.
+      options: {
+        resultTypes: ['violations', 'incomplete'],
+      },
     },
     docs: {
       story: {
@@ -58,34 +60,7 @@ const preview: Preview = {
   },
   initialGlobals: {
     theme: 'phosphor',
-    viewport: { value: RESPONSIVE_VIEWPORT_VALUE, isRotated: false },
   },
-  decorators: [
-    (Story, context) => {
-      const theme = context.globals.theme ?? 'phosphor'
-      const colorScheme = context.globals.colorScheme as
-        'light' | 'dark' | undefined
-      const root = document.documentElement
-      if (theme === 'editorial') {
-        const preferDark =
-          colorScheme === 'dark' ||
-          (colorScheme !== 'light' &&
-            typeof window !== 'undefined' &&
-            window.matchMedia('(prefers-color-scheme: dark)').matches)
-        const page = preferDark ? '#161618' : '#F0F0F0'
-        root.style.background = page
-        root.style.colorScheme = preferDark ? 'dark' : 'light'
-        document.body.style.background = page
-      } else {
-        root.style.background = AV.page
-        root.style.colorScheme = 'dark'
-        document.body.style.background = AV.page
-      }
-      document.body.style.margin = '0'
-      document.body.style.minHeight = '100%'
-      return Story()
-    },
-  ],
 }
 
 export default preview
