@@ -1,5 +1,5 @@
 import type { ReactNode } from 'react'
-import { plex, proseMuted } from '../type.ts'
+import { body, proseMuted } from '../type.ts'
 import { tv } from '../tv.ts'
 import { cx } from '../cx.ts'
 import { Badge } from './Badge.tsx'
@@ -20,7 +20,7 @@ type Props = {
 }
 
 const tile = tv({
-  base: `${plex} group relative flex overflow-hidden rounded-lg border border-transparent text-inherit no-underline transition-[background-color,transform,box-shadow] duration-160 ease-linear hover:-translate-y-0.5 hover:text-inherit active:translate-y-0 motion-reduce:translate-y-0 motion-reduce:transition-none motion-reduce:hover:translate-y-0`,
+  base: `${body} group relative flex overflow-hidden rounded-lg border border-transparent text-inherit no-underline transition-[background-color,transform,box-shadow] duration-160 ease-linear hover:-translate-y-0.5 hover:text-inherit active:translate-y-0 motion-reduce:translate-y-0 motion-reduce:transition-none motion-reduce:hover:translate-y-0`,
   variants: {
     density: {
       card: 'h-full min-h-[14.5rem] flex-col p-5 sm:p-6',
@@ -51,7 +51,7 @@ const tileGlyph = tv({
   },
 })
 
-const tileTitle = `${plex} text-av-ink group-hover:text-av-signal m-0 text-lg font-medium transition-colors duration-150`
+const tileTitle = `${body} text-av-ink group-hover:text-av-signal m-0 text-lg font-medium transition-colors duration-150`
 
 export function Tile({
   href,

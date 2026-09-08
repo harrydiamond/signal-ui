@@ -11,7 +11,7 @@ import {
   type ReactNode,
 } from 'react'
 import { cx } from '../cx.ts'
-import { plex } from '../type.ts'
+import { body } from '../type.ts'
 import { tv } from '../tv.ts'
 
 type StepsContextValue = {
@@ -116,7 +116,7 @@ type StepInjectedProps = StepProps & {
 }
 
 const stepButton = tv({
-  base: `${plex} av-step flex min-w-0 flex-1 cursor-pointer flex-col items-center gap-1.5 border-0 bg-transparent px-1 py-1 text-[0.6875rem] font-medium tracking-wider uppercase disabled:cursor-not-allowed disabled:opacity-50`,
+  base: `${body} av-step flex min-w-0 flex-1 cursor-pointer flex-col items-center gap-1.5 border-0 bg-transparent px-1 py-1 text-[0.6875rem] font-medium tracking-wider uppercase disabled:cursor-not-allowed disabled:opacity-50`,
 })
 
 export function Step({

@@ -1,14 +1,8 @@
 import type { Meta, StoryObj } from '@storybook/react-vite'
 import { MetaLabel } from '../components/MetaLabel.tsx'
+import { NavLink } from '../components/NavLink.tsx'
 import { SiteNav } from '../components/SiteNav.tsx'
 import { Theme, type ThemeName } from '../components/Theme.tsx'
-import { cx } from '../cx.ts'
-
-const linkClass = (active = false) =>
-  cx(
-    'font-mono text-[10px] tracking-[1px] uppercase transition-colors',
-    active ? 'text-av-ink' : 'text-av-muted hover:text-av-ink',
-  )
 
 const meta = {
   title: 'Components/SiteNav',
@@ -44,15 +38,11 @@ export const Default: Story = {
           }
           links={
             <>
-              <a href="#home" className={linkClass(true)}>
+              <NavLink href="#home" active>
                 Home
-              </a>
-              <a href="#posts" className={linkClass()}>
-                Posts
-              </a>
-              <a href="#projects" className={linkClass()}>
-                Projects
-              </a>
+              </NavLink>
+              <NavLink href="#posts">Posts</NavLink>
+              <NavLink href="#projects">Projects</NavLink>
             </>
           }
         />

@@ -1,5 +1,5 @@
 import { useRef, useState, type ReactNode } from 'react'
-import { fieldHint, plex } from '../type.ts'
+import { fieldHint, body } from '../type.ts'
 import { tv } from '../tv.ts'
 
 type Props = {
@@ -17,7 +17,7 @@ type Props = {
 }
 
 const dropzone = tv({
-  base: `${plex} av-dropzone flex w-full cursor-pointer flex-col items-center justify-center gap-2 rounded-lg border border-transparent bg-av-surface px-4 py-8 text-center transition-[background-color,border-color,box-shadow] duration-90 disabled:cursor-not-allowed`,
+  base: `${body} av-dropzone flex w-full cursor-pointer flex-col items-center justify-center gap-2 rounded-lg border border-transparent bg-av-surface px-4 py-8 text-center transition-[background-color,border-color,box-shadow] duration-90 disabled:cursor-not-allowed`,
 })
 
 export function Dropzone({

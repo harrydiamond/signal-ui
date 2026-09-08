@@ -18,7 +18,7 @@ export function PageHeader({
   brand = { name: 'avtech', tld: '.fyi', href: '/' },
 }: Props) {
   return (
-    <header className="border-av-hairline mb-8 border-b pb-6 sm:mb-10 sm:pb-8">
+    <header className="av-page-header border-av-hairline mb-8 border-b pb-6 sm:mb-10 sm:pb-8">
       <p className="text-av-muted m-0 text-sm font-medium">
         <Link href={brand.href ?? '/'}>
           <BrandMark name={brand.name} tld={brand.tld} />

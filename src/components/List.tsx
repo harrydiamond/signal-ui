@@ -1,6 +1,6 @@
 import type { HTMLAttributes, LiHTMLAttributes, OlHTMLAttributes } from 'react'
 import { cx } from '../cx.ts'
-import { ledText, plex } from '../type.ts'
+import { ledText, body } from '../type.ts'
 
 type ListProps = OlHTMLAttributes<HTMLUListElement>
 
@@ -38,7 +38,7 @@ export function ListRow({
     >
       <span className="text-av-text min-w-0 text-sm">{label}</span>
       {value ? (
-        <span className={cx(plex, ledText, 'shrink-0 text-sm')}>{value}</span>
+        <span className={cx(body, ledText, 'shrink-0 text-sm')}>{value}</span>
       ) : (
         children
       )}

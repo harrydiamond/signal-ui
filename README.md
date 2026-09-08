@@ -17,7 +17,7 @@ Import kit CSS once at the app root (order matters — theme tokens before chrom
 @import '@harrydiamond/signal-ui/styles.css';
 ```
 
-Skip `fonts.css` for editorial-only apps unless you also want Doto + IBM Plex Mono.
+Skip `fonts.css` if you load your own faces — kit defaults are only needed for phosphor’s shipped Doto + IBM Plex Mono.
 
 ## Theme
 
@@ -43,34 +43,38 @@ Or attach the class directly:
 
 `ThemeName` is `'phosphor' | 'editorial'`.
 
-- **`phosphor`** — phosphor console (grain, Doto display, kit palette). Default.
+- **`phosphor`** — phosphor console (grain, kit palette). Default.
 - **`editorial`** — solid page color, soft-elevation cards, system light/dark via `prefers-color-scheme`.
 
-### Editorial fonts (consumer-owned)
+### Fonts (consumer-owned)
 
-Editorial defaults to system stacks. Load your faces, then override:
+Two CSS variables. Load your faces, then set them on `.av-theme` (or a theme scope):
 
 ```css
 @import '@harrydiamond/signal-ui/theme.css';
 @import '@harrydiamond/signal-ui/styles.css';
 
-.av-theme[data-av-theme='editorial'] {
-  --av-font: 'Your Sans', ui-sans-serif, system-ui, sans-serif;
+.av-theme {
+  --av-font-heading: 'Your Display', ui-sans-serif, system-ui, sans-serif;
   --av-font-body: 'Your Sans', ui-sans-serif, system-ui, sans-serif;
 }
 ```
 
+Headings / pad chrome use `--av-font-heading`. UI chrome and prose use `--av-font-body`. Phosphor ships Doto + Plex Mono as defaults; editorial ships system sans until you override.
 ### Editorial page shell
 
 ```tsx
 import {
   Theme,
   SiteNav,
+  NavLink,
   PageShell,
   SiteFooter,
   MetaLabel,
-  Card,
-  CardBody,
+  SectionHeader,
+  PreviewCard,
+  ExternalLink,
+  BackLink,
 } from '@harrydiamond/signal-ui'
 
 export function Site() {
@@ -78,14 +82,24 @@ export function Site() {
     <Theme asPage theme="editorial">
       <SiteNav
         brand={<MetaLabel tone="ink">Brand</MetaLabel>}
-        links={<a href="/">Home</a>}
+        links={
+          <>
+            <NavLink href="/" active>
+              Home
+            </NavLink>
+            <NavLink href="/posts">Posts</NavLink>
+          </>
+        }
       />
       <PageShell>
-        <Card>
-          <CardBody>…</CardBody>
-        </Card>
+        <BackLink href="/">Home</BackLink>
+        <SectionHeader title="Featured" />
+        <PreviewCard>
+          <MetaLabel tone="accent">Note</MetaLabel>
+        </PreviewCard>
+        <ExternalLink href="https://example.com">example.com</ExternalLink>
       </PageShell>
-      <SiteFooter>©</SiteFooter>
+      <SiteFooter copyright="©" />
     </Theme>
   )
 }
@@ -111,7 +125,7 @@ bun run build:storybook
 bun run deploy
 ```
 
-Use the **Theme** toolbar to switch `phosphor` / `editorial`. Chromatic captures both themes per story via [modes](https://www.chromatic.com/docs/modes/) (`.storybook/modes.ts`).
+Use the **Theme** toolbar to switch `phosphor` / `editorial`. Chromatic captures phosphor, editorial (light), and editorial-dark via [modes](https://www.chromatic.com/docs/modes/) (`.storybook/modes.ts`).
 
 - Local MCP: http://localhost:6006/mcp
 - Published main MCP: https://main--6a9ecc9629e322e1385e7b36.chromatic.com/mcp
@@ -135,26 +149,26 @@ Until Builds is connected, deploy manually with `bun run deploy` (requires wrang
 import {
   AV,
   AV_STAGGER_MS,
+  BackLink,
   Button,
   Choice,
-  RadioGroup,
-  Container,
-  Field,
+  ExternalLink,
   Heading,
   MetaLabel,
+  NavLink,
   PageShell,
-  plex,
+  PreviewCard,
+  SectionHeader,
   SiteNav,
-  Stack,
   TagLink,
   Theme,
   type ThemeName,
 } from '@harrydiamond/signal-ui'
 ```
 
-`Container` / `Stack` handle column width and section gaps. `PageShell` is the wider editorial main rhythm. Type helpers (`doto`, `plex`, `prose`, `proseMuted`, `meta`, `fieldLabel`, `fieldHint`, `fieldError`, `ledText`, `ledHot`) match the classes the primitives use.
+`Container` / `Stack` handle column width and section gaps. `PageShell` is the wider main rhythm. Content recipes: `NavLink`, `PreviewCard`, `ExternalLink`, `BackLink`, `SectionHeader`, `PulseDot`. Type helpers (`heading`, `body`, `prose`, …) match the classes the primitives use.
 
-Motion: `animate-fade-in-up` (Tailwind utility) + `AV_STAGGER_MS` for staggered delays. Shadows: `shadow-av-card` (theme-assigned; soft elevation under editorial).
+Motion: `animate-fade-in-up` + `AV_STAGGER_MS`. Shadows: `shadow-av-card` (soft elevation under editorial).
 
 ## Files
 
@@ -162,7 +176,7 @@ Motion: `animate-fade-in-up` (Tailwind utility) + `AV_STAGGER_MS` for staggered 
 - `src/type.ts` — shared type-face class strings
 - `src/tailwind.css` — Tailwind `@theme` tokens (`theme.css` export)
 - `src/styles.css` — theme assignment, atmosphere, focus rings, phosphor / editorial type
-- `src/fonts.css` — self-hosted Doto + IBM Plex Mono
+- `src/fonts.css` — optional self-hosted phosphor defaults (Doto + IBM Plex Mono)
 - `src/components` — React primitives
 - `src/stories` — CSF specimens (every primitive needs a story for MCP docs)
 - `wrangler.jsonc` — Storybook Worker (`signal-ui`)

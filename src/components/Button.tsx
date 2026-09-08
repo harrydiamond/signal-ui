@@ -1,5 +1,5 @@
 import { forwardRef, type ButtonHTMLAttributes, type ReactNode } from 'react'
-import { doto, plex } from '../type.ts'
+import { body, heading } from '../type.ts'
 import { tv } from '../tv.ts'
 
 export type ButtonVariant =
@@ -33,8 +33,8 @@ const button = tv({
       lg: 'rounded-lg px-4 py-3 text-sm',
     },
     face: {
-      doto: doto,
-      plex: plex,
+      heading,
+      body,
     },
   },
   compoundVariants: [
@@ -43,7 +43,7 @@ const button = tv({
   defaultVariants: {
     variant: 'default',
     size: 'md',
-    face: 'plex',
+    face: 'body',
   },
 })
 
@@ -67,7 +67,7 @@ export const Button = forwardRef<HTMLButtonElement, Props>(function Button(
       className={button({
         variant,
         size,
-        face: variant === 'pad' ? 'doto' : 'plex',
+        face: variant === 'pad' ? 'heading' : 'body',
         className,
       })}
       {...props}

@@ -1,5 +1,5 @@
 import type { ButtonHTMLAttributes, ReactNode } from 'react'
-import { plex } from '../type.ts'
+import { body } from '../type.ts'
 import { tv } from '../tv.ts'
 import { useRadioGroup } from './RadioGroup.tsx'
 
@@ -10,7 +10,7 @@ type Props = ButtonHTMLAttributes<HTMLButtonElement> & {
 }
 
 const choice = tv({
-  base: `${plex} av-choice bg-av-surface text-av-text cursor-pointer rounded-lg border border-av-hairline p-3 transition-[background-color,border-color,box-shadow] duration-90 disabled:cursor-not-allowed`,
+  base: `${body} av-choice bg-av-surface text-av-text cursor-pointer rounded-lg border border-av-hairline p-3 transition-[background-color,border-color,box-shadow] duration-90 disabled:cursor-not-allowed`,
 })
 
 export function Choice({

@@ -37,12 +37,12 @@
   --color-av-panel: var(--av-panel);
   --color-av-pad: var(--av-pad);
 
-  --font-doto: var(--av-font);
-  --font-doto--font-feature-settings: 'tnum' 1;
-  --font-doto--font-variation-settings: 'ROND' 0;
+  --color-av-link-hover: var(--av-link-hover);
+
+  --font-heading: var(--av-font-heading);
+  --font-heading--font-feature-settings: 'tnum' 1;
   --font-body: var(--av-font-body);
   --font-body--font-feature-settings: 'tnum' 1;
-  --font-body--font-variation-settings: normal;
 
   --radius-av: var(--av-radius, 0.5rem);
   --shadow-av-card: var(--av-shadow-card);

@@ -1,6 +1,6 @@
 import type { HTMLAttributes } from 'react'
 import { cx } from '../cx.ts'
-import { doto, ledHot, ledText, meta, prose, proseMuted } from '../type.ts'
+import { heading, ledHot, ledText, meta, prose, proseMuted } from '../type.ts'
 
 type Props = HTMLAttributes<HTMLParagraphElement>
 
@@ -22,6 +22,6 @@ export function LedText({
   ...props
 }: Props & { hot?: boolean }) {
   return (
-    <p className={cx(doto, hot ? ledHot : ledText, className)} {...props} />
+    <p className={cx(heading, hot ? ledHot : ledText, className)} {...props} />
   )
 }

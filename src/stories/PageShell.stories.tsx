@@ -2,19 +2,15 @@ import type { Meta, StoryObj } from '@storybook/react-vite'
 import { Card, CardBody } from '../components/Card.tsx'
 import { Heading } from '../components/Heading.tsx'
 import { MetaLabel } from '../components/MetaLabel.tsx'
+import { NavLink } from '../components/NavLink.tsx'
 import { PageShell } from '../components/PageShell.tsx'
+import { PreviewCard } from '../components/PreviewCard.tsx'
+import { SectionHeader } from '../components/SectionHeader.tsx'
 import { SiteFooter } from '../components/SiteFooter.tsx'
 import { SiteNav } from '../components/SiteNav.tsx'
 import { TagLink } from '../components/TagLink.tsx'
 import { Theme, type ThemeName } from '../components/Theme.tsx'
 import { Prose, ProseMuted } from '../components/Text.tsx'
-import { cx } from '../cx.ts'
-
-const linkClass = (active = false) =>
-  cx(
-    'font-mono text-[10px] tracking-[1px] uppercase transition-colors',
-    active ? 'text-av-ink' : 'text-av-muted hover:text-av-ink',
-  )
 
 const meta = {
   title: 'Components/PageShell',
@@ -23,7 +19,7 @@ const meta = {
     docs: {
       description: {
         component:
-          'Editorial-style main column rhythm. Compose with Theme asPage, SiteNav, and SiteFooter.',
+          'Main column rhythm. Compose with Theme asPage, SiteNav, and SiteFooter.',
       },
     },
   },
@@ -47,41 +43,32 @@ export const Composition: Story = {
           }
           links={
             <>
-              <a href="#work" className={linkClass(true)}>
+              <NavLink href="#work" active>
                 Work
-              </a>
-              <a href="#writing" className={linkClass()}>
-                Writing
-              </a>
+              </NavLink>
+              <NavLink href="#writing">Writing</NavLink>
             </>
           }
         />
         <PageShell>
           <section>
-            <MetaLabel tone="accent">Featured</MetaLabel>
+            <SectionHeader title="Featured" />
             <Heading level={1} className="mt-2">
               Soft-elevation cards
             </Heading>
             <ProseMuted className="mt-3">
-              PageShell sets content gap and horizontal padding. Cards pick up
-              theme shadow tokens automatically under editorial.
+              PageShell sets content gap and horizontal padding. Cards and
+              preview shells pick up theme shadow tokens under editorial.
             </ProseMuted>
             <div className="mt-8 grid gap-6 sm:grid-cols-2">
-              <Card className="motion-safe:animate-fade-in-up">
-                <CardBody>
-                  <Heading level={3}>Project one</Heading>
-                  <Prose className="mt-2">A short preview of the work.</Prose>
-                </CardBody>
-              </Card>
-              <Card
-                className="motion-safe:animate-fade-in-up motion-safe:opacity-0"
-                style={{ animationDelay: '75ms' }}
-              >
-                <CardBody>
-                  <Heading level={3}>Project two</Heading>
-                  <Prose className="mt-2">Another soft card on the page.</Prose>
-                </CardBody>
-              </Card>
+              <PreviewCard index={0}>
+                <Heading level={3}>Project one</Heading>
+                <Prose className="mt-2">A short preview of the work.</Prose>
+              </PreviewCard>
+              <PreviewCard index={1}>
+                <Heading level={3}>Project two</Heading>
+                <Prose className="mt-2">Another soft card on the page.</Prose>
+              </PreviewCard>
             </div>
             <div className="mt-8 flex flex-wrap gap-2">
               <TagLink href="#react" index={0}>
@@ -93,7 +80,10 @@ export const Composition: Story = {
             </div>
           </section>
         </PageShell>
-        <SiteFooter>© Example</SiteFooter>
+        <SiteFooter
+          brand={<MetaLabel>Example Site</MetaLabel>}
+          copyright="© Example"
+        />
       </Theme>
     )
   },

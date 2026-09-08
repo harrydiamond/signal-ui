@@ -1,6 +1,6 @@
 import type { HTMLAttributes, ReactNode } from 'react'
 import { cx } from '../cx.ts'
-import { plex } from '../type.ts'
+import { body } from '../type.ts'
 
 type CardProps = HTMLAttributes<HTMLElement> & {
   children: ReactNode
@@ -10,7 +10,7 @@ export function Card({ className, ...props }: CardProps) {
   return (
     <section
       className={cx(
-        plex,
+        body,
         'av-card bg-av-surface border-av-hairline overflow-hidden rounded-lg border [&>.av-list]:rounded-none [&>.av-list]:border-x-0 [&>.av-list]:border-b-0',
         className,
       )}

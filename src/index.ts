@@ -2,8 +2,8 @@ export { AV, AV_RGB, AV_STAGGER_MS, type AvColorName } from './tokens.ts'
 export { cx } from './cx.ts'
 export { tv } from './tv.ts'
 export {
-  doto,
-  plex,
+  heading,
+  body,
   prose,
   proseMuted,
   meta,
@@ -52,6 +52,12 @@ export { SiteNav } from './components/SiteNav.tsx'
 export { MetaLabel } from './components/MetaLabel.tsx'
 export { TagLink } from './components/TagLink.tsx'
 export { PageShell } from './components/PageShell.tsx'
+export { NavLink } from './components/NavLink.tsx'
+export { PreviewCard } from './components/PreviewCard.tsx'
+export { ExternalLink } from './components/ExternalLink.tsx'
+export { BackLink } from './components/BackLink.tsx'
+export { PulseDot } from './components/PulseDot.tsx'
+export { SectionHeader } from './components/SectionHeader.tsx'
 export { List, ListRow, Divider } from './components/List.tsx'
 export { Tab, TabList, TabPanel, Tabs } from './components/Tabs.tsx'
 export { Container, Stack } from './components/Container.tsx'

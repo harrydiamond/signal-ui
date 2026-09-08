@@ -1,6 +1,6 @@
 import type { HTMLAttributes } from 'react'
 import { cx } from '../cx.ts'
-import { plex } from '../type.ts'
+import { body } from '../type.ts'
 
 export type ThemeName = 'phosphor' | 'editorial'
 
@@ -22,7 +22,7 @@ export function Theme({
     <div
       className={cx(
         'av-theme',
-        plex,
+        body,
         'text-av-text relative isolate [line-height:1.55] [&_button:disabled]:cursor-not-allowed [&_button:not(:disabled)]:cursor-pointer',
         theme === 'phosphor' ? 'scheme-dark' : 'scheme-light dark:scheme-dark',
         asPage && 'flex min-h-dvh flex-col',
