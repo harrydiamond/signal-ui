@@ -2,10 +2,12 @@ import type { Meta, StoryObj } from '@storybook/react-vite'
 import { Button } from '../components/Button.tsx'
 import { Card, CardBody } from '../components/Card.tsx'
 import { Prose, ProseMuted } from '../components/Text.tsx'
+import { Atmosphere } from './Atmosphere.tsx'
 import { withStoryPad } from './StoryPad.tsx'
 
 const meta = {
   title: 'Foundations/Atmosphere',
+  component: Atmosphere,
   decorators: [withStoryPad],
   parameters: {
     docs: {
@@ -15,7 +17,7 @@ const meta = {
       },
     },
   },
-} satisfies Meta
+} satisfies Meta<typeof Atmosphere>
 
 export default meta
 type Story = StoryObj<typeof meta>

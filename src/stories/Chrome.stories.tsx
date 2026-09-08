@@ -8,17 +8,19 @@ import { SiteFooter } from '../components/SiteFooter.tsx'
 import { SkipLink } from '../components/SkipLink.tsx'
 import { ProseMuted } from '../components/Text.tsx'
 import { Theme } from '../components/Theme.tsx'
+import { Chrome } from './Chrome.tsx'
 
 const meta = {
   title: 'Components/Chrome',
+  component: Chrome,
   parameters: {
     docs: {
       description: {
-        story: 'Skip link, page header, brand, and footer on a full page.',
+        component: 'Skip link, page header, brand, and footer on a full page.',
       },
     },
   },
-} satisfies Meta
+} satisfies Meta<typeof Chrome>
 
 export default meta
 type Story = StoryObj<typeof meta>
