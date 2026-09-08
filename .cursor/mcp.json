@@ -1,6 +1,6 @@
 {
   "mcpServers": {
-    "signal-ui-storybook": {
+    "signal-ui-storybook-local": {
       "url": "http://localhost:6006/mcp"
     },
     "signal-ui-storybook-main": {
