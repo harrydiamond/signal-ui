@@ -14,7 +14,7 @@ const meta = {
     docs: {
       description: {
         component:
-          'Face and weight follow the active theme (Doto under phosphor, sans under editorial). h4 stays a quieter uppercase caption.',
+          'Face and weight follow the active theme (Doto + wider tracking under phosphor; PP Neue Montreal medium + tracking-tight under editorial). h4 is a quieter uppercase caption.',
       },
     },
   },

@@ -7,13 +7,13 @@ import { Meta } from '@storybook/addon-docs/blocks'
 Two themes in one kit:
 
 - **`phosphor`** — console chrome (grain, Doto, instrument controls) for tools like [avtech.fyi](https://avtech.fyi)
-- **`editorial`** — solid page color, soft elevation, system light/dark for content sites
+- **`editorial`** — solid page color, soft elevation, system light/dark for content sites (PP Neue Montreal)
 
 Install from GitHub: `github:harrydiamond/signal-ui`.
 
 ## How to use
 
-1. Import theme and styles CSS once at the app root (`fonts.css` for phosphor faces).
+1. Import theme and styles CSS once at the app root (`fonts.css` for kit faces).
 2. Wrap the page in `Theme theme="phosphor" | "editorial"` (or `body.av-theme` for phosphor defaults).
 3. Compose with the React primitives. Use the Storybook **Theme** toolbar to compare.
 4. Open **Examples** for full-page compositions (portfolio, article, instrument, settings, studio).
@@ -53,6 +53,6 @@ export function Page() {
 - **Hairline is structure** (phosphor). Under editorial, cards/lists use soft elevation instead of hard hairlines.
 - **Signal is the accent.** Links use `--av-signal`; hover uses `--av-link-hover` (phosphor-bright / signal-hot by theme).
 - **Focus is opaque.** 2px `--av-focus` outline, 2px offset.
-- **Type faces follow the theme.** Override `--av-font-heading` / `--av-font-body` after loading your faces. Phosphor defaults: Doto + IBM Plex Mono. Editorial defaults: system sans.
+- **Type faces follow the theme.** Phosphor: Doto headings + PP Neue Montreal body. Editorial: PP Neue Montreal for both. Override `--av-font-heading` / `--av-font-body` after loading your own faces if needed.
 - **Instrument chrome is phosphor-only.** Panel/pad buttons and LED glow stay console-native; editorial maps panel/pad to solid surfaces.
 - **Theme-ready tokens.** Semantic utilities (`bg-av-page`, `text-av-signal`, …) map to CSS variables on `[data-av-theme]`.
