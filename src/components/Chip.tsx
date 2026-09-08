@@ -30,10 +30,14 @@ export function Chip({ tone = 'signal', className, children }: ChipProps) {
   return <span className={chip({ tone, className })}>{children}</span>
 }
 
-type ChipCardProps = {
+export type ChipCardProps = {
+  /** Channel accent — matches the embedded Chip. */
   tone?: ChipTone
+  /** Primary line under the chip. */
   title: string
+  /** Optional caption under the title. */
   description?: string
+  /** Label rendered inside the Chip. Defaults to "Chip". */
   chip?: string
   className?: string
 }

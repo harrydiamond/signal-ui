@@ -50,7 +50,7 @@ export function Field({
     : children
 
   return (
-    <div className={cx('flex flex-col gap-1.5', className)} {...props}>
+    <div className={cx('flex flex-col gap-2.5', className)} {...props}>
       <label htmlFor={controlId} className={fieldLabel}>
         {label}
       </label>

@@ -8,7 +8,7 @@ export function List({ className, ...props }: ListProps) {
   return (
     <ul
       className={cx(
-        'bg-av-surface border-av-hairline m-0 list-none overflow-hidden rounded-lg border p-0',
+        'av-list bg-av-surface border-av-hairline m-0 list-none overflow-hidden rounded-lg border p-0',
         className,
       )}
       {...props}

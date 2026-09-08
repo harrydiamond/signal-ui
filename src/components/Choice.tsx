@@ -1,7 +1,7 @@
 import type { ButtonHTMLAttributes, ReactNode } from 'react'
 import { plex } from '../type.ts'
 import { tv } from '../tv.ts'
-import { useChoiceGroup } from './ChoiceGroup.tsx'
+import { useRadioGroup } from './RadioGroup.tsx'
 
 type Props = ButtonHTMLAttributes<HTMLButtonElement> & {
   selected?: boolean
@@ -10,7 +10,7 @@ type Props = ButtonHTMLAttributes<HTMLButtonElement> & {
 }
 
 const choice = tv({
-  base: `${plex} av-choice bg-av-surface text-av-text cursor-pointer rounded-lg border border-transparent p-3 transition-[background-color,border-color,box-shadow] duration-90 disabled:cursor-not-allowed`,
+  base: `${plex} av-choice bg-av-surface text-av-text cursor-pointer rounded-lg border border-av-hairline p-3 transition-[background-color,border-color,box-shadow] duration-90 disabled:cursor-not-allowed`,
 })
 
 export function Choice({
@@ -22,17 +22,17 @@ export function Choice({
   children,
   ...props
 }: Props) {
-  const group = useChoiceGroup()
+  const group = useRadioGroup()
   const isSelected = group && value != null ? group.value === value : selected
-  const isRadio = group?.kind === 'radio'
+  const inGroup = Boolean(group)
 
   return (
     <button
       {...props}
       type={type}
-      role={isRadio ? 'radio' : undefined}
-      aria-checked={isRadio ? isSelected : undefined}
-      aria-pressed={isRadio ? undefined : isSelected}
+      role={inGroup ? 'radio' : undefined}
+      aria-checked={inGroup ? isSelected : undefined}
+      aria-pressed={inGroup ? undefined : isSelected}
       data-selected={isSelected ? 'true' : undefined}
       data-value={value}
       className={choice({ className })}

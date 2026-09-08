@@ -84,7 +84,7 @@ import {
   AV,
   Button,
   Choice,
-  ChoiceGroup,
+  RadioGroup,
   Container,
   Field,
   Heading,

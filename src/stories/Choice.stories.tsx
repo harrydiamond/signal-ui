@@ -2,7 +2,7 @@ import { useState } from 'react'
 import type { Meta, StoryObj } from '@storybook/react-vite'
 import { expect, fn, userEvent } from 'storybook/test'
 import { Choice } from '../components/Choice.tsx'
-import { ChoiceGroup } from '../components/ChoiceGroup.tsx'
+import { RadioGroup } from '../components/RadioGroup.tsx'
 import { withStoryPad } from './StoryPad.tsx'
 
 const meta = {
@@ -13,7 +13,8 @@ const meta = {
   parameters: {
     docs: {
       description: {
-        component: 'Choice chips keep an audio-tinted inset when selected.',
+        component:
+          'Choice chips use a hairline keyline by default and keep an audio-tinted inset when selected.',
       },
     },
   },
@@ -42,7 +43,7 @@ export const Group: Story = {
   render: function Render() {
     const [choice, setChoice] = useState('voltage')
     return (
-      <ChoiceGroup
+      <RadioGroup
         label="Mode"
         value={choice}
         onChange={setChoice}
@@ -51,7 +52,7 @@ export const Group: Story = {
         <Choice value="voltage">voltage</Choice>
         <Choice value="power">power</Choice>
         <Choice value="spl">spl</Choice>
-      </ChoiceGroup>
+      </RadioGroup>
     )
   },
 }

@@ -13,7 +13,7 @@ const meta = {
     docs: {
       description: {
         component:
-          'Each section is its own card. Packed rows use hairline dividers and LED values.',
+          'Each section is its own card. A direct-child List sits flush — no nested radius or side border.',
       },
     },
   },
