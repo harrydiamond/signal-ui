@@ -22,6 +22,7 @@ import {
   Tile,
 } from '../index.ts'
 import { fieldLabel } from '../type.ts'
+import { Composition } from './Composition.tsx'
 
 function IconMark() {
   return <span className="av-icon-placeholder" />
@@ -127,15 +128,16 @@ function SampleSite() {
 
 const meta = {
   title: 'Components/Composition',
+  component: Composition,
   parameters: {
     docs: {
       description: {
-        story:
+        component:
           'Proof the primitives can stand up another site with the same feel.',
       },
     },
   },
-} satisfies Meta
+} satisfies Meta<typeof Composition>
 
 export default meta
 type Story = StoryObj<typeof meta>

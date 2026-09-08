@@ -1,6 +1,6 @@
 import type { Meta, StoryObj } from '@storybook/react-vite'
 import { AV } from '../tokens.ts'
-import { plex, proseMuted } from '../type.ts'
+import { Color } from './Color.tsx'
 import { withStoryPad } from './StoryPad.tsx'
 
 const surfaces = [
@@ -29,38 +29,9 @@ const accents = [
   { name: 'danger', hex: AV.danger, note: 'Errors, destructive' },
 ] as const
 
-function Swatch({
-  name,
-  hex,
-  note,
-  sample,
-}: {
-  name: string
-  hex: string
-  note: string
-  sample?: 'text'
-}) {
-  return (
-    <li className="av-swatch">
-      <span
-        className="av-swatch-chip"
-        style={sample === 'text' ? { color: hex } : { background: hex }}
-        aria-hidden="true"
-      >
-        {sample === 'text' ? 'Aa' : null}
-      </span>
-      <div>
-        <p className={`${plex} av-swatch-name`}>{name}</p>
-        <p className={`${proseMuted} av-swatch-meta`}>
-          {hex} · {note}
-        </p>
-      </div>
-    </li>
-  )
-}
-
 const meta = {
   title: 'Foundations/Color',
+  component: Color,
   decorators: [withStoryPad],
   parameters: {
     docs: {
@@ -70,7 +41,7 @@ const meta = {
       },
     },
   },
-} satisfies Meta
+} satisfies Meta<typeof Color>
 
 export default meta
 type Story = StoryObj<typeof meta>
@@ -79,7 +50,7 @@ export const Surfaces: Story = {
   render: () => (
     <ul className="av-swatch-grid">
       {surfaces.map(c => (
-        <Swatch key={c.name} {...c} />
+        <Color key={c.name} {...c} />
       ))}
     </ul>
   ),
@@ -89,7 +60,7 @@ export const Text: Story = {
   render: () => (
     <ul className="av-swatch-grid">
       {text.map(c => (
-        <Swatch key={c.name} {...c} sample="text" />
+        <Color key={c.name} {...c} sample="text" />
       ))}
     </ul>
   ),
@@ -99,7 +70,7 @@ export const Accents: Story = {
   render: () => (
     <ul className="av-swatch-grid">
       {accents.map(c => (
-        <Swatch key={c.name} {...c} />
+        <Color key={c.name} {...c} />
       ))}
     </ul>
   ),
