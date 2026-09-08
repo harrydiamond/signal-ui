@@ -33,7 +33,7 @@ export function Choice({
       data-value={value}
       className={cx(
         plex,
-        'bg-av-surface text-av-text cursor-pointer rounded-lg border border-transparent p-3 transition-[background-color,border-color,box-shadow] duration-90 enabled:hover:bg-[color-mix(in_srgb,var(--color-av-muted)_8%,var(--color-av-surface))] disabled:cursor-not-allowed data-[selected]:border-[color-mix(in_srgb,var(--color-av-audio)_45%,transparent)] data-[selected]:bg-[color-mix(in_srgb,var(--color-av-audio)_10%,var(--color-av-surface))] data-[selected]:shadow-[inset_0_0_0_1px_color-mix(in_srgb,var(--color-av-audio)_25%,transparent)]',
+        'av-choice bg-av-surface text-av-text cursor-pointer rounded-lg border border-transparent p-3 transition-[background-color,border-color,box-shadow] duration-90 disabled:cursor-not-allowed',
         className,
       )}
       onClick={event => {

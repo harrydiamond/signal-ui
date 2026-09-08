@@ -205,6 +205,15 @@
     0 0 6px color-mix(in srgb, var(--av-signal-hot) 28%, transparent);
 }
 
+/* Hot phosphor LED (status / BPM core). */
+.av-led-hot {
+  color: var(--av-phosphor-bright);
+  text-shadow:
+    0 0 1px color-mix(in srgb, var(--av-phosphor-bright) 70%, white),
+    0 0 5px color-mix(in srgb, var(--av-signal-hot) 40%, transparent),
+    0 0 12px color-mix(in srgb, var(--av-signal-hot) 20%, transparent);
+}
+
 /* Doto — bitmap display face for LED chrome + key interactive controls. */
 .av-doto,
 .av-bpm-digits {
@@ -289,6 +298,167 @@
 .av-tile[data-active='true'] {
   border-color: color-mix(in srgb, var(--av-audio) 45%, transparent);
   background: color-mix(in srgb, var(--av-audio) 10%, var(--av-surface));
+}
+
+/* Link tiles (home index) — theme mixes without arbitrary Tailwind. */
+.av-link-tile-tool:hover {
+  background: color-mix(in srgb, var(--av-signal) 6%, var(--av-surface));
+  box-shadow: 0 0 24px color-mix(in srgb, var(--av-signal-hot) 8%, transparent);
+}
+
+.av-link-tile-ref:hover {
+  box-shadow: 0 0 20px rgb(255 255 255 / 0.03);
+}
+
+/* Choice / check / switch selected chrome. */
+.av-choice:enabled:hover {
+  background: color-mix(in srgb, var(--av-muted) 8%, var(--av-surface));
+}
+
+.av-choice[data-selected='true'] {
+  border-color: color-mix(in srgb, var(--av-audio) 45%, transparent);
+  background: color-mix(in srgb, var(--av-audio) 10%, var(--av-surface));
+  box-shadow: inset 0 0 0 1px
+    color-mix(in srgb, var(--av-audio) 25%, transparent);
+}
+
+/* Checkbox: mark is sibling after the sr-only input (peer). */
+input.peer:checked + .av-check-mark {
+  background: color-mix(in srgb, var(--av-audio) 10%, var(--av-surface));
+  box-shadow: inset 0 0 0 1px
+    color-mix(in srgb, var(--av-audio) 25%, transparent);
+}
+
+.av-switch-track-on {
+  background: color-mix(in srgb, var(--av-audio) 10%, var(--av-surface));
+  box-shadow: inset 0 0 0 1px
+    color-mix(in srgb, var(--av-audio) 25%, transparent);
+}
+
+/* Button variants that need token mixes / gradients. */
+.av-btn-default:enabled:hover {
+  background: color-mix(in srgb, var(--av-muted) 14%, var(--av-surface-2));
+}
+
+.av-btn-default:enabled:active,
+.av-btn-default:enabled[data-pressed] {
+  box-shadow: inset 0 0 28px rgb(255 255 255 / 0.04);
+}
+
+.av-btn-primary:enabled:active,
+.av-btn-primary:enabled[data-pressed] {
+  background: color-mix(in srgb, var(--av-muted) 35%, white);
+  box-shadow: inset 0 1px 0 rgb(255 255 255 / 0.35);
+}
+
+.av-btn-ghost:enabled:hover {
+  background: color-mix(in srgb, var(--av-signal-hot) 8%, var(--av-surface));
+}
+
+.av-btn-ghost:enabled:active,
+.av-btn-ghost:enabled[data-pressed] {
+  background: color-mix(in srgb, var(--av-signal-hot) 12%, var(--av-surface));
+  color: #ffc19a;
+}
+
+.av-btn-danger:enabled:hover {
+  background: color-mix(in srgb, white 18%, var(--av-danger));
+}
+
+.av-btn-danger:enabled:active,
+.av-btn-danger:enabled[data-pressed] {
+  background: color-mix(in srgb, var(--av-muted) 28%, var(--av-danger));
+  box-shadow: inset 0 1px 0 rgb(255 255 255 / 0.28);
+}
+
+.av-btn-panel {
+  border: 1px solid
+    color-mix(in srgb, var(--av-signal-hot) 28%, var(--av-hairline));
+  background: #090a0c;
+  color: var(--av-phosphor);
+}
+
+.av-btn-panel:enabled:hover {
+  border-color: color-mix(in srgb, var(--av-signal-hot) 55%, transparent);
+  background: color-mix(in srgb, var(--av-signal-hot) 10%, #090a0c);
+  color: #ffc19a;
+  box-shadow: 0 0 18px rgb(230 74 25 / 0.12);
+}
+
+.av-btn-panel:enabled:active,
+.av-btn-panel:enabled[data-pressed] {
+  border-color: color-mix(in srgb, var(--av-signal-hot) 65%, transparent);
+  background: color-mix(in srgb, var(--av-signal-hot) 16%, #090a0c);
+  color: #ffd2b4;
+  box-shadow:
+    inset 0 0 28px rgb(230 74 25 / 0.22),
+    0 0 14px rgb(230 74 25 / 0.18);
+}
+
+.av-btn-pad {
+  border: 1px solid color-mix(in srgb, var(--av-signal-hot) 22%, transparent);
+  background:
+    radial-gradient(
+      ellipse 70% 60% at 50% 50%,
+      rgb(230 74 25 / 0.07),
+      transparent 70%
+    ),
+    #050607;
+  box-shadow: inset 0 0 80px rgb(230 74 25 / 0.05);
+}
+
+.av-btn-pad:enabled:hover {
+  border-color: color-mix(in srgb, var(--av-signal-hot) 38%, transparent);
+  box-shadow: inset 0 0 90px rgb(230 74 25 / 0.08);
+}
+
+.av-btn-pad:enabled:active,
+.av-btn-pad:enabled[data-pressed] {
+  border-color: color-mix(in srgb, var(--av-signal-hot) 55%, transparent);
+  background:
+    radial-gradient(
+      ellipse 70% 60% at 50% 50%,
+      rgb(230 74 25 / 0.16),
+      transparent 70%
+    ),
+    #0a0b0e;
+  box-shadow:
+    inset 0 0 56px rgb(230 74 25 / 0.2),
+    0 0 24px rgb(230 74 25 / 0.12);
+}
+
+.av-btn-pad-label {
+  color: var(--av-phosphor);
+  text-shadow:
+    0 0 1px rgb(255 180 140 / 0.5),
+    0 0 6px rgb(230 74 25 / 0.3);
+}
+
+.av-btn-pad:enabled:active .av-btn-pad-label,
+.av-btn-pad:enabled[data-pressed] .av-btn-pad-label {
+  color: var(--av-phosphor-bright);
+  text-shadow:
+    0 0 1px rgb(255 210 180 / 0.65),
+    0 0 6px rgb(230 74 25 / 0.4);
+}
+
+.av-spinner-disc {
+  background: conic-gradient(
+    from 0deg,
+    var(--av-sync),
+    var(--av-signal),
+    transparent 72%
+  );
+  mask-image: radial-gradient(
+    farthest-side,
+    transparent calc(100% - 2px),
+    #000 calc(100% - 1.5px)
+  );
+  -webkit-mask-image: radial-gradient(
+    farthest-side,
+    transparent calc(100% - 2px),
+    #000 calc(100% - 1.5px)
+  );
 }
 
 /* Native range thumbs — webkit/moz pseudo-elements. */

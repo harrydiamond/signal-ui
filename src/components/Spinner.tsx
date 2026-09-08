@@ -23,7 +23,7 @@ export function Spinner({ size = 'md', label = 'Loading', className }: Props) {
       <span
         aria-hidden
         className={cx(
-          'block shrink-0 animate-spin rounded-full bg-[conic-gradient(from_0deg,var(--color-av-sync),var(--color-av-signal),transparent_72%)] [mask-image:radial-gradient(farthest-side,transparent_calc(100%-2px),#000_calc(100%-1.5px))] [-webkit-mask-image:radial-gradient(farthest-side,transparent_calc(100%-2px),#000_calc(100%-1.5px))] motion-reduce:animate-none',
+          'av-spinner-disc block shrink-0 animate-spin rounded-full motion-reduce:animate-none',
           SIZE[size],
         )}
       />

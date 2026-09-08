@@ -11,13 +11,10 @@ type ChipProps = {
 }
 
 const TONE: Record<ChipTone, string> = {
-  sync: 'text-av-sync bg-[color-mix(in_srgb,var(--color-av-sync)_15%,transparent)]',
-  audio:
-    'text-av-audio bg-[color-mix(in_srgb,var(--color-av-audio)_15%,transparent)]',
-  signal:
-    'text-av-signal bg-[color-mix(in_srgb,var(--color-av-signal)_15%,transparent)]',
-  meter:
-    'text-av-meter bg-[color-mix(in_srgb,var(--color-av-meter)_15%,transparent)]',
+  sync: 'text-av-sync bg-av-sync/15',
+  audio: 'text-av-audio bg-av-audio/15',
+  signal: 'text-av-signal bg-av-signal/15',
+  meter: 'text-av-meter bg-av-meter/15',
 }
 
 export function Chip({ tone = 'signal', className, children }: ChipProps) {
@@ -44,10 +41,10 @@ type ChipCardProps = {
 }
 
 const CARD_TONE: Record<ChipTone, string> = {
-  sync: 'border-[color-mix(in_srgb,var(--color-av-sync)_40%,transparent)]',
-  audio: 'border-[color-mix(in_srgb,var(--color-av-audio)_40%,transparent)]',
-  signal: 'border-[color-mix(in_srgb,var(--color-av-signal)_40%,transparent)]',
-  meter: 'border-[color-mix(in_srgb,var(--color-av-meter)_40%,transparent)]',
+  sync: 'border-av-sync/40',
+  audio: 'border-av-audio/40',
+  signal: 'border-av-signal/40',
+  meter: 'border-av-meter/40',
 }
 
 export function ChipCard({

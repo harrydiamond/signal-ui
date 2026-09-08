@@ -47,8 +47,8 @@ export function Tile({
           ? 'items-center gap-4 px-4 py-3.5 sm:gap-5 sm:px-5 sm:py-4'
           : 'h-full min-h-[14.5rem] flex-col p-5 sm:p-6',
         isReference
-          ? 'hover:bg-av-surface bg-[color-mix(in_srgb,var(--color-av-surface-2)_60%,transparent)] hover:shadow-[0_0_20px_rgb(255_255_255_/_0.03)]'
-          : 'bg-av-surface hover:bg-[color-mix(in_srgb,var(--color-av-signal)_6%,var(--color-av-surface))] hover:shadow-[0_0_24px_color-mix(in_srgb,var(--color-av-signal-hot)_8%,transparent)]',
+          ? 'av-link-tile-ref bg-av-surface-2/60 hover:bg-av-surface'
+          : 'av-link-tile-tool bg-av-surface',
         className,
       )}
     >

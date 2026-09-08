@@ -17,8 +17,6 @@ export const fieldHint = `${plex} text-av-muted mt-1.5 block text-xs`
 
 export const fieldError = `${plex} text-av-danger mt-1.5 block text-xs`
 
-export const ledText =
-  'text-av-phosphor [text-shadow:0_0_1px_color-mix(in_srgb,var(--color-av-phosphor-bright)_55%,transparent),0_0_6px_color-mix(in_srgb,var(--color-av-signal-hot)_35%,transparent)]'
+export const ledText = 'av-led-text'
 
-export const ledHot =
-  'text-av-phosphor-bright [text-shadow:0_0_1px_color-mix(in_srgb,var(--color-av-phosphor-bright)_70%,white),0_0_5px_color-mix(in_srgb,var(--color-av-signal-hot)_40%,transparent),0_0_12px_color-mix(in_srgb,var(--color-av-signal-hot)_20%,transparent)]'
+export const ledHot = 'av-led-hot'

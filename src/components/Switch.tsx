@@ -38,9 +38,7 @@ export function Switch({
         aria-hidden
         className={cx(
           'relative inline-block h-5 w-9 shrink-0 rounded-full transition-[background-color,box-shadow] duration-[90ms] ease-linear motion-reduce:transition-none',
-          checked
-            ? 'bg-[color-mix(in_srgb,var(--color-av-audio)_10%,var(--color-av-surface))] shadow-[inset_0_0_0_1px_color-mix(in_srgb,var(--color-av-audio)_25%,transparent)]'
-            : 'bg-av-surface-2',
+          checked ? 'av-switch-track-on' : 'bg-av-surface-2',
         )}
       >
         <span
