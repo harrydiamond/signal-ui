@@ -13,7 +13,7 @@ const meta = {
     docs: {
       description: {
         component:
-          'Quiet vignette and faint grain on the dark page plate. Editorial uses a solid page color instead — switch the Theme toolbar to compare.',
+          'Quiet vignette and faint grain on the phosphor page plate. Editorial uses a solid page color instead — switch the Theme toolbar to compare.',
       },
     },
   },

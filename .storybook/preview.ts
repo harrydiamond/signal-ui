@@ -16,7 +16,7 @@ const preview: Preview = {
         title: 'Theme',
         icon: 'paintbrush',
         items: [
-          { value: 'dark', title: 'Dark' },
+          { value: 'phosphor', title: 'Phosphor' },
           { value: 'editorial', title: 'Editorial' },
         ],
         dynamicTitle: true,
@@ -29,7 +29,7 @@ const preview: Preview = {
     backgrounds: { disable: true },
     chromatic: {
       modes: {
-        dark: allModes.dark,
+        phosphor: allModes.phosphor,
         editorial: allModes.editorial,
       },
     },
@@ -54,12 +54,12 @@ const preview: Preview = {
     },
   },
   initialGlobals: {
-    theme: 'dark',
+    theme: 'phosphor',
     viewport: { value: RESPONSIVE_VIEWPORT_VALUE, isRotated: false },
   },
   decorators: [
     (Story, context) => {
-      const theme = context.globals.theme ?? 'dark'
+      const theme = context.globals.theme ?? 'phosphor'
       const root = document.documentElement
       if (theme === 'editorial') {
         root.style.background = '#F0F0F0'

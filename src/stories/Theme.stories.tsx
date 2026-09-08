@@ -12,7 +12,7 @@ const meta = {
     docs: {
       description: {
         component:
-          'Applies kit atmosphere, type, and focus rules. `dark` is phosphor console; `editorial` follows system light/dark with a solid page color. Chromatic snapshots both themes via modes.',
+          'Applies kit atmosphere, type, and focus rules. `phosphor` is console chrome; `editorial` follows system light/dark with a solid page color. Chromatic snapshots both themes via modes.',
       },
     },
   },
@@ -23,7 +23,7 @@ type Story = StoryObj<typeof meta>
 
 export const Default: Story = {
   render: (args, { globals }) => {
-    const theme = (globals.theme as ThemeName | undefined) ?? 'dark'
+    const theme = (globals.theme as ThemeName | undefined) ?? 'phosphor'
     return (
       <Theme {...args} theme={theme}>
         <div className="px-4 py-6">
@@ -33,7 +33,7 @@ export const Default: Story = {
               <ProseMuted className="mt-2">
                 {theme === 'editorial'
                   ? 'Solid page color, soft-elevation cards, system light/dark. Override `--av-font` / `--av-font-body` to inject consumer faces.'
-                  : 'Dark paints the page plate, washes, grain, and focus rings.'}
+                  : 'Phosphor paints the page plate, washes, grain, and focus rings.'}
               </ProseMuted>
               {theme === 'editorial' ? (
                 <Prose className="mt-4">
@@ -56,7 +56,7 @@ export const Default: Story = {
 export const AsPage: Story = {
   args: { asPage: true },
   render: (args, { globals }) => {
-    const theme = (globals.theme as ThemeName | undefined) ?? 'dark'
+    const theme = (globals.theme as ThemeName | undefined) ?? 'phosphor'
     return (
       <Theme {...args} theme={theme}>
         <div className="flex-1 px-4 py-6">

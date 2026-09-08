@@ -10,12 +10,12 @@
 @reference './tailwind.css';
 
 /*
-  Dark assignment (default).
-  `.av-theme` without a data attribute stays dark for body.av-theme pages.
+  Phosphor assignment (default).
+  `.av-theme` without a data attribute stays phosphor for body.av-theme pages.
   Editorial is a separate brand theme — see `[data-av-theme='editorial']`.
 */
 .av-theme:not([data-av-theme]),
-[data-av-theme='dark'] {
+[data-av-theme='phosphor'] {
   --av-page: #0a0b0d;
   --av-surface: #16181c;
   --av-surface-2: #1e2126;
@@ -177,10 +177,10 @@
 /*
   Film-leak atmosphere: vignette + signal/sync washes on the page plate.
   Grain is a background-image layer (faint SVG, overlay blend).
-  Scoped to dark only — editorial uses a solid page color.
+  Scoped to phosphor only — editorial uses a solid page color.
 */
 .av-theme:not([data-av-theme]),
-[data-av-theme='dark'] {
+[data-av-theme='phosphor'] {
   background-image:
     url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.045'/%3E%3C/svg%3E"),
     radial-gradient(
@@ -206,7 +206,7 @@
 
 @media (prefers-reduced-motion: reduce) {
   .av-theme:not([data-av-theme]),
-  [data-av-theme='dark'] {
+  [data-av-theme='phosphor'] {
     background-image:
       radial-gradient(
         120% 80% at 10% 100%,
@@ -331,7 +331,7 @@
   box-shadow: var(--av-shadow-card);
 }
 
-/* Lit LED copy — restrained phosphor, matrix-readable. Dark-theme chrome. */
+/* Lit LED copy — restrained phosphor, matrix-readable. */
 .av-led-text {
   color: var(--av-phosphor);
   text-shadow:

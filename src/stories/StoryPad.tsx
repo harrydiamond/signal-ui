@@ -16,7 +16,7 @@ export function StoryPad({
   children,
   pad = true,
   asPage = false,
-  theme = 'dark',
+  theme = 'phosphor',
 }: Props) {
   return (
     <Theme asPage={asPage} theme={theme}>
@@ -36,7 +36,7 @@ export function StoryPad({
 }
 
 export const withStoryPad: Decorator = (Story, context) => {
-  const theme = (context.globals.theme as ThemeName | undefined) ?? 'dark'
+  const theme = (context.globals.theme as ThemeName | undefined) ?? 'phosphor'
   return (
     <StoryPad asPage={context.viewMode === 'story'} theme={theme}>
       <Story />

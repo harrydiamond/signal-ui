@@ -35,7 +35,7 @@ type Story = StoryObj<typeof meta>
 export const Composition: Story = {
   args: {},
   render: (_args, { globals }) => {
-    const theme = (globals.theme as ThemeName | undefined) ?? 'dark'
+    const theme = (globals.theme as ThemeName | undefined) ?? 'phosphor'
     return (
       <Theme asPage theme={theme}>
         <SiteNav

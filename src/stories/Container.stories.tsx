@@ -12,7 +12,7 @@ const meta = {
       <StoryPad
         pad={false}
         asPage={context.viewMode === 'story'}
-        theme={(context.globals.theme as ThemeName | undefined) ?? 'dark'}
+        theme={(context.globals.theme as ThemeName | undefined) ?? 'phosphor'}
       >
         <Story />
       </StoryPad>

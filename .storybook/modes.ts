@@ -1,7 +1,7 @@
 /** Chromatic snapshot modes — one capture per kit theme. */
 export const allModes = {
-  dark: {
-    theme: 'dark',
+  phosphor: {
+    theme: 'phosphor',
   },
   editorial: {
     theme: 'editorial',
