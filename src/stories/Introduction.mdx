@@ -4,15 +4,18 @@ import { Meta } from '@storybook/addon-docs/blocks'
 
 # `@harrydiamond/signal-ui`
 
-Phosphor console chrome — locked here so sites like [avtech.fyi](https://avtech.fyi) can share the same aesthetic.
+Two themes in one kit:
+
+- **`phosphor`** — console chrome (grain, Doto, instrument controls) for tools like [avtech.fyi](https://avtech.fyi)
+- **`editorial`** — solid page color, soft elevation, system light/dark for content sites
 
 Install from GitHub: `github:harrydiamond/signal-ui`.
 
 ## How to use
 
-1. Import theme, styles, and fonts CSS once at the app root.
-2. Wrap the page in `Theme` (or use `body.av-theme`) so atmosphere, type, and focus apply.
-3. Compose with the React primitives.
+1. Import theme and styles CSS once at the app root (`fonts.css` for phosphor faces).
+2. Wrap the page in `Theme theme="phosphor" | "editorial"` (or `body.av-theme` for phosphor defaults).
+3. Compose with the React primitives. Use the Storybook **Theme** toolbar to compare.
 
 ```tsx
 import '@harrydiamond/signal-ui/theme.css'
@@ -28,7 +31,7 @@ import {
 
 export function Page() {
   return (
-    <Theme asPage>
+    <Theme asPage theme="phosphor">
       <PageHeader
         title="Delay"
         description="ms ↔ meters from speed of sound."
@@ -46,8 +49,9 @@ export function Page() {
 ## Visual rules
 
 - **Fill, not chrome.** Operable controls have no default border. Shape comes from surface fill against the page.
-- **Hairline is structure.** `#2C3038` is for cards, section rules, and list rows — not buttons.
-- **Signal is the accent.** Links and tool icons use phosphor orange; selected chips use audio green.
-- **Focus is opaque sync.** 2px `#3AA5FF` outline, 2px offset. Prefer outline over translucent rings.
-- **Doto is the display face.** Bitmap dots for h1–h2, controls, and LED readouts. IBM Plex Mono is for h3+, body prose (`Prose`, `ProseMuted`), and micro hints (`Meta`).
-- **Theme-ready tokens.** Semantic utilities (`bg-av-page`, `text-av-signal`, …) map to CSS variables on `.av-theme`. Only dark ships today.
+- **Hairline is structure** (phosphor). Under editorial, cards/lists use soft elevation instead of hard hairlines.
+- **Signal is the accent.** Links use `--av-signal`; hover uses `--av-link-hover` (phosphor-bright / signal-hot by theme).
+- **Focus is opaque.** 2px `--av-focus` outline, 2px offset.
+- **Type faces follow the theme.** Phosphor: Doto display + IBM Plex Mono body. Editorial: system sans (override `--av-font` / `--av-font-body`).
+- **Instrument chrome is phosphor-only.** Panel/pad buttons and LED glow stay console-native; editorial maps panel/pad to solid surfaces.
+- **Theme-ready tokens.** Semantic utilities (`bg-av-page`, `text-av-signal`, …) map to CSS variables on `[data-av-theme]`.

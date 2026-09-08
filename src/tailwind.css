@@ -37,6 +37,8 @@
   --color-av-panel: var(--av-panel);
   --color-av-pad: var(--av-pad);
 
+  --color-av-link-hover: var(--av-link-hover);
+
   --font-doto: var(--av-font);
   --font-doto--font-feature-settings: 'tnum' 1;
   --font-doto--font-variation-settings: 'ROND' 0;

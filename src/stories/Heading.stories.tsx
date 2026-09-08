@@ -14,7 +14,7 @@ const meta = {
     docs: {
       description: {
         component:
-          'Doto for h1–h2. IBM Plex Mono for h3. h4 is a quieter caption (uppercase muted).',
+          'Face and weight follow the active theme (Doto under phosphor, sans under editorial). h4 stays a quieter uppercase caption.',
       },
     },
   },

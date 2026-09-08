@@ -58,6 +58,7 @@
   --av-font-body:
     'IBM Plex Mono', ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas,
     'Liberation Mono', 'Courier New', monospace;
+  --av-link-hover: var(--av-phosphor-bright);
 }
 
 /*
@@ -102,9 +103,8 @@
     0 2px 4px rgba(0, 0, 0, 0.32);
   --av-shadow-card: var(--av-shadow-card-on-light);
   --av-font: ui-sans-serif, system-ui, sans-serif;
-  --av-font-body:
-    ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, 'Liberation Mono',
-    'Courier New', monospace;
+  --av-font-body: ui-sans-serif, system-ui, sans-serif;
+  --av-link-hover: var(--av-signal-hot);
   color-scheme: light;
 }
 
@@ -278,7 +278,11 @@
   }
 
   .av-theme a {
-    @apply text-av-signal hover:text-av-phosphor-bright;
+    @apply text-av-signal hover:text-av-link-hover;
+  }
+
+  .av-theme .av-link {
+    @apply text-av-signal hover:text-av-link-hover;
   }
 
   /* Editorial: sans display, tighter title tracking, muted link underline. */
@@ -325,34 +329,81 @@
   }
 }
 
-/* Soft-elevation cards under editorial (no hard hairline). */
+/* Soft-elevation surfaces under editorial (no hard hairline). */
 [data-av-theme='editorial'] .av-card {
   border-color: transparent;
   box-shadow: var(--av-shadow-card);
 }
 
-/* Lit LED copy — restrained phosphor, matrix-readable. */
-.av-led-text {
+[data-av-theme='editorial'] .av-card :is(h1, h2, h3, h4) {
+  letter-spacing: -0.025em;
+}
+
+[data-av-theme='editorial']
+  .av-card
+  :is(legend, label, button, input, select, th),
+[data-av-theme='editorial'] .av-tile :is(button) {
+  font-weight: 500;
+  letter-spacing: 0;
+}
+
+[data-av-theme='editorial'] .av-list {
+  border-color: transparent;
+  box-shadow: var(--av-shadow-card);
+}
+
+[data-av-theme='editorial'] .av-choice {
+  border-color: transparent;
+  box-shadow: var(--av-shadow-card);
+}
+
+[data-av-theme='editorial'] .av-chip-card {
+  border-color: transparent;
+  box-shadow: var(--av-shadow-card);
+}
+
+[data-av-theme='editorial'] .av-page-header {
+  border-color: transparent;
+}
+
+[data-av-theme='editorial'] .av-site-footer {
+  border-color: transparent;
+  box-shadow: var(--av-shadow-card);
+}
+
+/* Lit LED copy — phosphor only (no CRT glow under editorial). */
+.av-theme:not([data-av-theme]) .av-led-text,
+[data-av-theme='phosphor'] .av-led-text {
   color: var(--av-phosphor);
   text-shadow:
     0 0 1px color-mix(in srgb, var(--av-phosphor-bright) 55%, transparent),
     0 0 6px color-mix(in srgb, var(--av-signal-hot) 35%, transparent);
 }
 
-/* Soft bloom that preserves the element's color (status / band readouts). */
-.av-led-glow {
+.av-theme:not([data-av-theme]) .av-led-glow,
+[data-av-theme='phosphor'] .av-led-glow {
   text-shadow:
     0 0 1px color-mix(in srgb, var(--av-phosphor-bright) 45%, transparent),
     0 0 6px color-mix(in srgb, var(--av-signal-hot) 28%, transparent);
 }
 
-/* Hot phosphor LED (status / BPM core). */
-.av-led-hot {
+.av-theme:not([data-av-theme]) .av-led-hot,
+[data-av-theme='phosphor'] .av-led-hot {
   color: var(--av-phosphor-bright);
   text-shadow:
     0 0 1px color-mix(in srgb, var(--av-phosphor-bright) 70%, white),
     0 0 5px color-mix(in srgb, var(--av-signal-hot) 40%, transparent),
     0 0 12px color-mix(in srgb, var(--av-signal-hot) 20%, transparent);
+}
+
+[data-av-theme='editorial'] .av-led-text,
+[data-av-theme='editorial'] .av-led-hot {
+  color: var(--av-signal);
+  text-shadow: none;
+}
+
+[data-av-theme='editorial'] .av-led-glow {
+  text-shadow: none;
 }
 
 /* Doto — bitmap display face for LED chrome + key interactive controls. */
@@ -363,7 +414,8 @@
 }
 
 /* Hot phosphor core — light bloom so Doto dots stay crisp. */
-.av-bpm-digits.av-led-text {
+.av-theme:not([data-av-theme]) .av-bpm-digits.av-led-text,
+[data-av-theme='phosphor'] .av-bpm-digits.av-led-text {
   color: var(--av-phosphor-bright);
   text-shadow:
     0 0 1px color-mix(in srgb, var(--av-phosphor-bright) 70%, white),
@@ -429,10 +481,16 @@
   background: color-mix(in srgb, var(--av-audio) 10%, var(--av-surface));
 }
 
-/* Link tiles (home index) — theme mixes without arbitrary Tailwind. */
-.av-link-tile-tool:hover {
+/* Link tiles — CRT bloom is phosphor-only. */
+.av-theme:not([data-av-theme]) .av-link-tile-tool:hover,
+[data-av-theme='phosphor'] .av-link-tile-tool:hover {
   background: color-mix(in srgb, var(--av-signal) 6%, var(--av-surface));
   box-shadow: 0 0 24px color-mix(in srgb, var(--av-signal-hot) 8%, transparent);
+}
+
+[data-av-theme='editorial'] .av-link-tile-tool:hover {
+  background: color-mix(in srgb, var(--av-signal) 6%, var(--av-surface));
+  box-shadow: none;
 }
 
 .av-link-tile-ref:hover {
@@ -535,7 +593,7 @@ input.peer:checked + .av-check-mark {
 .av-btn-ghost:enabled:active,
 .av-btn-ghost:enabled[data-pressed] {
   background: color-mix(in srgb, var(--av-signal-hot) 12%, var(--av-surface));
-  color: #ffc19a;
+  color: var(--av-phosphor-bright);
 }
 
 .av-btn-danger:enabled:hover {
@@ -548,75 +606,105 @@ input.peer:checked + .av-check-mark {
   box-shadow: inset 0 1px 0 rgb(255 255 255 / 0.28);
 }
 
-.av-btn-panel {
+/* Panel / pad — phosphor instrument chrome only. */
+.av-theme:not([data-av-theme]) .av-btn-panel,
+[data-av-theme='phosphor'] .av-btn-panel {
   border: 1px solid
     color-mix(in srgb, var(--av-signal-hot) 28%, var(--av-hairline));
   background: var(--av-panel);
   color: var(--av-phosphor);
 }
 
-.av-btn-panel:enabled:hover {
+.av-theme:not([data-av-theme]) .av-btn-panel:enabled:hover,
+[data-av-theme='phosphor'] .av-btn-panel:enabled:hover {
   border-color: color-mix(in srgb, var(--av-signal-hot) 55%, transparent);
   background: color-mix(in srgb, var(--av-signal-hot) 10%, var(--av-panel));
-  color: #ffc19a;
-  box-shadow: 0 0 18px rgb(230 74 25 / 0.12);
+  color: var(--av-phosphor-bright);
+  box-shadow: 0 0 18px color-mix(in srgb, var(--av-signal-hot) 12%, transparent);
 }
 
-.av-btn-panel:enabled:active,
-.av-btn-panel:enabled[data-pressed] {
+.av-theme:not([data-av-theme]) .av-btn-panel:enabled:active,
+.av-theme:not([data-av-theme]) .av-btn-panel:enabled[data-pressed],
+[data-av-theme='phosphor'] .av-btn-panel:enabled:active,
+[data-av-theme='phosphor'] .av-btn-panel:enabled[data-pressed] {
   border-color: color-mix(in srgb, var(--av-signal-hot) 65%, transparent);
   background: color-mix(in srgb, var(--av-signal-hot) 16%, var(--av-panel));
-  color: #ffd2b4;
+  color: var(--av-phosphor-bright);
   box-shadow:
-    inset 0 0 28px rgb(230 74 25 / 0.22),
-    0 0 14px rgb(230 74 25 / 0.18);
+    inset 0 0 28px color-mix(in srgb, var(--av-signal-hot) 22%, transparent),
+    0 0 14px color-mix(in srgb, var(--av-signal-hot) 18%, transparent);
 }
 
-.av-btn-pad {
+.av-theme:not([data-av-theme]) .av-btn-pad,
+[data-av-theme='phosphor'] .av-btn-pad {
   border: 1px solid color-mix(in srgb, var(--av-signal-hot) 22%, transparent);
   background:
     radial-gradient(
       ellipse 70% 60% at 50% 50%,
-      rgb(230 74 25 / 0.07),
+      color-mix(in srgb, var(--av-signal-hot) 7%, transparent),
       transparent 70%
     ),
     var(--av-pad);
-  box-shadow: inset 0 0 80px rgb(230 74 25 / 0.05);
+  box-shadow: inset 0 0 80px
+    color-mix(in srgb, var(--av-signal-hot) 5%, transparent);
 }
 
-.av-btn-pad:enabled:hover {
+.av-theme:not([data-av-theme]) .av-btn-pad:enabled:hover,
+[data-av-theme='phosphor'] .av-btn-pad:enabled:hover {
   border-color: color-mix(in srgb, var(--av-signal-hot) 38%, transparent);
-  box-shadow: inset 0 0 90px rgb(230 74 25 / 0.08);
+  box-shadow: inset 0 0 90px
+    color-mix(in srgb, var(--av-signal-hot) 8%, transparent);
 }
 
-.av-btn-pad:enabled:active,
-.av-btn-pad:enabled[data-pressed] {
+.av-theme:not([data-av-theme]) .av-btn-pad:enabled:active,
+.av-theme:not([data-av-theme]) .av-btn-pad:enabled[data-pressed],
+[data-av-theme='phosphor'] .av-btn-pad:enabled:active,
+[data-av-theme='phosphor'] .av-btn-pad:enabled[data-pressed] {
   border-color: color-mix(in srgb, var(--av-signal-hot) 55%, transparent);
   background:
     radial-gradient(
       ellipse 70% 60% at 50% 50%,
-      rgb(230 74 25 / 0.16),
+      color-mix(in srgb, var(--av-signal-hot) 16%, transparent),
       transparent 70%
     ),
     var(--av-page);
   box-shadow:
-    inset 0 0 56px rgb(230 74 25 / 0.2),
-    0 0 24px rgb(230 74 25 / 0.12);
+    inset 0 0 56px color-mix(in srgb, var(--av-signal-hot) 20%, transparent),
+    0 0 24px color-mix(in srgb, var(--av-signal-hot) 12%, transparent);
 }
 
-.av-btn-pad-label {
+.av-theme:not([data-av-theme]) .av-btn-pad-label,
+[data-av-theme='phosphor'] .av-btn-pad-label {
   color: var(--av-phosphor);
   text-shadow:
-    0 0 1px rgb(255 180 140 / 0.5),
-    0 0 6px rgb(230 74 25 / 0.3);
+    0 0 1px color-mix(in srgb, var(--av-phosphor-bright) 50%, transparent),
+    0 0 6px color-mix(in srgb, var(--av-signal-hot) 30%, transparent);
 }
 
-.av-btn-pad:enabled:active .av-btn-pad-label,
-.av-btn-pad:enabled[data-pressed] .av-btn-pad-label {
+.av-theme:not([data-av-theme]) .av-btn-pad:enabled:active .av-btn-pad-label,
+.av-theme:not([data-av-theme])
+  .av-btn-pad:enabled[data-pressed]
+  .av-btn-pad-label,
+[data-av-theme='phosphor'] .av-btn-pad:enabled:active .av-btn-pad-label,
+[data-av-theme='phosphor'] .av-btn-pad:enabled[data-pressed] .av-btn-pad-label {
   color: var(--av-phosphor-bright);
   text-shadow:
-    0 0 1px rgb(255 210 180 / 0.65),
-    0 0 6px rgb(230 74 25 / 0.4);
+    0 0 1px color-mix(in srgb, var(--av-phosphor-bright) 65%, transparent),
+    0 0 6px color-mix(in srgb, var(--av-signal-hot) 40%, transparent);
+}
+
+/* Editorial: panel/pad fall back to primary/ghost surfaces. */
+[data-av-theme='editorial'] .av-btn-panel {
+  @apply border-av-hairline bg-av-ink text-av-on-primary border;
+}
+
+[data-av-theme='editorial'] .av-btn-pad {
+  @apply border-av-hairline bg-av-surface text-av-ink border;
+}
+
+[data-av-theme='editorial'] .av-btn-pad-label {
+  color: inherit;
+  text-shadow: none;
 }
 
 .av-spinner-disc {

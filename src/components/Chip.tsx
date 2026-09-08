@@ -43,7 +43,7 @@ export type ChipCardProps = {
 }
 
 const chipCard = tv({
-  base: 'bg-av-surface-2 rounded-lg border p-3',
+  base: 'av-chip-card bg-av-surface-2 rounded-lg border p-3',
   variants: {
     tone: {
       sync: 'border-av-sync/40',

@@ -31,6 +31,7 @@ const preview: Preview = {
       modes: {
         phosphor: allModes.phosphor,
         editorial: allModes.editorial,
+        'editorial-dark': allModes['editorial-dark'],
       },
     },
     a11y: {
@@ -60,11 +61,19 @@ const preview: Preview = {
   decorators: [
     (Story, context) => {
       const theme = context.globals.theme ?? 'phosphor'
+      const colorScheme = context.globals.colorScheme as
+        'light' | 'dark' | undefined
       const root = document.documentElement
       if (theme === 'editorial') {
-        root.style.background = '#F0F0F0'
-        root.style.colorScheme = 'light dark'
-        document.body.style.background = '#F0F0F0'
+        const preferDark =
+          colorScheme === 'dark' ||
+          (colorScheme !== 'light' &&
+            typeof window !== 'undefined' &&
+            window.matchMedia('(prefers-color-scheme: dark)').matches)
+        const page = preferDark ? '#161618' : '#F0F0F0'
+        root.style.background = page
+        root.style.colorScheme = preferDark ? 'dark' : 'light'
+        document.body.style.background = page
       } else {
         root.style.background = AV.page
         root.style.colorScheme = 'dark'

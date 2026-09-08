@@ -1,5 +1,4 @@
 import type { HTMLAttributes } from 'react'
-import { doto, plex } from '../type.ts'
 import { tv } from '../tv.ts'
 
 type Level = 1 | 2 | 3 | 4
@@ -8,14 +7,15 @@ type Props = HTMLAttributes<HTMLHeadingElement> & {
   level?: Level
 }
 
+/** Sizes only — face/weight come from theme heading rules in styles.css. */
 const heading = tv({
   base: 'm-0',
   variants: {
     level: {
-      1: `${doto} text-av-ink text-[1.875rem] sm:text-[2.25rem]`,
-      2: `${doto} text-av-ink text-xl`,
-      3: `${plex} text-av-ink text-sm font-semibold tracking-wider`,
-      4: `${plex} text-av-muted text-xs font-medium tracking-widest uppercase`,
+      1: 'text-av-ink text-[1.875rem] sm:text-[2.25rem]',
+      2: 'text-av-ink text-xl',
+      3: 'text-av-ink text-sm font-semibold',
+      4: 'text-av-muted text-xs font-medium tracking-widest uppercase',
     },
   },
   defaultVariants: {

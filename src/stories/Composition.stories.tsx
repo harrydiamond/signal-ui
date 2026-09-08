@@ -28,19 +28,23 @@ function IconMark() {
   return <span className="av-icon-placeholder" />
 }
 
-function SampleSite() {
+function SampleSite({ theme }: { theme: 'phosphor' | 'editorial' }) {
   const [mode, setMode] = useState('ratio')
   const [a, setA] = useState('2')
   const [b, setB] = useState('1')
 
   return (
-    <Theme asPage>
+    <Theme asPage theme={theme}>
       <SkipLink />
       <div className="flex-1">
         <Container>
           <PageHeader
             title="Delay"
-            description="A second site built only from these primitives — same phosphor console, different product."
+            description={
+              theme === 'editorial'
+                ? 'Content-site composition under the editorial theme.'
+                : 'A second site built only from these primitives — same phosphor console, different product.'
+            }
             brand={{ name: 'stage', tld: '.tools', href: '#top' }}
           />
 
@@ -133,7 +137,7 @@ const meta = {
     docs: {
       description: {
         component:
-          'Proof the primitives can stand up another site with the same feel.',
+          'Proof the primitives can stand up another site. Switch Theme toolbar to compare phosphor vs editorial.',
       },
     },
   },
@@ -143,5 +147,11 @@ export default meta
 type Story = StoryObj<typeof meta>
 
 export const SamplePage: Story = {
-  render: () => <SampleSite />,
+  render: (_args, { globals }) => (
+    <SampleSite
+      theme={
+        (globals.theme as 'phosphor' | 'editorial' | undefined) ?? 'phosphor'
+      }
+    />
+  ),
 }

@@ -4,9 +4,9 @@ export const doto =
 
 export const plex = 'font-body [text-rendering:optimizeLegibility]'
 
-export const prose = `${plex} text-av-text max-w-[65ch] text-base font-normal leading-relaxed tracking-wide [&_strong]:font-bold [&_strong]:text-av-ink [&_a]:text-av-signal [&_a:hover]:text-av-phosphor-bright`
+export const prose = `${plex} av-prose text-av-text max-w-[65ch] text-base font-normal leading-relaxed tracking-wide [&_strong]:font-bold [&_strong]:text-av-ink [&_a]:text-av-signal [&_a:hover]:text-av-link-hover`
 
-export const proseMuted = `${plex} text-av-prose-muted max-w-[65ch] text-sm font-normal leading-relaxed tracking-wide`
+export const proseMuted = `${plex} av-prose-muted text-av-prose-muted max-w-[65ch] text-sm font-normal leading-relaxed tracking-wide`
 
 export const meta = `${plex} font-medium tracking-wider uppercase`
 

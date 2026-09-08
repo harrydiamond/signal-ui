@@ -66,11 +66,14 @@ Editorial defaults to system stacks. Load your faces, then override:
 import {
   Theme,
   SiteNav,
+  NavLink,
   PageShell,
   SiteFooter,
   MetaLabel,
-  Card,
-  CardBody,
+  SectionHeader,
+  PreviewCard,
+  ExternalLink,
+  BackLink,
 } from '@harrydiamond/signal-ui'
 
 export function Site() {
@@ -78,14 +81,24 @@ export function Site() {
     <Theme asPage theme="editorial">
       <SiteNav
         brand={<MetaLabel tone="ink">Brand</MetaLabel>}
-        links={<a href="/">Home</a>}
+        links={
+          <>
+            <NavLink href="/" active>
+              Home
+            </NavLink>
+            <NavLink href="/posts">Posts</NavLink>
+          </>
+        }
       />
       <PageShell>
-        <Card>
-          <CardBody>…</CardBody>
-        </Card>
+        <BackLink href="/">Home</BackLink>
+        <SectionHeader title="Featured" />
+        <PreviewCard>
+          <MetaLabel tone="accent">Note</MetaLabel>
+        </PreviewCard>
+        <ExternalLink href="https://example.com">example.com</ExternalLink>
       </PageShell>
-      <SiteFooter>©</SiteFooter>
+      <SiteFooter copyright="©" />
     </Theme>
   )
 }
@@ -111,7 +124,7 @@ bun run build:storybook
 bun run deploy
 ```
 
-Use the **Theme** toolbar to switch `phosphor` / `editorial`. Chromatic captures both themes per story via [modes](https://www.chromatic.com/docs/modes/) (`.storybook/modes.ts`).
+Use the **Theme** toolbar to switch `phosphor` / `editorial`. Chromatic captures phosphor, editorial (light), and editorial-dark via [modes](https://www.chromatic.com/docs/modes/) (`.storybook/modes.ts`).
 
 - Local MCP: http://localhost:6006/mcp
 - Published main MCP: https://main--6a9ecc9629e322e1385e7b36.chromatic.com/mcp
@@ -135,26 +148,26 @@ Until Builds is connected, deploy manually with `bun run deploy` (requires wrang
 import {
   AV,
   AV_STAGGER_MS,
+  BackLink,
   Button,
   Choice,
-  RadioGroup,
-  Container,
-  Field,
+  ExternalLink,
   Heading,
   MetaLabel,
+  NavLink,
   PageShell,
-  plex,
+  PreviewCard,
+  SectionHeader,
   SiteNav,
-  Stack,
   TagLink,
   Theme,
   type ThemeName,
 } from '@harrydiamond/signal-ui'
 ```
 
-`Container` / `Stack` handle column width and section gaps. `PageShell` is the wider editorial main rhythm. Type helpers (`doto`, `plex`, `prose`, `proseMuted`, `meta`, `fieldLabel`, `fieldHint`, `fieldError`, `ledText`, `ledHot`) match the classes the primitives use.
+`Container` / `Stack` handle column width and section gaps. `PageShell` is the wider main rhythm. Content recipes: `NavLink`, `PreviewCard`, `ExternalLink`, `BackLink`, `SectionHeader`, `PulseDot`. Type helpers (`doto`, `plex`, `prose`, …) match the classes the primitives use.
 
-Motion: `animate-fade-in-up` (Tailwind utility) + `AV_STAGGER_MS` for staggered delays. Shadows: `shadow-av-card` (theme-assigned; soft elevation under editorial).
+Motion: `animate-fade-in-up` + `AV_STAGGER_MS`. Shadows: `shadow-av-card` (soft elevation under editorial).
 
 ## Files
 

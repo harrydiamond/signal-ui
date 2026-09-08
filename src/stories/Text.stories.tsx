@@ -15,7 +15,7 @@ const meta = {
     docs: {
       description: {
         component:
-          'IBM Plex Mono for body, captions, and micro chrome. Doto for LED readouts.',
+          'Body and captions follow `--av-font-body` (Plex under phosphor, sans under editorial). LED readouts (`LedText`) are phosphor glow — solid accent under editorial.',
       },
     },
   },

@@ -12,7 +12,7 @@ const meta = {
     docs: {
       description: {
         component:
-          'LED matrix fill track. Layer fills back to front by pct; later layers paint over earlier ones. colorForColumn replaces fills when set.',
+          'LED matrix fill track (phosphor canvas palette via `AV`). Prefer phosphor theme — editorial remaps CSS accents but canvas fills stay on the JS palette. Layer fills back to front by pct; later layers paint over earlier ones.',
       },
     },
   },
