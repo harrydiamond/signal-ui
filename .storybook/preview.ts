@@ -1,15 +1,10 @@
-import type { Preview } from '@storybook/react-vite'
-import { DecoratorHelpers } from '@storybook/addon-themes'
-import { Theme, type ThemeName } from '../src/components/Theme.tsx'
+import type { Preview, ReactRenderer } from '@storybook/react-vite'
+import { withThemeByDataAttribute } from '@storybook/addon-themes'
 import { allModes } from './modes.ts'
 import '../src/fonts.css'
 import '../src/tailwind.css'
 import '../src/styles.css'
 import '../src/stories/story.css'
-
-const { initializeThemeState, pluckThemeFromContext } = DecoratorHelpers
-
-initializeThemeState(['phosphor', 'editorial'], 'phosphor')
 
 const preview: Preview = {
   tags: ['autodocs'],
@@ -54,25 +49,15 @@ const preview: Preview = {
     theme: 'phosphor',
   },
   decorators: [
-    // Wrap the story only — never set data-av-theme on <html>, or kit type
-    // rules restyle Storybook’s own preview/docs chrome.
-    (Story, context) => {
-      const themeOverride = context.parameters.themes?.themeOverride as
-        | ThemeName
-        | undefined
-      const selected = pluckThemeFromContext(context) as ThemeName | ''
-      const theme = (themeOverride || selected || 'phosphor') as ThemeName
-
-      if (typeof document !== 'undefined') {
-        document.documentElement.removeAttribute('data-av-theme')
-      }
-
-      return (
-        <Theme asPage={context.viewMode === 'story'} theme={theme}>
-          <Story />
-        </Theme>
-      )
-    },
+    // Kit themes toggle via `data-av-theme` (see Theme + styles.css), not Tailwind `.dark`.
+    withThemeByDataAttribute<ReactRenderer>({
+      themes: {
+        phosphor: 'phosphor',
+        editorial: 'editorial',
+      },
+      defaultTheme: 'phosphor',
+      attributeName: 'data-av-theme',
+    }),
   ],
 }
 
