@@ -62,6 +62,7 @@ bun run deploy
 ```
 
 - Local MCP: http://localhost:6006/mcp
+- Published main MCP: https://main--6a9ecc9629e322e1385e7b36.chromatic.com/mcp
 - Hosted Storybook Worker: https://signal-ui.harrydiamond.workers.dev
 - Chromatic publishes from `bun run build:storybook:chromatic` (`CHROMATIC_PROJECT_TOKEN` on this repo). Kit CI owns Storybook visual review — not avtech.fyi.
 

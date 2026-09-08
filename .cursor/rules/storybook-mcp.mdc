@@ -4,9 +4,11 @@ globs: src/**/*.{tsx,ts,mdx}
 alwaysApply: false
 ---
 
-When creating or updating `@harrydiamond/signal-ui` primitives or stories, use the Storybook MCP tools. Storybook must be running (`bun run storybook`, http://localhost:6006/mcp).
+When creating or updating `@harrydiamond/signal-ui` primitives or stories, use the Storybook MCP tools.
+
+For unpublished local work, run Storybook (`bun run storybook`) and use `signal-ui-storybook` (http://localhost:6006/mcp). For published `main`, use `signal-ui-storybook-main` (https://main--6a9ecc9629e322e1385e7b36.chromatic.com/mcp). Prefer local when editing the kit so docs match your branch; use Chromatic when local Storybook is not running.
 
 - Never hallucinate component properties. Call `docs-list` / `docs-show` before using a prop.
 - Call `get-storybook-story-instructions` before creating or updating stories.
-- Check work with `test-run` when Storybook Test is available.
+- Check work with `test-run` when Storybook Test is available (local Storybook).
 - Export new primitives from `src/index.ts` and add a CSF story under `src/stories/`.

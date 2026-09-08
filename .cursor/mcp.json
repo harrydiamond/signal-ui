@@ -2,6 +2,9 @@
   "mcpServers": {
     "signal-ui-storybook": {
       "url": "http://localhost:6006/mcp"
+    },
+    "signal-ui-storybook-main": {
+      "url": "https://main--6a9ecc9629e322e1385e7b36.chromatic.com/mcp"
     }
   }
 }

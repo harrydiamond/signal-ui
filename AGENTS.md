@@ -4,17 +4,18 @@
 bun run storybook
 ```
 
-Storybook MCP: http://localhost:6006/mcp
-
 Other useful commands: `bun run test`, `bun run build:storybook`, `bun run deploy`, `bun run format`.
 
 ## Storybook MCP
 
-When creating or updating primitives and stories:
+- Local (branch in progress): `signal-ui-storybook` → http://localhost:6006/mcp (`bun run storybook`)
+- Published `main`: `signal-ui-storybook-main` → https://main--6a9ecc9629e322e1385e7b36.chromatic.com/mcp
+
+Prefer local when editing the kit so docs match your branch; use Chromatic when local Storybook is not running.
 
 - Never guess component props. Query `docs-list` / `docs-show` first.
 - Use `get-storybook-story-instructions` before creating or updating stories.
-- Check work with `test-run` when Storybook Test is available.
+- Check work with `test-run` when Storybook Test is available (local Storybook).
 - Export new primitives from `src/index.ts` and add a CSF story under `src/stories/`.
 
 ## Package contract
