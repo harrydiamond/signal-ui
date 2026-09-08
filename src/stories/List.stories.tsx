@@ -9,7 +9,8 @@ const meta = {
   parameters: {
     docs: {
       description: {
-        component: 'Packed rows use hairline dividers and LED values.',
+        component:
+          'Packed rows use hairline dividers and LED values. Standalone lists keep their own radius; inside Card they sit flush.',
       },
     },
   },

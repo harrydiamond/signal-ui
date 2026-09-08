@@ -1,28 +1,27 @@
 import {
   createContext,
   useContext,
+  useId,
   useState,
   type HTMLAttributes,
   type KeyboardEvent,
   type ReactNode,
 } from 'react'
 import { cx } from '../cx.ts'
-
-export type ChoiceGroupKind = 'choice' | 'radio'
+import { fieldLabel } from '../type.ts'
 
 type ContextValue = {
   value: string
   onChange: (next: string) => void
-  kind: ChoiceGroupKind
 }
 
-const ChoiceGroupContext = createContext<ContextValue | null>(null)
+const RadioGroupContext = createContext<ContextValue | null>(null)
 
-export function useChoiceGroup() {
-  return useContext(ChoiceGroupContext)
+export function useRadioGroup() {
+  return useContext(RadioGroupContext)
 }
 
-type GroupProps = Omit<HTMLAttributes<HTMLDivElement>, 'onChange'> & {
+type Props = Omit<HTMLAttributes<HTMLDivElement>, 'onChange'> & {
   value?: string
   defaultValue?: string
   onChange?: (value: string) => void
@@ -30,8 +29,8 @@ type GroupProps = Omit<HTMLAttributes<HTMLDivElement>, 'onChange'> & {
   children: ReactNode
 }
 
-function Group({
-  kind,
+/** Exclusive Choice chips with radio keyboard and ARIA. */
+export function RadioGroup({
   value,
   defaultValue = '',
   onChange,
@@ -40,7 +39,8 @@ function Group({
   onKeyDown,
   children,
   ...props
-}: GroupProps & { kind: ChoiceGroupKind }) {
+}: Props) {
+  const labelId = useId()
   const [uncontrolled, setUncontrolled] = useState(defaultValue)
   const current = value ?? uncontrolled
 
@@ -51,7 +51,7 @@ function Group({
 
   const handleKeyDown = (event: KeyboardEvent<HTMLDivElement>) => {
     onKeyDown?.(event)
-    if (event.defaultPrevented || kind !== 'radio') return
+    if (event.defaultPrevented) return
     if (
       event.key !== 'ArrowLeft' &&
       event.key !== 'ArrowRight' &&
@@ -74,33 +74,28 @@ function Group({
       event.key === 'ArrowRight' || event.key === 'ArrowDown' ? 1 : -1
     const next = radios[(index + delta + radios.length) % radios.length]
     next.focus()
-    const nextValue = next.dataset.value
+    const nextValue = next?.dataset.value
     if (nextValue) setValue(nextValue)
   }
 
   return (
-    <ChoiceGroupContext.Provider
-      value={{ value: current, onChange: setValue, kind }}
-    >
-      <div
-        role={kind === 'radio' ? 'radiogroup' : 'group'}
-        aria-label={label}
-        className={cx('grid gap-2 sm:grid-cols-3', className)}
-        onKeyDown={handleKeyDown}
-        {...props}
-      >
-        {children}
+    <RadioGroupContext.Provider value={{ value: current, onChange: setValue }}>
+      <div className="flex flex-col gap-2.5">
+        {label ? (
+          <label id={labelId} className={fieldLabel}>
+            {label}
+          </label>
+        ) : null}
+        <div
+          role="radiogroup"
+          aria-labelledby={label ? labelId : undefined}
+          className={cx('grid gap-2 sm:grid-cols-3', className)}
+          onKeyDown={handleKeyDown}
+          {...props}
+        >
+          {children}
+        </div>
       </div>
-    </ChoiceGroupContext.Provider>
+    </RadioGroupContext.Provider>
   )
-}
-
-/** Exclusive Choice chips as toggle buttons. */
-export function ChoiceGroup(props: GroupProps) {
-  return <Group kind="choice" {...props} />
-}
-
-/** Exclusive Choice chips with radio keyboard and ARIA. */
-export function RadioGroup(props: GroupProps) {
-  return <Group kind="radio" {...props} />
 }

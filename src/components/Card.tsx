@@ -11,7 +11,7 @@ export function Card({ className, ...props }: CardProps) {
     <section
       className={cx(
         plex,
-        'bg-av-surface border-av-hairline overflow-hidden rounded-lg border',
+        'av-card bg-av-surface border-av-hairline overflow-hidden rounded-lg border [&>.av-list]:rounded-none [&>.av-list]:border-x-0 [&>.av-list]:border-b-0',
         className,
       )}
       {...props}
