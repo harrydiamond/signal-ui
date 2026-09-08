@@ -4,7 +4,7 @@ export const heading =
 
 export const body = 'font-body [text-rendering:optimizeLegibility]'
 
-export const prose = `${body} av-prose text-av-text max-w-[65ch] text-base font-normal leading-relaxed tracking-wide [&_strong]:font-bold [&_strong]:text-av-ink [&_a]:text-av-signal [&_a:hover]:text-av-link-hover`
+export const prose = `${body} av-prose text-av-text max-w-[65ch] text-base font-normal leading-relaxed tracking-wide [&_strong]:font-bold [&_strong]:text-av-ink [&_a]:text-av-signal [&_a]:underline [&_a]:underline-offset-2 [&_a:hover]:text-av-link-hover`
 
 export const proseMuted = `${body} av-prose-muted text-av-prose-muted max-w-[65ch] text-sm font-normal leading-relaxed tracking-wide`
 

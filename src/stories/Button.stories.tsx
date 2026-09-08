@@ -19,7 +19,7 @@ const meta = {
     docs: {
       description: {
         component:
-          'Default operable chrome has no visible border. Primary is ink/white fill. Danger uses the danger token. Panel and pad are phosphor instrument-hot (soft solids under editorial).',
+          'Solid token fills for most variants. Pad keeps a soft inset glow on phosphor; editorial stays flat.',
       },
     },
   },

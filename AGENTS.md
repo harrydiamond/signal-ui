@@ -4,7 +4,7 @@
 bun run storybook
 ```
 
-Other useful commands: `bun run test` (unit), `bun run test:storybook` (stories + a11y), `bun run build:storybook`, `bun run deploy`, `bun run format`.
+Other useful commands: `bun run test` (unit), `bun run test:storybook` (stories + a11y × themes), `bun run build:storybook`, `bun run deploy`, `bun run format`.
 
 ## Storybook MCP
 
@@ -15,7 +15,7 @@ Prefer local when editing the kit so docs match your branch; use Chromatic when 
 
 - Never guess component props. Query `docs-list` / `docs-show` first.
 - Use `get-storybook-story-instructions` before creating or updating stories.
-- Check work with `bun run test:storybook` (Storybook Test + a11y) or the Storybook UI test widget.
+- Check work with `bun run test:storybook` (a11y across phosphor / editorial / editorial-dark) or the Storybook UI test widget.
 - Export new primitives from `src/index.ts` and add a CSF story under `src/stories/`.
 
 ## Package contract

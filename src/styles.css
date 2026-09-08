@@ -10,7 +10,7 @@
 @reference './tailwind.css';
 
 /*
-  Phosphor assignment (default).
+  Phosphor assignment (default). Keep hexes in sync with `AV` in tokens.ts.
   `.av-theme` without a data attribute stays phosphor for body.av-theme pages.
   Editorial is a separate brand theme — see `[data-av-theme='editorial']`.
 */
@@ -62,7 +62,7 @@
 }
 
 /*
-  Editorial (dotcom-derived). Light defaults; dark via prefers-color-scheme.
+  Editorial (dotcom-derived). Light ↔ `AV_EDITORIAL`; dark media ↔ `AV_EDITORIAL_DARK`.
   Consumers override --av-font-heading / --av-font-body after loading their own faces.
 */
 [data-av-theme='editorial'] {
@@ -73,24 +73,25 @@
   --av-border: color-mix(in srgb, #161618 12%, transparent);
   --av-text: #161618;
   --av-body: #161618;
-  --av-muted: #8a8d93;
-  --av-prose-muted: color-mix(in srgb, #161618 70%, #8a8d93);
+  /* Muted/accents tuned for WCAG AA on page/surface (and white-on-danger fills). */
+  --av-muted: #5c5f66;
+  --av-prose-muted: color-mix(in srgb, #161618 70%, #5c5f66);
   --av-ink: #161618;
   --av-on-primary: #ffffff;
   --av-panel: #ffffff;
   --av-pad: #f0f0f0;
-  --av-signal: #ff4242;
-  --av-signal-hot: #e60000;
-  --av-phosphor: #ff4242;
-  --av-phosphor-bright: #ff6b6b;
-  --av-audio: #07b682;
+  --av-signal: #9b1c1c;
+  --av-signal-hot: #7f1515;
+  --av-phosphor: #9b1c1c;
+  --av-phosphor-bright: #b71c1c;
+  --av-audio: #057a56;
   --av-sync: #161618;
   --av-focus: #161618;
   --av-focus-width: 2px;
   --av-focus-offset: 2px;
-  --av-meter: #f7cd1b;
-  --av-accent-soft: #ffb3b3;
-  --av-danger: #ff4242;
+  --av-meter: #7a5f00;
+  --av-accent-soft: #f5c2c2;
+  --av-danger: #9b1c1c;
   --av-radius: 0.5rem;
   --av-shadow-card-light:
     0 0 0 1px rgba(17, 24, 28, 0.08), 0 1px 2px -1px rgba(17, 24, 28, 0.08),
@@ -117,12 +118,20 @@
     --av-border: color-mix(in srgb, #ffffff 8%, transparent);
     --av-text: #e6e6e6;
     --av-body: #e6e6e6;
-    --av-muted: #8a8d93;
-    --av-prose-muted: color-mix(in srgb, #e6e6e6 70%, #8a8d93);
+    --av-muted: #a4a7ad;
+    --av-prose-muted: color-mix(in srgb, #e6e6e6 70%, #a4a7ad);
     --av-ink: #ffffff;
     --av-on-primary: #161618;
     --av-panel: #2c2d30;
     --av-pad: #161618;
+    --av-signal: #ff8585;
+    --av-signal-hot: #ff9a9a;
+    --av-phosphor: #ff8585;
+    --av-phosphor-bright: #ffb0b0;
+    --av-audio: #1ec995;
+    --av-meter: #f0d45a;
+    --av-danger: #ff8585;
+    --av-accent-soft: #5a3030;
     --av-sync: #ffffff;
     --av-focus: #ffffff;
     --av-shadow-card: var(--av-shadow-card-dark);
@@ -505,215 +514,60 @@
   box-shadow: 0 0 20px rgb(255 255 255 / 0.03);
 }
 
-/* Choice / check / switch selected chrome. */
-.av-choice:enabled:hover {
-  background: color-mix(in srgb, var(--av-muted) 8%, var(--av-surface));
-}
-
-.av-choice[data-selected='true'] {
-  border-color: color-mix(in srgb, var(--av-audio) 45%, transparent);
-  background: color-mix(in srgb, var(--av-audio) 10%, var(--av-surface));
-  box-shadow: inset 0 0 0 1px
-    color-mix(in srgb, var(--av-audio) 25%, transparent);
-}
-
-.av-dropzone:enabled:hover {
-  background: color-mix(in srgb, var(--av-muted) 8%, var(--av-surface));
-}
-
-.av-dropzone[data-dragging='true'] {
-  border-color: color-mix(in srgb, var(--av-signal) 45%, transparent);
-  background: color-mix(in srgb, var(--av-signal) 8%, var(--av-surface));
-}
-
-.av-dropzone[data-has-files='true'] {
-  background: color-mix(in srgb, var(--av-audio) 8%, var(--av-surface));
-}
-
-.av-step {
-  color: var(--av-muted);
-}
-
-.av-step-index {
-  background: var(--av-surface-2);
-  color: var(--av-muted);
-}
-
-.av-step[data-complete='true'] {
-  color: var(--av-audio);
-}
-
-.av-step[data-complete='true'] .av-step-index {
-  background: color-mix(in srgb, var(--av-audio) 14%, var(--av-surface));
-  color: var(--av-audio);
-}
-
-.av-step[aria-current='step'] {
-  color: var(--av-text);
-}
-
-.av-step[aria-current='step'] .av-step-index {
-  background: var(--av-ink);
-  color: var(--av-on-primary);
-}
-
-.av-step:enabled:hover .av-step-index {
-  background: color-mix(in srgb, var(--av-muted) 14%, var(--av-surface-2));
-}
-
-.av-step[aria-current='step']:enabled:hover .av-step-index {
-  background: var(--av-text);
-}
-
-/* Checkbox: mark is sibling after the sr-only input (peer). */
-input.peer:checked + .av-check-mark {
-  background: color-mix(in srgb, var(--av-audio) 10%, var(--av-surface));
-  box-shadow: inset 0 0 0 1px
-    color-mix(in srgb, var(--av-audio) 25%, transparent);
-}
-
-.av-switch-track-on {
-  background: color-mix(in srgb, var(--av-audio) 10%, var(--av-surface));
-  box-shadow: inset 0 0 0 1px
-    color-mix(in srgb, var(--av-audio) 25%, transparent);
-}
-
-/* Button variants that need token mixes / gradients. */
-.av-btn-default:enabled:hover {
-  background: color-mix(in srgb, var(--av-muted) 14%, var(--av-surface-2));
-}
-
-.av-btn-default:enabled:active,
-.av-btn-default:enabled[data-pressed] {
-  box-shadow: inset 0 0 28px rgb(255 255 255 / 0.04);
-}
-
-.av-btn-primary:enabled:active,
-.av-btn-primary:enabled[data-pressed] {
-  background: color-mix(in srgb, var(--av-muted) 35%, white);
-  box-shadow: inset 0 1px 0 rgb(255 255 255 / 0.35);
-}
-
-.av-btn-ghost:enabled:hover {
-  background: color-mix(in srgb, var(--av-signal-hot) 8%, var(--av-surface));
-}
-
-.av-btn-ghost:enabled:active,
-.av-btn-ghost:enabled[data-pressed] {
-  background: color-mix(in srgb, var(--av-signal-hot) 12%, var(--av-surface));
-  color: var(--av-phosphor-bright);
-}
-
-.av-btn-danger:enabled:hover {
-  background: color-mix(in srgb, white 18%, var(--av-danger));
-}
-
-.av-btn-danger:enabled:active,
-.av-btn-danger:enabled[data-pressed] {
-  background: color-mix(in srgb, var(--av-muted) 28%, var(--av-danger));
-  box-shadow: inset 0 1px 0 rgb(255 255 255 / 0.28);
-}
-
-/* Panel / pad — phosphor instrument chrome only. */
-.av-theme:not([data-av-theme]) .av-btn-panel,
-[data-av-theme='phosphor'] .av-btn-panel {
-  border: 1px solid
-    color-mix(in srgb, var(--av-signal-hot) 28%, var(--av-hairline));
-  background: var(--av-panel);
+/* Pad — instrument plate; active/pressed is a clear lit-and-pressed state. */
+.av-btn-pad {
+  border: 1px solid color-mix(in srgb, var(--av-signal-hot) 28%, transparent);
+  background: var(--av-pad);
   color: var(--av-phosphor);
-}
-
-.av-theme:not([data-av-theme]) .av-btn-panel:enabled:hover,
-[data-av-theme='phosphor'] .av-btn-panel:enabled:hover {
-  border-color: color-mix(in srgb, var(--av-signal-hot) 55%, transparent);
-  background: color-mix(in srgb, var(--av-signal-hot) 10%, var(--av-panel));
-  color: var(--av-phosphor-bright);
-  box-shadow: 0 0 18px color-mix(in srgb, var(--av-signal-hot) 12%, transparent);
-}
-
-.av-theme:not([data-av-theme]) .av-btn-panel:enabled:active,
-.av-theme:not([data-av-theme]) .av-btn-panel:enabled[data-pressed],
-[data-av-theme='phosphor'] .av-btn-panel:enabled:active,
-[data-av-theme='phosphor'] .av-btn-panel:enabled[data-pressed] {
-  border-color: color-mix(in srgb, var(--av-signal-hot) 65%, transparent);
-  background: color-mix(in srgb, var(--av-signal-hot) 16%, var(--av-panel));
-  color: var(--av-phosphor-bright);
-  box-shadow:
-    inset 0 0 28px color-mix(in srgb, var(--av-signal-hot) 22%, transparent),
-    0 0 14px color-mix(in srgb, var(--av-signal-hot) 18%, transparent);
-}
-
-.av-theme:not([data-av-theme]) .av-btn-pad,
-[data-av-theme='phosphor'] .av-btn-pad {
-  border: 1px solid color-mix(in srgb, var(--av-signal-hot) 22%, transparent);
-  background:
-    radial-gradient(
-      ellipse 70% 60% at 50% 50%,
-      color-mix(in srgb, var(--av-signal-hot) 7%, transparent),
-      transparent 70%
-    ),
-    var(--av-pad);
-  box-shadow: inset 0 0 80px
-    color-mix(in srgb, var(--av-signal-hot) 5%, transparent);
-}
-
-.av-theme:not([data-av-theme]) .av-btn-pad:enabled:hover,
-[data-av-theme='phosphor'] .av-btn-pad:enabled:hover {
-  border-color: color-mix(in srgb, var(--av-signal-hot) 38%, transparent);
-  box-shadow: inset 0 0 90px
+  box-shadow: inset 0 0 72px
     color-mix(in srgb, var(--av-signal-hot) 8%, transparent);
+  text-shadow: 0 0 8px color-mix(in srgb, var(--av-phosphor) 35%, transparent);
+  transition:
+    border-color 90ms linear,
+    background-color 90ms linear,
+    box-shadow 90ms linear,
+    color 90ms linear;
 }
 
-.av-theme:not([data-av-theme]) .av-btn-pad:enabled:active,
-.av-theme:not([data-av-theme]) .av-btn-pad:enabled[data-pressed],
-[data-av-theme='phosphor'] .av-btn-pad:enabled:active,
-[data-av-theme='phosphor'] .av-btn-pad:enabled[data-pressed] {
-  border-color: color-mix(in srgb, var(--av-signal-hot) 55%, transparent);
-  background:
-    radial-gradient(
-      ellipse 70% 60% at 50% 50%,
-      color-mix(in srgb, var(--av-signal-hot) 16%, transparent),
-      transparent 70%
-    ),
-    var(--av-page);
-  box-shadow:
-    inset 0 0 56px color-mix(in srgb, var(--av-signal-hot) 20%, transparent),
-    0 0 24px color-mix(in srgb, var(--av-signal-hot) 12%, transparent);
+.av-btn-pad:enabled:hover {
+  border-color: color-mix(in srgb, var(--av-signal-hot) 40%, transparent);
+  box-shadow: inset 0 0 80px
+    color-mix(in srgb, var(--av-signal-hot) 11%, transparent);
 }
 
-.av-theme:not([data-av-theme]) .av-btn-pad-label,
-[data-av-theme='phosphor'] .av-btn-pad-label {
-  color: var(--av-phosphor);
-  text-shadow:
-    0 0 1px color-mix(in srgb, var(--av-phosphor-bright) 50%, transparent),
-    0 0 6px color-mix(in srgb, var(--av-signal-hot) 30%, transparent);
-}
-
-.av-theme:not([data-av-theme]) .av-btn-pad:enabled:active .av-btn-pad-label,
-.av-theme:not([data-av-theme])
-  .av-btn-pad:enabled[data-pressed]
-  .av-btn-pad-label,
-[data-av-theme='phosphor'] .av-btn-pad:enabled:active .av-btn-pad-label,
-[data-av-theme='phosphor'] .av-btn-pad:enabled[data-pressed] .av-btn-pad-label {
+.av-btn-pad:enabled:active,
+.av-btn-pad:enabled[data-pressed] {
+  border-color: color-mix(in srgb, var(--av-signal-hot) 60%, transparent);
+  background: var(--av-page);
   color: var(--av-phosphor-bright);
-  text-shadow:
-    0 0 1px color-mix(in srgb, var(--av-phosphor-bright) 65%, transparent),
-    0 0 6px color-mix(in srgb, var(--av-signal-hot) 40%, transparent);
-}
-
-/* Editorial: panel/pad fall back to primary/ghost surfaces. */
-[data-av-theme='editorial'] .av-btn-panel {
-  @apply border-av-hairline bg-av-ink text-av-on-primary border;
+  box-shadow:
+    inset 0 0 56px color-mix(in srgb, var(--av-signal-hot) 22%, transparent),
+    0 0 20px color-mix(in srgb, var(--av-signal-hot) 14%, transparent);
+  text-shadow: 0 0 10px
+    color-mix(in srgb, var(--av-phosphor-bright) 55%, transparent);
 }
 
 [data-av-theme='editorial'] .av-btn-pad {
-  @apply border-av-hairline bg-av-surface text-av-ink border;
-}
-
-[data-av-theme='editorial'] .av-btn-pad-label {
-  color: inherit;
+  border-color: var(--av-hairline);
+  color: var(--av-ink);
+  box-shadow: none;
   text-shadow: none;
 }
+
+[data-av-theme='editorial'] .av-btn-pad:enabled:hover {
+  background: var(--av-surface);
+  border-color: var(--av-border);
+}
+
+[data-av-theme='editorial'] .av-btn-pad:enabled:active,
+[data-av-theme='editorial'] .av-btn-pad:enabled[data-pressed] {
+  background: var(--av-surface-2);
+  border-color: var(--av-border);
+  color: var(--av-ink);
+  box-shadow: inset 0 2px 6px rgb(0 0 0 / 0.12);
+}
+
+/* Other button hover/pressed states live on the component (solid tokens). */
 
 .av-spinner-disc {
   background: conic-gradient(

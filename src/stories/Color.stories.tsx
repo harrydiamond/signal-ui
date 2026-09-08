@@ -1,32 +1,68 @@
 import type { Meta, StoryObj } from '@storybook/react-vite'
-import { AV } from '../tokens.ts'
+import {
+  AV,
+  AV_EDITORIAL,
+  AV_EDITORIAL_DARK,
+  type AvColorName,
+} from '../tokens.ts'
+import { themeFromGlobals } from './ExampleChrome.tsx'
 import { Color } from './Color.tsx'
 import { withStoryPad } from './StoryPad.tsx'
 
-const surfaces = [
-  { name: 'page', hex: AV.page, note: 'Page plate (.av-theme)' },
-  { name: 'surface', hex: AV.surface, note: 'Cards, tiles' },
-  { name: 'surface-2', hex: AV.surface2, note: 'Inputs, nested panels' },
-  { name: 'hairline', hex: AV.hairline, note: 'Dividers only' },
-  { name: 'border', hex: AV.border, note: 'Optional selection edge' },
+type Palette = Record<AvColorName, string>
+
+function colorSchemeFromGlobals(globals: {
+  colorScheme?: string
+}): 'light' | 'dark' {
+  if (globals.colorScheme === 'light' || globals.colorScheme === 'dark') {
+    return globals.colorScheme
+  }
+  if (
+    typeof window !== 'undefined' &&
+    window.matchMedia('(prefers-color-scheme: dark)').matches
+  ) {
+    return 'dark'
+  }
+  return 'light'
+}
+
+function paletteFromGlobals(globals: {
+  theme?: string
+  colorScheme?: string
+}): Palette {
+  const theme = themeFromGlobals(globals)
+  if (theme === 'editorial') {
+    return colorSchemeFromGlobals(globals) === 'dark'
+      ? AV_EDITORIAL_DARK
+      : AV_EDITORIAL
+  }
+  return AV
+}
+
+const surfaceKeys = [
+  { name: 'page', key: 'page', note: 'Page plate (.av-theme)' },
+  { name: 'surface', key: 'surface', note: 'Cards, tiles' },
+  { name: 'surface-2', key: 'surface2', note: 'Inputs, nested panels' },
+  { name: 'hairline', key: 'hairline', note: 'Dividers only' },
+  { name: 'border', key: 'border', note: 'Optional selection edge' },
 ] as const
 
-const text = [
-  { name: 'text / body', hex: AV.text, note: 'Primary copy' },
-  { name: 'muted', hex: AV.muted, note: 'Labels, hints' },
+const textKeys = [
+  { name: 'text / body', key: 'text', note: 'Primary copy' },
+  { name: 'muted', key: 'muted', note: 'Labels, hints' },
 ] as const
 
-const accents = [
-  { name: 'signal', hex: AV.signal, note: 'Links, icons' },
-  { name: 'signal-hot', hex: AV.signalHot, note: 'LED core' },
-  { name: 'phosphor', hex: AV.phosphor, note: 'Readouts' },
-  { name: 'phosphor-bright', hex: AV.phosphorBright, note: 'Hot digits' },
-  { name: 'audio', hex: AV.audio, note: 'Selected / success' },
-  { name: 'sync', hex: AV.sync, note: 'Focus + sync chips' },
-  { name: 'focus', hex: AV.focus, note: 'Keyboard outline' },
-  { name: 'meter', hex: AV.meter, note: 'Beta / caution' },
-  { name: 'accent-soft', hex: AV.accentSoft, note: 'Rare highlight' },
-  { name: 'danger', hex: AV.danger, note: 'Errors, destructive' },
+const accentKeys = [
+  { name: 'signal', key: 'signal', note: 'Links, icons' },
+  { name: 'signal-hot', key: 'signalHot', note: 'LED core' },
+  { name: 'phosphor', key: 'phosphor', note: 'Readouts' },
+  { name: 'phosphor-bright', key: 'phosphorBright', note: 'Hot digits' },
+  { name: 'audio', key: 'audio', note: 'Selected / success' },
+  { name: 'sync', key: 'sync', note: 'Focus + sync chips' },
+  { name: 'focus', key: 'focus', note: 'Keyboard outline' },
+  { name: 'meter', key: 'meter', note: 'Beta / caution' },
+  { name: 'accent-soft', key: 'accentSoft', note: 'Rare highlight' },
+  { name: 'danger', key: 'danger', note: 'Errors, destructive' },
 ] as const
 
 const meta = {
@@ -34,10 +70,12 @@ const meta = {
   component: Color,
   decorators: [withStoryPad],
   parameters: {
+    // Swatches are documentary chips — contrast rules don't apply to the palette itself.
+    a11y: { test: 'off' },
     docs: {
       description: {
         component:
-          'Surfaces, text, and accents. Operable chrome uses fill contrast — not a border. Hairline is structural only.',
+          'Surfaces, text, and accents for the active kit theme (toolbar + system/Chromatic color scheme). Operable chrome uses fill contrast — not a border. Hairline is structural only.',
       },
     },
   },
@@ -47,31 +85,46 @@ export default meta
 type Story = StoryObj<typeof meta>
 
 export const Surfaces: Story = {
-  render: () => (
-    <ul className="av-swatch-grid">
-      {surfaces.map(c => (
-        <Color key={c.name} {...c} />
-      ))}
-    </ul>
-  ),
+  render: (_args, { globals }) => {
+    const palette = paletteFromGlobals(globals)
+    return (
+      <ul className="av-swatch-grid">
+        {surfaceKeys.map(c => (
+          <Color key={c.name} name={c.name} hex={palette[c.key]} note={c.note} />
+        ))}
+      </ul>
+    )
+  },
 }
 
 export const Text: Story = {
-  render: () => (
-    <ul className="av-swatch-grid">
-      {text.map(c => (
-        <Color key={c.name} {...c} sample="text" />
-      ))}
-    </ul>
-  ),
+  render: (_args, { globals }) => {
+    const palette = paletteFromGlobals(globals)
+    return (
+      <ul className="av-swatch-grid">
+        {textKeys.map(c => (
+          <Color
+            key={c.name}
+            name={c.name}
+            hex={palette[c.key]}
+            note={c.note}
+            sample="text"
+          />
+        ))}
+      </ul>
+    )
+  },
 }
 
 export const Accents: Story = {
-  render: () => (
-    <ul className="av-swatch-grid">
-      {accents.map(c => (
-        <Color key={c.name} {...c} />
-      ))}
-    </ul>
-  ),
+  render: (_args, { globals }) => {
+    const palette = paletteFromGlobals(globals)
+    return (
+      <ul className="av-swatch-grid">
+        {accentKeys.map(c => (
+          <Color key={c.name} name={c.name} hex={palette[c.key]} note={c.note} />
+        ))}
+      </ul>
+    )
+  },
 }

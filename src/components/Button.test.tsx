@@ -15,7 +15,7 @@ describe('Button', () => {
     expect(onClick).toHaveBeenCalledTimes(1)
   })
 
-  it('marks a pad label and pressed state', () => {
+  it('marks pressed state on pad', () => {
     render(
       <Button variant="pad" pressed>
         TAP
@@ -23,8 +23,7 @@ describe('Button', () => {
     )
     const button = screen.getByRole('button', { name: 'TAP' })
     expect(button).toHaveAttribute('data-pressed', 'true')
-    expect(button.className).toContain('group')
-    expect(button.className).toContain('data-[pressed]:scale-[0.99]')
+    expect(button.className).toContain('av-btn-pad')
   })
 
   it('renders a danger action', () => {

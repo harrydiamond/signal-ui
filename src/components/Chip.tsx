@@ -15,10 +15,10 @@ const chip = tv({
   base: `${body} inline-flex items-center self-start rounded-md px-2 py-0.5 text-xs`,
   variants: {
     tone: {
-      sync: 'text-av-sync bg-av-sync/15',
-      audio: 'text-av-audio bg-av-audio/15',
-      signal: 'text-av-signal bg-av-signal/15',
-      meter: 'text-av-meter bg-av-meter/15',
+      sync: 'border-av-sync/40 text-av-sync bg-av-surface border',
+      audio: 'border-av-audio/40 text-av-audio bg-av-surface border',
+      signal: 'border-av-signal/40 text-av-signal bg-av-surface border',
+      meter: 'border-av-meter/40 text-av-meter bg-av-surface border',
     },
   },
   defaultVariants: {

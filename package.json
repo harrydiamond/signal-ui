@@ -20,7 +20,7 @@
     "build:storybook:chromatic": "storybook build -o storybook-static --stats-json",
     "deploy": "bun run build:storybook && wrangler deploy",
     "test": "vitest run --project unit",
-    "test:storybook": "vitest run --project storybook",
+    "test:storybook": "vitest run --project 'storybook-*'",
     "format": "prettier --write .",
     "format:check": "prettier --check ."
   },
@@ -39,6 +39,7 @@
     "@storybook/addon-a11y": "10.6.0",
     "@storybook/addon-docs": "10.6.0",
     "@storybook/addon-mcp": "10.6.0",
+    "@storybook/addon-themes": "10.6.0",
     "@storybook/addon-vitest": "10.6.0",
     "@storybook/react-vite": "10.6.0",
     "@tailwindcss/vite": "^4.3.3",

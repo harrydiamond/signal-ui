@@ -17,7 +17,7 @@ type Props = {
 }
 
 const dropzone = tv({
-  base: `${body} av-dropzone flex w-full cursor-pointer flex-col items-center justify-center gap-2 rounded-lg border border-transparent bg-av-surface px-4 py-8 text-center transition-[background-color,border-color,box-shadow] duration-90 disabled:cursor-not-allowed`,
+  base: `${body} bg-av-surface enabled:hover:bg-[color-mix(in_srgb,var(--av-muted)_8%,var(--av-surface))] data-[dragging=true]:border-[color-mix(in_srgb,var(--av-signal)_45%,transparent)] data-[dragging=true]:bg-[color-mix(in_srgb,var(--av-signal)_8%,var(--av-surface))] data-[has-files=true]:bg-[color-mix(in_srgb,var(--av-audio)_8%,var(--av-surface))] flex w-full cursor-pointer flex-col items-center justify-center gap-2 rounded-lg border border-transparent px-4 py-8 text-center transition-[background-color,border-color,box-shadow] duration-90 disabled:cursor-not-allowed`,
 })
 
 export function Dropzone({

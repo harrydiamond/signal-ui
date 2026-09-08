@@ -5,8 +5,10 @@ import { storybookTest } from '@storybook/addon-vitest/vitest-plugin'
 import react from '@vitejs/plugin-react'
 import { playwright } from '@vitest/browser-playwright'
 import { defineConfig } from 'vitest/config'
+import { allModes } from './.storybook/modes.ts'
 
 const dirname = path.dirname(fileURLToPath(import.meta.url))
+const configDir = path.join(dirname, '.storybook')
 
 // More info at: https://storybook.js.org/docs/next/writing-tests/integrations/vitest-addon
 export default defineConfig({
@@ -26,29 +28,27 @@ export default defineConfig({
           css: false,
         },
       },
-      {
-        extends: true,
+      // One project per Chromatic mode — pins globals + Playwright color-scheme for a11y.
+      ...Object.entries(allModes).map(([name, globals]) => ({
+        extends: true as const,
         plugins: [
-          // The plugin will run tests for the stories defined in your Storybook config
-          // See options at: https://storybook.js.org/docs/next/writing-tests/integrations/vitest-addon#storybooktest
           storybookTest({
-            configDir: path.join(dirname, '.storybook'),
+            configDir,
+            initialGlobals: globals,
           }),
         ],
         test: {
-          name: 'storybook',
+          name: `storybook-${name}`,
           browser: {
             enabled: true,
             headless: true,
-            provider: playwright({}),
-            instances: [
-              {
-                browser: 'chromium',
-              },
-            ],
+            provider: playwright({
+              contextOptions: { colorScheme: globals.colorScheme },
+            }),
+            instances: [{ browser: 'chromium' }],
           },
         },
-      },
+      })),
     ],
   },
 })

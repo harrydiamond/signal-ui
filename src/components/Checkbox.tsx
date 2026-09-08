@@ -8,7 +8,7 @@ type Props = Omit<InputHTMLAttributes<HTMLInputElement>, 'type'> & {
 const checkbox = tv({
   slots: {
     root: 'relative inline-flex cursor-pointer items-center gap-2.5',
-    mark: "av-check-mark bg-av-surface-2 peer-checked:after:border-av-audio peer-focus-visible:outline-av-focus relative inline-block size-[1.125rem] shrink-0 rounded-sm transition-[background-color,box-shadow] duration-[90ms] ease-linear peer-focus-visible:outline-2 peer-focus-visible:outline-offset-2 peer-checked:after:absolute peer-checked:after:top-0.5 peer-checked:after:left-1.5 peer-checked:after:h-2.5 peer-checked:after:w-1.5 peer-checked:after:rotate-45 peer-checked:after:border-r-2 peer-checked:after:border-b-2 peer-checked:after:content-['']",
+    mark: "bg-av-surface-2 peer-checked:bg-[color-mix(in_srgb,var(--av-audio)_10%,var(--av-surface))] peer-checked:shadow-[inset_0_0_0_1px_color-mix(in_srgb,var(--av-audio)_25%,transparent)] peer-checked:after:border-av-audio peer-focus-visible:outline-av-focus relative inline-block size-[1.125rem] shrink-0 rounded-sm transition-[background-color,box-shadow] duration-[90ms] ease-linear peer-focus-visible:outline-2 peer-focus-visible:outline-offset-2 peer-checked:after:absolute peer-checked:after:top-0.5 peer-checked:after:left-1.5 peer-checked:after:h-2.5 peer-checked:after:w-1.5 peer-checked:after:rotate-45 peer-checked:after:border-r-2 peer-checked:after:border-b-2 peer-checked:after:content-['']",
     label:
       'font-body text-av-text text-sm font-medium tracking-wide [text-rendering:optimizeLegibility]',
   },
