@@ -159,12 +159,10 @@
 @layer base {
   .av-theme :is(h1, h2, h3, h4) {
     @apply text-av-ink font-bold tracking-wider;
-    font-feature-settings: 'tnum' 1;
   }
 
   .av-theme :is(h1, h2) {
     @apply font-doto;
-    font-variation-settings: 'ROND' 0;
     text-rendering: geometricPrecision;
     -webkit-font-smoothing: auto;
     -moz-osx-font-smoothing: auto;
@@ -172,7 +170,6 @@
 
   .av-theme :is(h3, h4) {
     @apply font-body;
-    font-variation-settings: normal;
     text-rendering: optimizeLegibility;
   }
 
@@ -224,11 +221,7 @@
 /* Doto — bitmap display face for LED chrome + key interactive controls. */
 .av-doto,
 .av-bpm-digits {
-  font-family: var(--av-font);
-  font-weight: 700;
-  letter-spacing: 0.05em;
-  font-variation-settings: 'ROND' 0;
-  font-feature-settings: 'tnum' 1;
+  @apply font-doto font-bold tracking-wider;
   text-rendering: geometricPrecision;
 }
 
@@ -253,8 +246,6 @@
 .av-card,
 .av-tile {
   @apply font-body font-normal tracking-wide;
-  font-variation-settings: normal;
-  font-feature-settings: 'tnum' 1;
   text-rendering: optimizeLegibility;
 }
 
@@ -274,8 +265,6 @@
 
 @utility av-prose {
   @apply font-body text-av-text max-w-prose text-base leading-relaxed font-normal tracking-wide;
-  font-variation-settings: normal;
-  font-feature-settings: 'tnum' 1;
   text-rendering: optimizeLegibility;
 }
 
@@ -285,15 +274,11 @@
 
 @utility av-prose-muted {
   @apply font-body text-av-prose-muted max-w-prose text-sm leading-relaxed font-normal tracking-wide;
-  font-variation-settings: normal;
-  font-feature-settings: 'tnum' 1;
   text-rendering: optimizeLegibility;
 }
 
 @utility av-meta {
   @apply font-body font-medium tracking-wider uppercase;
-  font-variation-settings: normal;
-  font-feature-settings: 'tnum' 1;
   text-rendering: optimizeLegibility;
 }
 

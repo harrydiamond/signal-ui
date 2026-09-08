@@ -1,9 +1,8 @@
 /** Shared type faces and field chrome for Tailwind-styled primitives. */
 export const doto =
-  "font-doto font-bold tracking-wider [font-feature-settings:'tnum'_1] [font-variation-settings:'ROND'_0] [text-rendering:geometricPrecision]"
+  'font-doto font-bold tracking-wider [text-rendering:geometricPrecision]'
 
-export const plex =
-  "font-body [font-feature-settings:'tnum'_1] [font-variation-settings:normal] [text-rendering:optimizeLegibility]"
+export const plex = 'font-body [text-rendering:optimizeLegibility]'
 
 export const prose = `${plex} text-av-text max-w-[65ch] text-base font-normal leading-relaxed tracking-wide [&_strong]:font-bold [&_strong]:text-av-ink [&_a]:text-av-signal [&_a:hover]:text-av-phosphor-bright`
 

@@ -38,5 +38,9 @@
   --color-av-pad: var(--av-pad);
 
   --font-doto: var(--av-font);
+  --font-doto--font-feature-settings: 'tnum' 1;
+  --font-doto--font-variation-settings: 'ROND' 0;
   --font-body: var(--av-font-body);
+  --font-body--font-feature-settings: 'tnum' 1;
+  --font-body--font-variation-settings: normal;
 }

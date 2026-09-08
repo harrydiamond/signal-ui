@@ -8,7 +8,7 @@ type Props = Omit<ButtonHTMLAttributes<HTMLButtonElement>, 'onChange'> & {
 }
 
 const switchRoot = tv({
-  base: "font-body text-av-text inline-flex items-center gap-2.5 border-0 bg-transparent p-0 [font-feature-settings:'tnum'_1] text-sm font-medium tracking-wide [font-variation-settings:normal] disabled:opacity-50",
+  base: 'font-body text-av-text inline-flex items-center gap-2.5 border-0 bg-transparent p-0 text-sm font-medium tracking-wide [text-rendering:optimizeLegibility] disabled:opacity-50',
 })
 
 const switchTrack = tv({
