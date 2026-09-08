@@ -24,10 +24,10 @@ export function SectionHeader({
       className={cx('mb-4 flex w-full items-center justify-between', className)}
       {...props}
     >
-      <h2 className="m-0 inline-flex items-center gap-2">
+      <div className="m-0 inline-flex items-center gap-2">
         <PulseDot pulse={pulse} />
         <MetaLabel tone="accent">{title}</MetaLabel>
-      </h2>
+      </div>
       {action ?? children}
     </div>
   )

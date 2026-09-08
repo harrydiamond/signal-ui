@@ -36,7 +36,7 @@ export function Toast({
       <button
         type="button"
         onClick={onDismiss}
-        className="shrink-0 rounded border-0 bg-transparent px-1.5 py-0.5 text-xs font-medium text-inherit opacity-70 hover:opacity-100"
+        className="text-av-text shrink-0 rounded border-0 bg-transparent px-1.5 py-0.5 text-xs font-medium opacity-90 hover:opacity-100"
         aria-label="Dismiss"
       >
         Close

@@ -91,7 +91,7 @@ export const Studio: Story = {
               <section>
                 <div className="mb-2 flex items-center gap-2">
                   <Chip tone="meter">Queue</Chip>
-                  <Heading level={3} className="m-0">
+                  <Heading level={2} className="m-0">
                     Render jobs
                   </Heading>
                 </div>

@@ -6,7 +6,7 @@ const meta = {
   title: 'Components/Input',
   component: Input,
   decorators: [withStoryPad],
-  args: { defaultValue: '120' },
+  args: { defaultValue: '120', 'aria-label': 'Value' },
 } satisfies Meta<typeof Input>
 
 export default meta

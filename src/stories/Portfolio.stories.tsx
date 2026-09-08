@@ -42,7 +42,7 @@ export const Portfolio: Story = {
             <div className="mt-8 grid gap-6 sm:grid-cols-2">
               <PreviewCard index={0}>
                 <MetaLabel tone="accent">Case study</MetaLabel>
-                <Heading level={3} className="mt-2">
+                <Heading level={2} className="mt-2">
                   Stage delay
                 </Heading>
                 <Prose className="mt-2">
@@ -51,7 +51,7 @@ export const Portfolio: Story = {
               </PreviewCard>
               <PreviewCard index={1}>
                 <MetaLabel tone="accent">Product</MetaLabel>
-                <Heading level={3} className="mt-2">
+                <Heading level={2} className="mt-2">
                   Field notes
                 </Heading>
                 <Prose className="mt-2">
@@ -60,7 +60,7 @@ export const Portfolio: Story = {
               </PreviewCard>
               <PreviewCard index={2}>
                 <MetaLabel tone="accent">System</MetaLabel>
-                <Heading level={3} className="mt-2">
+                <Heading level={2} className="mt-2">
                   Signal kit
                 </Heading>
                 <Prose className="mt-2">
