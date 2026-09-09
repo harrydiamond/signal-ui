@@ -55,4 +55,4 @@ export function Page() {
 - **Focus is opaque.** 2px `--av-focus` outline, 2px offset.
 - **Type faces follow the theme.** Phosphor: Doto headings + PP Neue Montreal body. Editorial: PP Neue Montreal for both. Override `--av-font-heading` / `--av-font-body` after loading your own faces if needed.
 - **Instrument chrome is phosphor-only.** Panel/pad buttons and LED glow stay console-native; editorial maps panel/pad to solid surfaces.
-- **Theme-ready tokens.** Semantic utilities (`bg-av-page`, `text-av-signal`, …) map to CSS variables on `[data-av-theme]`.
+- **Theme-ready tokens.** Semantic color utilities (`bg-av-page`, `text-av-signal`, …) map to CSS variables on `[data-av-theme]`. Shared space / radius / motion scales (`--av-space-*`, `--av-radius-*`, `--av-duration-*`, `--av-ease-*`) are the same in both themes.
