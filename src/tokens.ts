@@ -5,6 +5,9 @@
  * - `AV_EDITORIAL` ↔ `[data-av-theme='editorial']` light defaults
  * - `AV_EDITORIAL_DARK` ↔ editorial `@media (prefers-color-scheme: dark)`
  *
+ * Shared space / radius / motion (`AV_SPACE`, `AV_RADIUS`, `AV_DURATION`,
+ * `AV_EASE`) live on `.av-theme` in `styles.css` (both themes) and `@theme`.
+ *
  * Canvas/LED/slider fills use `AV` (phosphor). Editorial UI reads CSS variables;
  * these maps exist so docs, stories, and agents share the same hexes.
  */
@@ -103,7 +106,64 @@ export const AV_RGB = {
   text: '238,225,224',
 } as const
 
-/** Stagger delay for `animate-fade-in-up` sequences (theme-agnostic). */
-export const AV_STAGGER_MS = 75
+/**
+ * Shared spacing (both themes). CSS `--av-space-*` → `@theme` `--spacing-av-*`
+ * (`p-av-4`, `gap-av-8`, …). Kit steps only — not a full 4px ladder.
+ * Keep values in sync with `styles.css`.
+ */
+export const AV_SPACE = {
+  '1': '0.25rem',
+  '2': '0.5rem',
+  '3': '0.75rem',
+  '4': '1rem',
+  '5': '1.25rem',
+  '6': '1.5rem',
+  '8': '2rem',
+  '10': '2.5rem',
+  '12': '3rem',
+  '24': '6rem',
+} as const
+
+/**
+ * Shared radius (both themes). CSS `--av-radius-*` → `@theme` `--radius-av-*`
+ * (`rounded-av-lg`). `--av-radius` aliases `lg` (cards / inputs).
+ * Keep values in sync with `styles.css`.
+ */
+export const AV_RADIUS = {
+  sm: '0.25rem',
+  md: '0.375rem',
+  lg: '0.5rem',
+  xl: '0.75rem',
+  full: '9999px',
+} as const
+
+/**
+ * Shared motion durations in milliseconds (both themes).
+ * CSS `--av-duration-*` includes the `ms` unit; `@theme` `--duration-av-*`
+ * (`duration-av-control`). `stagger` is a sequence delay, not a transition.
+ * Keep values in sync with `styles.css`.
+ */
+export const AV_DURATION = {
+  control: 90,
+  fast: 150,
+  enter: 400,
+  stagger: 75,
+} as const
+
+/**
+ * Shared easing (both themes). CSS `--av-ease-*` → `@theme` `--ease-av-*`
+ * (`ease-av-out`). Keep values in sync with `styles.css`.
+ */
+export const AV_EASE = {
+  linear: 'linear',
+  out: 'ease-out',
+} as const
+
+/** Stagger delay for `animate-fade-in-up` sequences (`AV_DURATION.stagger`). */
+export const AV_STAGGER_MS = AV_DURATION.stagger
 
 export type AvColorName = keyof typeof AV
+export type AvSpaceName = keyof typeof AV_SPACE
+export type AvRadiusName = keyof typeof AV_RADIUS
+export type AvDurationName = keyof typeof AV_DURATION
+export type AvEaseName = keyof typeof AV_EASE

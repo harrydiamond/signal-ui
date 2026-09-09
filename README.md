@@ -65,6 +65,7 @@ Override after importing kit CSS if you need different faces:
   --av-font-body: 'Your Sans', ui-sans-serif, system-ui, sans-serif;
 }
 ```
+
 ### Editorial page shell
 
 ```tsx
@@ -152,6 +153,10 @@ Until Builds is connected, deploy manually with `bun run deploy` (requires wrang
 ```ts
 import {
   AV,
+  AV_DURATION,
+  AV_EASE,
+  AV_RADIUS,
+  AV_SPACE,
   AV_STAGGER_MS,
   BackLink,
   Button,
@@ -172,11 +177,11 @@ import {
 
 `Container` / `Stack` handle column width and section gaps. `PageShell` is the wider main rhythm. Content recipes: `NavLink`, `PreviewCard`, `ExternalLink`, `BackLink`, `SectionHeader`, `PulseDot`. Type helpers (`heading`, `body`, `prose`, …) match the classes the primitives use.
 
-Motion: `animate-fade-in-up` + `AV_STAGGER_MS`. Shadows: `shadow-av-card` (soft elevation under editorial).
+Motion: `AV_DURATION` / `AV_EASE` (`animate-fade-in-up` uses enter + out; `AV_STAGGER_MS` is `AV_DURATION.stagger`). Spacing / radius: `AV_SPACE`, `AV_RADIUS` (`p-av-4`, `rounded-av-lg`). Shadows: `shadow-av-card` (soft elevation under editorial).
 
 ## Files
 
-- `src/tokens.ts` — JS palette (`AV`, `AV_RGB`) + `AV_STAGGER_MS`
+- `src/tokens.ts` — JS palettes (`AV`, `AV_RGB`) + shared scales (`AV_SPACE`, `AV_RADIUS`, `AV_DURATION`, `AV_EASE`, `AV_STAGGER_MS`)
 - `src/type.ts` — shared type-face class strings
 - `src/tailwind.css` — Tailwind `@theme` tokens (`theme.css` export)
 - `src/styles.css` — theme assignment, atmosphere, focus rings, phosphor / editorial type

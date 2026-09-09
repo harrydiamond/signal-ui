@@ -44,19 +44,45 @@
   --font-body: var(--av-font-body);
   --font-body--font-feature-settings: 'tnum' 1;
 
+  --spacing-av-1: var(--av-space-1, 0.25rem);
+  --spacing-av-2: var(--av-space-2, 0.5rem);
+  --spacing-av-3: var(--av-space-3, 0.75rem);
+  --spacing-av-4: var(--av-space-4, 1rem);
+  --spacing-av-5: var(--av-space-5, 1.25rem);
+  --spacing-av-6: var(--av-space-6, 1.5rem);
+  --spacing-av-8: var(--av-space-8, 2rem);
+  --spacing-av-10: var(--av-space-10, 2.5rem);
+  --spacing-av-12: var(--av-space-12, 3rem);
+  --spacing-av-24: var(--av-space-24, 6rem);
+
   --radius-av: var(--av-radius, 0.5rem);
+  --radius-av-sm: var(--av-radius-sm, 0.25rem);
+  --radius-av-md: var(--av-radius-md, 0.375rem);
+  --radius-av-lg: var(--av-radius-lg, 0.5rem);
+  --radius-av-xl: var(--av-radius-xl, 0.75rem);
+  --radius-av-full: var(--av-radius-full, 9999px);
+
+  --duration-av-control: var(--av-duration-control, 90ms);
+  --duration-av-fast: var(--av-duration-fast, 150ms);
+  --duration-av-enter: var(--av-duration-enter, 400ms);
+  --duration-av-stagger: var(--av-duration-stagger, 75ms);
+
+  --ease-av-linear: var(--av-ease-linear, linear);
+  --ease-av-out: var(--av-ease-out, ease-out);
+
   --shadow-av-card: var(--av-shadow-card);
   --shadow-av-card-light: var(--av-shadow-card-light);
   --shadow-av-card-on-light: var(--av-shadow-card-on-light);
   --shadow-av-card-dark: var(--av-shadow-card-dark);
 
-  --animate-fade-in-up: fade-in-up 0.4s ease-out forwards;
+  --animate-fade-in-up: fade-in-up var(--av-duration-enter, 400ms)
+    var(--av-ease-out, ease-out) forwards;
 }
 
 @keyframes fade-in-up {
   from {
     opacity: 0;
-    transform: translateY(20px);
+    transform: translateY(var(--av-space-5, 1.25rem));
   }
   to {
     opacity: 1;

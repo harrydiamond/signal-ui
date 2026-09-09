@@ -36,6 +36,27 @@
   font-weight: 700;
 }
 
+.av-swatch-chip.av-token-space {
+  width: var(--av-token-preview);
+  height: 0.5rem;
+  align-self: center;
+  border-radius: var(--av-radius-sm);
+  background: var(--av-signal);
+}
+
+.av-swatch-chip.av-token-radius {
+  border-radius: var(--av-token-preview);
+  background: var(--av-surface);
+}
+
+.av-swatch-chip.av-token-motion {
+  width: var(--av-token-preview, 2.5rem);
+  height: 0.5rem;
+  align-self: center;
+  border-radius: var(--av-radius-sm);
+  background: var(--av-sync);
+}
+
 .av-swatch-name {
   margin: 0;
   font-size: 0.875rem;

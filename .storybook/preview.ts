@@ -39,7 +39,7 @@ const preview: Preview = {
           'Examples',
           ['Portfolio', 'Article', 'Instrument', 'Settings', 'Studio'],
           'Foundations',
-          ['Color', 'Heading', 'Text', 'Atmosphere', 'Theme'],
+          ['Color', 'Tokens', 'Heading', 'Text', 'Atmosphere', 'Theme'],
           'Components',
         ],
       },
