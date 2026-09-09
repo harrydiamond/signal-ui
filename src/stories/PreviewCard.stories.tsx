@@ -1,8 +1,10 @@
 import type { Meta, StoryObj } from '@storybook/react-vite'
 import { Heading } from '../components/Heading.tsx'
+import { MediaFigure } from '../components/MediaFigure.tsx'
 import { MetaLabel } from '../components/MetaLabel.tsx'
 import { PreviewCard } from '../components/PreviewCard.tsx'
 import { ProseMuted } from '../components/Text.tsx'
+import { DEMO_COVER } from './demoCovers.ts'
 import { withStoryPad } from './StoryPad.tsx'
 
 const meta = {
@@ -54,13 +56,16 @@ export const Staggered: Story = {
 export const Transparent: Story = {
   args: { children: null },
   render: () => (
-    <PreviewCard surface="transparent" padded={false}>
-      <div
-        className="from-av-signal/50 via-av-surface-2 to-av-page aspect-video w-full bg-linear-to-br"
-        aria-hidden
-      />
-      <div className="p-4">
-        <Heading level={3}>Transparent shell</Heading>
+    <PreviewCard surface="transparent" padded={false} className="max-w-sm">
+      <MediaFigure src={DEMO_COVER} alt="Prism cover art" fade />
+      <div className="p-5">
+        <MetaLabel tone="accent">artwork</MetaLabel>
+        <Heading level={3} className="mt-2">
+          Cover Art — January 2026
+        </Heading>
+        <ProseMuted className="mt-2">
+          Collection of pieces created in January 2026.
+        </ProseMuted>
       </div>
     </PreviewCard>
   ),
