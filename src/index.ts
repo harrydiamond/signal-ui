@@ -62,6 +62,14 @@ export { List, ListRow, Divider } from './components/List.tsx'
 export { Tab, TabList, TabPanel, Tabs } from './components/Tabs.tsx'
 export { Container, Stack } from './components/Container.tsx'
 export { Toast } from './components/Toast.tsx'
+export { Portal } from './components/Portal.tsx'
+export { FocusTrap } from './components/FocusTrap.tsx'
+export {
+  Dialog,
+  DialogTitle,
+  DialogDescription,
+  DialogFooter,
+} from './components/Dialog.tsx'
 export { Alert, type AlertTone } from './components/Alert.tsx'
 export { Spinner, type SpinnerSize } from './components/Spinner.tsx'
 export { useToast, type ToastState } from './hooks/useToast.ts'
