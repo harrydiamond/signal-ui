@@ -244,6 +244,15 @@
   text-rendering: auto;
 }
 
+/*
+  Portal overlay root: reuse theme tokens without painting the page plate.
+  Specificity beats phosphor grain / editorial solid plate.
+*/
+.av-theme[data-av-theme][data-av-overlay] {
+  background-color: transparent;
+  background-image: none;
+}
+
 .av-theme button:not(:disabled) {
   cursor: pointer;
 }
