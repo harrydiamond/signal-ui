@@ -13,7 +13,7 @@ const meta = {
     docs: {
       description: {
         component:
-          'Soft-elevation preview shell with padding / transparent surfaces and optional stagger.',
+          'Soft-elevation preview shell with padding / transparent surfaces and optional stagger. For a media plane, compose `MediaFigure` as a child (`padded={false}`) — there is no separate PreviewCard media slot.',
       },
     },
   },

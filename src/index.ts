@@ -54,6 +54,11 @@ export { TagLink } from './components/TagLink.tsx'
 export { PageShell } from './components/PageShell.tsx'
 export { NavLink } from './components/NavLink.tsx'
 export { PreviewCard } from './components/PreviewCard.tsx'
+export {
+  MediaFigure,
+  type MediaFigureAspect,
+} from './components/MediaFigure.tsx'
+export { MediaGrid, type MediaGridLayout } from './components/MediaGrid.tsx'
 export { ExternalLink } from './components/ExternalLink.tsx'
 export { BackLink } from './components/BackLink.tsx'
 export { PulseDot } from './components/PulseDot.tsx'
