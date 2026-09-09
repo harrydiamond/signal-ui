@@ -8,7 +8,7 @@ const previewCard = tv({
   base: 'group/preview shadow-av-card overflow-hidden rounded-xl',
   variants: {
     surface: {
-      card: 'bg-av-surface/60',
+      card: 'bg-av-surface',
       transparent: 'bg-transparent',
     },
     padded: {
@@ -29,7 +29,7 @@ type Props = HTMLAttributes<HTMLElement> &
     index?: number
   }
 
-/** Soft-elevation preview / media shell. */
+/** Soft-elevation preview / media shell with opaque `--av-surface` fill. */
 export function PreviewCard({
   children,
   className,
