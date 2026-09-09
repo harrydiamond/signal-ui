@@ -1,8 +1,10 @@
 import type { Meta, StoryObj } from '@storybook/react-vite'
 import { Heading } from '../components/Heading.tsx'
+import { MediaFigure } from '../components/MediaFigure.tsx'
 import { MetaLabel } from '../components/MetaLabel.tsx'
 import { PreviewCard } from '../components/PreviewCard.tsx'
 import { ProseMuted } from '../components/Text.tsx'
+import { demoCover } from './demoCovers.ts'
 import { withStoryPad } from './StoryPad.tsx'
 
 const meta = {
@@ -13,7 +15,7 @@ const meta = {
     docs: {
       description: {
         component:
-          'Soft-elevation preview shell with padding / transparent surfaces and optional stagger. For a media plane, compose `MediaFigure` as a child (`padded={false}`) — there is no separate PreviewCard media slot.',
+          'Soft-elevation preview shell with opaque `--av-surface` fill, padding / transparent surfaces, and optional stagger. For a media plane, compose `MediaFigure fade` as a child (`padded={false}`) — the wash matches the card body. There is no separate PreviewCard media slot.',
       },
     },
   },
@@ -55,7 +57,11 @@ export const Transparent: Story = {
   args: { children: null },
   render: () => (
     <PreviewCard surface="transparent" padded={false}>
-      <div className="bg-av-surface-2 aspect-video" />
+      <MediaFigure
+        src={demoCover(168, 'Glitch')}
+        alt="Glitch collection frame"
+        aspect="16/9"
+      />
       <div className="p-4">
         <Heading level={3}>Transparent shell</Heading>
       </div>

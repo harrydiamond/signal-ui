@@ -55,6 +55,7 @@ export const Gallery: Story = {
                   src={frame.src}
                   alt={frame.alt}
                   aspect="square"
+                  radius="sm"
                 />
               ))}
             </MediaGrid>

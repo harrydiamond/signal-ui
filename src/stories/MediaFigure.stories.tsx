@@ -18,18 +18,23 @@ const meta = {
     alt: 'Abstract cover for an activity card',
     fade: false,
     aspect: '4/3',
+    radius: 'none',
   },
   argTypes: {
     aspect: {
       control: 'select',
       options: ['4/3', '16/9', '21/9', 'square', 'auto'],
     },
+    radius: {
+      control: 'select',
+      options: ['none', 'sm'],
+    },
   },
   parameters: {
     docs: {
       description: {
         component:
-          'Image or video plane for activity cards and gallery cells. Optional `fade` is the harrydiamond.com bottom wash into `--av-surface` — it re-themes on phosphor (dark surface) and editorial light/dark. Compose inside `PreviewCard padded={false}` rather than a second media slot. Pass `<video>` (or `<picture>`) as children when you need a motion plane.',
+          'Image or video plane for activity cards and gallery cells. Optional `fade` is the harrydiamond.com bottom wash into `--av-surface` — it re-themes on phosphor (dark surface) and editorial light/dark. Compose inside opaque `PreviewCard padded={false}` so the wash matches the card body. Pass `<video>` (or `<picture>`) as children when you need a motion plane. Gallery thumbs use `radius="sm"`; activity covers stay `none` so the card clips.',
       },
     },
   },
@@ -52,8 +57,12 @@ export const Fade: Story = {
   },
 }
 
-export const FadeOff: Story = {
-  args: { fade: false, aspect: 'square' },
+export const Square: Story = {
+  args: { fade: false, aspect: 'square', radius: 'sm' },
+}
+
+export const Wide: Story = {
+  args: { aspect: '21/9' },
 }
 
 export const Caption: Story = {
@@ -63,7 +72,7 @@ export const Caption: Story = {
   },
 }
 
-export const Video: Story = {
+export const Children: Story = {
   args: { children: null },
   render: () => (
     <MediaFigure aspect="16/9">

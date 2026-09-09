@@ -18,7 +18,7 @@ const meta = {
     docs: {
       description: {
         component:
-          'Gallery-style responsive grid. Default matches harrydiamond.com `/gallery/all` (2 / 3 / 4 columns). `compact` is the denser thumb strip. Put `MediaFigure` in as children — this is layout, not a second card. Lightbox / Dialog is out of scope; wrap items in your own buttons when you add overlays.',
+          'Gallery-style responsive grid. Default matches harrydiamond.com `/gallery/all` (2 / 3 / 4 columns). `compact` is the denser thumb strip. Put `MediaFigure` in as children — this is layout, not a second card. Lightbox / Dialog is out of scope; wrap items in your own links or buttons when you add overlays.',
       },
     },
   },
@@ -37,6 +37,7 @@ export const Grid: Story = {
           src={frame.src}
           alt={frame.alt}
           aspect="square"
+          radius="sm"
         />
       ))}
     </MediaGrid>
@@ -53,6 +54,7 @@ export const Compact: Story = {
           src={frame.src}
           alt={frame.alt}
           aspect="square"
+          radius="sm"
         />
       ))}
     </MediaGrid>
@@ -69,8 +71,39 @@ export const Staggered: Story = {
           src={frame.src}
           alt={frame.alt}
           aspect="square"
+          radius="sm"
         />
       ))}
     </MediaGrid>
   ),
+}
+
+export const Linked: Story = {
+  args: { children: null },
+  render: () => (
+    <MediaGrid>
+      {frames.map(frame => (
+        <a
+          key={frame.label}
+          href={`#${frame.label.toLowerCase()}`}
+          className="block"
+        >
+          <MediaFigure
+            src={frame.src}
+            alt={frame.alt}
+            aspect="square"
+            radius="sm"
+          />
+        </a>
+      ))}
+    </MediaGrid>
+  ),
+  parameters: {
+    docs: {
+      description: {
+        story:
+          'Wrap each `MediaFigure` in your own link or button. MediaGrid only lays out list items — it does not own click or lightbox behavior.',
+      },
+    },
+  },
 }

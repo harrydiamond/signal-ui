@@ -1,5 +1,6 @@
 import { render, screen } from '@testing-library/react'
 import { describe, expect, it } from 'vitest'
+import { AV_STAGGER_MS } from '../tokens.ts'
 import { MediaFigure } from './MediaFigure.tsx'
 import { MediaGrid } from './MediaGrid.tsx'
 
@@ -26,5 +27,20 @@ describe('MediaGrid', () => {
       </MediaGrid>,
     )
     expect(screen.getByRole('list').className).toContain('xl:grid-cols-10')
+  })
+
+  it('staggers fade-in-up on each item', () => {
+    render(
+      <MediaGrid stagger>
+        <MediaFigure src="/a.jpg" alt="Frame A" aspect="square" />
+        <MediaFigure src="/b.jpg" alt="Frame B" aspect="square" />
+      </MediaGrid>,
+    )
+    const items = screen.getAllByRole('listitem')
+    expect(items[0].className).toContain('animate-fade-in-up')
+    expect(items[0]).toHaveStyle({ animationDelay: '0ms' })
+    expect(items[1]).toHaveStyle({
+      animationDelay: `${AV_STAGGER_MS}ms`,
+    })
   })
 })
