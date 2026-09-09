@@ -10,7 +10,7 @@ import {
   SectionHeader,
   TagLink,
 } from '../index.ts'
-import { demoCover } from './demoCovers.ts'
+import { DEMO_COVER } from './demoCovers.ts'
 import { SiteChrome, themeFromGlobals } from './ExampleChrome.tsx'
 
 const meta = {
@@ -43,11 +43,7 @@ export const Portfolio: Story = {
             </ProseMuted>
             <div className="mt-8 grid gap-6 sm:grid-cols-2">
               <PreviewCard padded={false} index={0}>
-                <MediaFigure
-                  src={demoCover(12, 'Stage')}
-                  alt="Stage delay cover"
-                  fade
-                />
+                <MediaFigure src={DEMO_COVER} alt="Prism cover art" fade />
                 <div className="p-5">
                   <MetaLabel tone="accent">Case study</MetaLabel>
                   <Heading level={2} className="mt-2">

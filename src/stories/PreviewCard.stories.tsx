@@ -1,10 +1,8 @@
 import type { Meta, StoryObj } from '@storybook/react-vite'
 import { Heading } from '../components/Heading.tsx'
-import { MediaFigure } from '../components/MediaFigure.tsx'
 import { MetaLabel } from '../components/MetaLabel.tsx'
 import { PreviewCard } from '../components/PreviewCard.tsx'
 import { ProseMuted } from '../components/Text.tsx'
-import { demoCover } from './demoCovers.ts'
 import { withStoryPad } from './StoryPad.tsx'
 
 const meta = {
@@ -57,10 +55,9 @@ export const Transparent: Story = {
   args: { children: null },
   render: () => (
     <PreviewCard surface="transparent" padded={false}>
-      <MediaFigure
-        src={demoCover(168, 'Glitch')}
-        alt="Glitch collection frame"
-        aspect="16/9"
+      <div
+        className="from-av-signal/50 via-av-surface-2 to-av-page aspect-video w-full bg-linear-to-br"
+        aria-hidden
       />
       <div className="p-4">
         <Heading level={3}>Transparent shell</Heading>

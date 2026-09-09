@@ -10,12 +10,12 @@ import {
   ProseMuted,
   SectionHeader,
 } from '../index.ts'
-import { DEMO_FRAMES, demoCover } from './demoCovers.ts'
+import { DEMO_COVER, DEMO_FRAMES } from './demoCovers.ts'
 import { SiteChrome, themeFromGlobals } from './ExampleChrome.tsx'
 
 const frames = DEMO_FRAMES.map(frame => ({
   ...frame,
-  src: demoCover(frame.hue, frame.label),
+  src: DEMO_COVER,
   alt: `${frame.label} collection frame`,
 }))
 

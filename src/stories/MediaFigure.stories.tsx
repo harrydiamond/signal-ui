@@ -4,18 +4,16 @@ import { MediaFigure } from '../components/MediaFigure.tsx'
 import { MetaLabel } from '../components/MetaLabel.tsx'
 import { PreviewCard } from '../components/PreviewCard.tsx'
 import { ProseMuted } from '../components/Text.tsx'
-import { demoCover } from './demoCovers.ts'
+import { DEMO_COVER } from './demoCovers.ts'
 import { withStoryPad } from './StoryPad.tsx'
-
-const cover = demoCover(12, 'Activity')
 
 const meta = {
   title: 'Components/MediaFigure',
   component: MediaFigure,
   decorators: [withStoryPad],
   args: {
-    src: cover,
-    alt: 'Abstract cover for an activity card',
+    src: DEMO_COVER,
+    alt: 'Prism cover art',
     fade: false,
     aspect: '4/3',
     radius: 'none',
@@ -76,7 +74,7 @@ export const Children: Story = {
   args: { children: null },
   render: () => (
     <MediaFigure aspect="16/9">
-      <img src={demoCover(200, 'Tape')} alt="Process recording poster" />
+      <img src={DEMO_COVER} alt="Process recording poster" />
     </MediaFigure>
   ),
   parameters: {
@@ -93,7 +91,7 @@ export const InPreviewCard: Story = {
   args: { fade: true },
   render: () => (
     <PreviewCard padded={false} className="max-w-sm">
-      <MediaFigure src={cover} alt="January cover art" fade />
+      <MediaFigure src={DEMO_COVER} alt="Prism cover art" fade />
       <div className="p-5">
         <MetaLabel tone="accent">artwork</MetaLabel>
         <Heading level={3} className="mt-2">

@@ -1,12 +1,12 @@
 import type { Meta, StoryObj } from '@storybook/react-vite'
 import { MediaFigure } from '../components/MediaFigure.tsx'
 import { MediaGrid } from '../components/MediaGrid.tsx'
-import { DEMO_FRAMES, demoCover } from './demoCovers.ts'
+import { DEMO_COVER, DEMO_FRAMES } from './demoCovers.ts'
 import { withStoryPad } from './StoryPad.tsx'
 
 const frames = DEMO_FRAMES.map(frame => ({
   ...frame,
-  src: demoCover(frame.hue, frame.label),
+  src: DEMO_COVER,
   alt: `${frame.label} collection frame`,
 }))
 
