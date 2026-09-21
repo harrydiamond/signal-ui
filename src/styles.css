@@ -502,7 +502,7 @@
 }
 
 @utility av-prose {
-  @apply font-body text-av-text max-w-prose text-base leading-relaxed font-normal tracking-wide;
+  @apply font-body text-av-text text-base leading-relaxed font-normal tracking-wide;
   text-rendering: optimizeLegibility;
 }
 
@@ -511,7 +511,7 @@
 }
 
 @utility av-prose-muted {
-  @apply font-body text-av-prose-muted max-w-prose text-sm leading-relaxed font-normal tracking-wide;
+  @apply font-body text-av-prose-muted text-sm leading-relaxed font-normal tracking-wide;
   text-rendering: optimizeLegibility;
 }
 
