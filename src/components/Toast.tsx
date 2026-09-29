@@ -27,6 +27,7 @@ export function Toast({
       role="status"
       aria-live={tone === 'error' ? 'assertive' : 'polite'}
       className={cx(
+        // z-50 sits below Dialog / SiteNav overlays (z-[100]). Don't raise until toast stacking ships.
         'bg-av-surface fixed right-4 bottom-4 z-50 flex max-w-[min(24rem,calc(100vw-2rem))] items-start gap-3 rounded-lg px-3.5 py-3 text-sm shadow-lg shadow-black/40',
         tone === 'success' ? 'text-av-audio' : 'text-av-danger',
         className,
