@@ -1,6 +1,7 @@
 import type { Meta, StoryObj } from '@storybook/react-vite'
 import {
   Heading,
+  MediaFigure,
   MetaLabel,
   PageShell,
   PreviewCard,
@@ -9,6 +10,7 @@ import {
   SectionHeader,
   TagLink,
 } from '../index.ts'
+import { DEMO_COVER } from './demoCovers.ts'
 import { SiteChrome, themeFromGlobals } from './ExampleChrome.tsx'
 
 const meta = {
@@ -40,14 +42,17 @@ export const Portfolio: Story = {
               without inventing site-local Tailwind.
             </ProseMuted>
             <div className="mt-8 grid gap-6 sm:grid-cols-2">
-              <PreviewCard index={0}>
-                <MetaLabel tone="accent">Case study</MetaLabel>
-                <Heading level={2} className="mt-2">
-                  Stage delay
-                </Heading>
-                <Prose className="mt-2">
-                  Instrument UI for timing cues across a live floor.
-                </Prose>
+              <PreviewCard padded={false} index={0}>
+                <MediaFigure src={DEMO_COVER} alt="Prism cover art" fade />
+                <div className="p-5">
+                  <MetaLabel tone="accent">Case study</MetaLabel>
+                  <Heading level={2} className="mt-2">
+                    Stage delay
+                  </Heading>
+                  <Prose className="mt-2">
+                    Instrument UI for timing cues across a live floor.
+                  </Prose>
+                </div>
               </PreviewCard>
               <PreviewCard index={1}>
                 <MetaLabel tone="accent">Product</MetaLabel>

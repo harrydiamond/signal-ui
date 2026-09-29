@@ -158,6 +158,8 @@ import {
   Choice,
   ExternalLink,
   Heading,
+  MediaFigure,
+  MediaGrid,
   MetaLabel,
   NavLink,
   PageShell,
@@ -170,7 +172,7 @@ import {
 } from '@harrydiamond/signal-ui'
 ```
 
-`Container` / `Stack` handle column width and section gaps. `PageShell` is the wider main rhythm. Content recipes: `NavLink`, `PreviewCard`, `ExternalLink`, `BackLink`, `SectionHeader`, `PulseDot`. Type helpers (`heading`, `body`, `prose`, …) match the classes the primitives use.
+`Container` / `Stack` handle column width and section gaps. `PageShell` is the wider main rhythm. Content recipes: `NavLink`, `PreviewCard`, `MediaFigure`, `MediaGrid`, `ExternalLink`, `BackLink`, `SectionHeader`, `PulseDot`. Type helpers (`heading`, `body`, `prose`, …) match the classes the primitives use.
 
 Motion: `animate-fade-in-up` + `AV_STAGGER_MS`. Shadows: `shadow-av-card` (soft elevation under editorial).
 
