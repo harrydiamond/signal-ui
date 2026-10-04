@@ -65,6 +65,7 @@ Override after importing kit CSS if you need different faces:
   --av-font-body: 'Your Sans', ui-sans-serif, system-ui, sans-serif;
 }
 ```
+
 ### Editorial page shell
 
 ```tsx
@@ -180,7 +181,7 @@ Motion: `animate-fade-in-up` + `AV_STAGGER_MS`. Shadows: `shadow-av-card` (soft 
 - `src/type.ts` — shared type-face class strings
 - `src/tailwind.css` — Tailwind `@theme` tokens (`theme.css` export)
 - `src/styles.css` — theme assignment, atmosphere, focus rings, phosphor / editorial type
-- `src/fonts.css` — Doto (self-hosted) + PP Neue Montreal (hosted CSS)
+- `src/fonts.css` — Doto (self-hosted) + PP Neue Montreal (`@font-face` rules pointing at the CDN)
 - `src/components` — React primitives
 - `src/stories` — CSF specimens (every primitive needs a story for MCP docs)
 - `wrangler.jsonc` — Storybook Worker (`signal-ui`)
