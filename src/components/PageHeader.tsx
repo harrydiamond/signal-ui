@@ -1,7 +1,6 @@
 import { Badge } from './Badge.tsx'
 import { BrandMark } from './BrandMark.tsx'
 import { Heading } from './Heading.tsx'
-import { Link } from './Link.tsx'
 import { Prose } from './Text.tsx'
 
 type Props = {
@@ -20,9 +19,9 @@ export function PageHeader({
   return (
     <header className="av-page-header border-av-hairline mb-8 border-b pb-6 sm:mb-10 sm:pb-8">
       <p className="text-av-muted m-0 text-sm font-medium">
-        <Link href={brand.href ?? '/'}>
+        <a href={brand.href ?? '/'} className="no-underline">
           <BrandMark name={brand.name} tld={brand.tld} />
-        </Link>
+        </a>
       </p>
       {badge ? (
         <div className="mt-2 flex flex-wrap items-center gap-x-2 gap-y-1">
