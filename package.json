@@ -18,7 +18,7 @@
     "storybook": "storybook dev -p 6006",
     "build:storybook": "storybook build -o storybook-static",
     "build:storybook:chromatic": "storybook build -o storybook-static --stats-json",
-    "deploy": "bun run build:storybook && wrangler deploy",
+    "deploy": "pnpm run build:storybook && wrangler deploy",
     "test": "vitest run --project unit",
     "test:storybook": "vitest run --project 'storybook-*'",
     "format": "prettier --write .",
@@ -56,11 +56,17 @@
     "storybook": "10.6.0",
     "tailwindcss": "^4.3.3",
     "typescript": "~7.0.0",
-    "vitest": "^5.0.0",
+    "vitest": "5.0.0",
     "wrangler": "^4.114.0"
   },
   "engines": {
     "node": ">=22.12.0"
   },
-  "packageManager": "bun"
+  "packageManager": "pnpm@10.14.0",
+  "pnpm": {
+    "onlyBuiltDependencies": ["esbuild", "workerd"],
+    "overrides": {
+      "axe-core": "4.13.0"
+    }
+  }
 }

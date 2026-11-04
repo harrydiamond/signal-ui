@@ -3,7 +3,7 @@
 Phosphor console chrome for React — plus an `editorial` theme for content sites. Install from GitHub (not the npm registry):
 
 ```bash
-bun add github:harrydiamond/signal-ui
+pnpm add github:harrydiamond/signal-ui
 # or: npm install github:harrydiamond/signal-ui
 ```
 
@@ -125,9 +125,9 @@ While developing the kit next to an app:
 ## Storybook
 
 ```bash
-bun run storybook
-bun run build:storybook
-bun run deploy
+pnpm run storybook
+pnpm run build:storybook
+pnpm run deploy
 ```
 
 Use the **Theme** toolbar to switch `phosphor` / `editorial`. Chromatic captures phosphor, editorial (light), and editorial-dark via [modes](https://www.chromatic.com/docs/modes/) (`.storybook/modes.ts`).
@@ -135,7 +135,7 @@ Use the **Theme** toolbar to switch `phosphor` / `editorial`. Chromatic captures
 - Local MCP: http://localhost:6006/mcp
 - Published main MCP: https://main--6a9ecc9629e322e1385e7b36.chromatic.com/mcp
 - Hosted Storybook Worker: https://signal-ui.harrydiamond.workers.dev
-- Chromatic publishes from `bun run build:storybook:chromatic` (`CHROMATIC_PROJECT_TOKEN` on this repo). Kit CI owns Storybook visual review — not avtech.fyi.
+- Chromatic publishes from `pnpm run build:storybook:chromatic` (`CHROMATIC_PROJECT_TOKEN` on this repo). Kit CI owns Storybook visual review — not avtech.fyi.
 
 ### Continuous deploy (Workers Builds)
 
@@ -143,10 +143,10 @@ The Worker is live. To redeploy on every push to `main`, connect Git in the dash
 
 1. [Workers → signal-ui → Settings → Builds → Connect](https://dash.cloudflare.com/518219b906fb0db47fc25f5f5bd2724b/workers/services/view/signal-ui/production/settings)
 2. Select `harrydiamond/signal-ui`
-3. Build command: `bun run build:storybook`
+3. Build command: `pnpm run build:storybook`
 4. Deploy command: `npx wrangler deploy`
 
-Until Builds is connected, deploy manually with `bun run deploy` (requires wrangler login).
+Until Builds is connected, deploy manually with `pnpm run deploy` (requires wrangler login).
 
 ## Import
 
