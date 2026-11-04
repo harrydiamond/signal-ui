@@ -70,7 +70,7 @@
       "workerd"
     ],
     "overrides": {
-      "axe-core": "4.13.0"
+      "axe-core": "4.14.0"
     }
   }
 }
