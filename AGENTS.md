@@ -1,21 +1,21 @@
 ## Development
 
 ```
-bun run storybook
+pnpm run storybook
 ```
 
-Other useful commands: `bun run test` (unit), `bun run test:storybook` (stories + a11y × themes), `bun run build:storybook`, `bun run deploy`, `bun run format`.
+Other useful commands: `pnpm run test` (unit), `pnpm run test:storybook` (stories + a11y × themes), `pnpm run build:storybook`, `pnpm run deploy`, `pnpm run format`.
 
 ## Storybook MCP
 
-- Local (branch in progress): `signal-ui-storybook` → http://localhost:6006/mcp (`bun run storybook`)
+- Local (branch in progress): `signal-ui-storybook` → http://localhost:6006/mcp (`pnpm run storybook`)
 - Published `main`: `signal-ui-storybook-main` → https://main--6a9ecc9629e322e1385e7b36.chromatic.com/mcp
 
 Prefer local when editing the kit so docs match your branch; use Chromatic when local Storybook is not running.
 
 - Never guess component props. Query `docs-list` / `docs-show` first.
 - Use `get-storybook-story-instructions` before creating or updating stories.
-- Check work with `bun run test:storybook` (a11y across phosphor / editorial / editorial-dark) or the Storybook UI test widget.
+- Check work with `pnpm run test:storybook` (a11y across phosphor / editorial / editorial-dark) or the Storybook UI test widget.
 - Export new primitives from `src/index.ts` and add a CSF story under `src/stories/`.
 
 ## Package contract

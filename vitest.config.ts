@@ -13,7 +13,7 @@ const configDir = path.join(dirname, '.storybook')
 // More info at: https://storybook.js.org/docs/next/writing-tests/integrations/vitest-addon
 export default defineConfig({
   // Vite Plugin types are structurally version-bound: @vitejs/plugin-react@6 ships Vite 8
-  // Plugin typings, while vitest (under bun) may still resolve Vite 7's Plugin — TS then
+  // Plugin typings, while vitest may still resolve Vite 7's Plugin — TS then
   // rejects react() as incompatible. Cast until versions align.
   plugins: [react() as never],
   test: {
