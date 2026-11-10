@@ -29,7 +29,7 @@ export const Default: Story = {
   play: async ({ canvas, canvasElement, args }) => {
     await expect(
       canvas.getByRole('button', {
-        name: 'Drop a patch, or click to browse',
+        name: 'Drop a patch, or click to browse JSON or YAML',
       }),
     ).toBeVisible()
     const input = canvasElement.querySelector(

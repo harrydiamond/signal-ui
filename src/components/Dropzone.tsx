@@ -55,7 +55,7 @@ export function Dropzone({
     <button
       type="button"
       disabled={disabled}
-      aria-label={ariaLabel ?? label}
+      aria-label={ariaLabel}
       data-dragging={dragging || undefined}
       data-has-files={showHasFiles || undefined}
       className={dropzone({ className })}
@@ -100,8 +100,17 @@ export function Dropzone({
               {icon}
             </span>
           ) : null}
-          <strong className="text-av-text text-sm font-medium">{label}</strong>
-          {hint ? <span className={fieldHint}>{hint}</span> : null}
+          <span>
+            <strong className="text-av-text text-sm font-medium">
+              {label}
+            </strong>
+            {hint ? (
+              <>
+                {' '}
+                <span className={fieldHint}>{hint}</span>
+              </>
+            ) : null}
+          </span>
         </>
       )}
     </button>

@@ -19,7 +19,7 @@ describe('Toast', () => {
     )
     expect(screen.getByRole('status')).toHaveTextContent('Config saved')
     expect(screen.getByRole('status')).toHaveAttribute('aria-live', 'polite')
-    fireEvent.click(screen.getByRole('button', { name: 'Dismiss' }))
+    fireEvent.click(screen.getByRole('button', { name: 'Close' }))
     expect(onDismiss).toHaveBeenCalled()
   })
 

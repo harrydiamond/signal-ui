@@ -17,7 +17,7 @@ describe('Alert', () => {
       </Alert>,
     )
     expect(screen.getByRole('alert')).toHaveTextContent('Check the patch.')
-    fireEvent.click(screen.getByRole('button', { name: 'Dismiss' }))
+    fireEvent.click(screen.getByRole('button', { name: 'Close' }))
     expect(onDismiss).toHaveBeenCalledTimes(1)
   })
 })
