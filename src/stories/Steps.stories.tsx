@@ -36,13 +36,13 @@ export const Default: Story = {
   },
   play: async ({ canvas }) => {
     await expect(
-      canvas.getByRole('button', { name: 'Song, step 2 of 4' }),
+      canvas.getByRole('button', { name: '2 Song, step 2 of 4' }),
     ).toHaveAttribute('aria-current', 'step')
     await userEvent.click(
-      canvas.getByRole('button', { name: 'Loop, step 3 of 4' }),
+      canvas.getByRole('button', { name: '3 Loop, step 3 of 4' }),
     )
     await expect(
-      canvas.getByRole('button', { name: 'Loop, step 3 of 4' }),
+      canvas.getByRole('button', { name: '3 Loop, step 3 of 4' }),
     ).toHaveAttribute('aria-current', 'step')
   },
 }

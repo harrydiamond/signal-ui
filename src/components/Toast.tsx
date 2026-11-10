@@ -37,7 +37,6 @@ export function Toast({
         type="button"
         onClick={onDismiss}
         className="text-av-text shrink-0 rounded border-0 bg-transparent px-1.5 py-0.5 text-xs font-medium opacity-90 hover:opacity-100"
-        aria-label="Dismiss"
       >
         Close
       </button>

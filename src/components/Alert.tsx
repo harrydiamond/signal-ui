@@ -72,7 +72,6 @@ export function Alert({
           type="button"
           className="text-av-text shrink-0 rounded-sm border-0 bg-transparent px-1.5 py-0.5 text-xs font-medium opacity-90 hover:opacity-100"
           onClick={onDismiss}
-          aria-label="Dismiss"
         >
           Close
         </button>

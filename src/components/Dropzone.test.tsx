@@ -7,13 +7,11 @@ describe('Dropzone', () => {
   it('exposes a button and reports dropped files', () => {
     const onFiles = vi.fn()
     render(
-      <Dropzone
-        label="Drop a patch"
-        hint="JSON or YAML"
-        onFiles={onFiles}
-      />,
+      <Dropzone label="Drop a patch" hint="JSON or YAML" onFiles={onFiles} />,
     )
-    const button = screen.getByRole('button', { name: 'Drop a patch' })
+    const button = screen.getByRole('button', {
+      name: 'Drop a patch JSON or YAML',
+    })
     expect(button).toBeInTheDocument()
     expect(screen.getByText('JSON or YAML')).toBeInTheDocument()
 

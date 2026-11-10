@@ -71,7 +71,7 @@ export const Dismissible: Story = {
   },
   play: async ({ canvas }) => {
     await expect(canvas.getByText('Dismissible')).toBeVisible()
-    await userEvent.click(canvas.getByRole('button', { name: 'Dismiss' }))
+    await userEvent.click(canvas.getByRole('button', { name: 'Close' }))
     await expect(canvas.queryByText('Dismissible')).not.toBeInTheDocument()
   },
 }

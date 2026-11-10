@@ -116,7 +116,7 @@ type StepInjectedProps = StepProps & {
 
 const step = tv({
   slots: {
-    button: `${body} group flex min-w-0 flex-1 cursor-pointer flex-col items-center gap-1.5 border-0 bg-transparent px-1 py-1 text-[0.6875rem] font-medium tracking-wider uppercase disabled:cursor-not-allowed disabled:opacity-50`,
+    button: `${body} group relative flex min-w-0 flex-1 cursor-pointer flex-col items-center gap-1.5 border-0 bg-transparent px-1 py-1 text-[0.6875rem] font-medium tracking-wider uppercase disabled:cursor-not-allowed disabled:opacity-50`,
     index: 'grid size-7 place-items-center rounded-full text-xs font-medium',
     label: 'truncate',
   },
@@ -158,7 +158,7 @@ export function Step({
   const status = selected ? 'current' : complete ? 'complete' : 'idle'
   const styles = step({ status })
   const name = [
-    label,
+    `${index} ${label}`,
     total > 0 ? `step ${index} of ${total}` : null,
     complete ? 'complete' : null,
   ]
@@ -182,6 +182,10 @@ export function Step({
       >
         <span aria-hidden className={styles.index()}>
           {index}
+        </span>
+        {/* Keeps the index and label as separate words for the accessible name. */}
+        <span className="absolute h-px w-px overflow-visible whitespace-pre text-transparent">
+          {' '}
         </span>
         <span className={styles.label()}>{label}</span>
       </button>
