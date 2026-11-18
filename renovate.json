@@ -19,6 +19,56 @@
       "matchDepTypes": ["devDependencies"],
       "automerge": true,
       "matchPackageNames": ["/lint/", "/prettier/"]
+    },
+    {
+      "description": "Group React packages into one PR",
+      "matchPackageNames": [
+        "react",
+        "react-dom",
+        "@types/react",
+        "@types/react-dom"
+      ],
+      "groupName": "react"
+    },
+    {
+      "description": "Group Tailwind CSS packages into one PR",
+      "matchPackageNames": [
+        "tailwindcss",
+        "@tailwindcss/**",
+        "tailwind-merge",
+        "tailwind-variants"
+      ],
+      "groupName": "tailwind"
+    },
+    {
+      "description": "Group Cloudflare packages into one PR",
+      "matchPackageNames": ["wrangler", "@cloudflare/**"],
+      "groupName": "cloudflare"
+    },
+    {
+      "description": "Group Storybook packages into one PR",
+      "matchPackageNames": ["storybook", "@storybook/**"],
+      "groupName": "storybook"
+    },
+    {
+      "description": "Group Vite packages into one PR",
+      "matchPackageNames": ["vite", "@vitejs/**"],
+      "groupName": "vite"
+    },
+    {
+      "description": "Group Vitest packages into one PR",
+      "matchPackageNames": ["vitest", "@vitest/**"],
+      "groupName": "vitest"
+    },
+    {
+      "description": "Group Testing Library packages into one PR",
+      "matchPackageNames": ["@testing-library/**"],
+      "groupName": "testing-library"
+    },
+    {
+      "description": "Group Prettier packages into one PR",
+      "matchPackageNames": ["/prettier/"],
+      "groupName": "prettier"
     }
   ]
 }
