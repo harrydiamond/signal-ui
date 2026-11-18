@@ -1,4 +1,11 @@
-export { AV, AV_EDITORIAL, AV_EDITORIAL_DARK, AV_RGB, AV_STAGGER_MS, type AvColorName } from './tokens.ts'
+export {
+  AV,
+  AV_EDITORIAL,
+  AV_EDITORIAL_DARK,
+  AV_RGB,
+  AV_STAGGER_MS,
+  type AvColorName,
+} from './tokens.ts'
 export { cx } from './cx.ts'
 export { tv } from './tv.ts'
 export {
@@ -54,6 +61,12 @@ export { TagLink } from './components/TagLink.tsx'
 export { PageShell } from './components/PageShell.tsx'
 export { NavLink } from './components/NavLink.tsx'
 export { PreviewCard } from './components/PreviewCard.tsx'
+export {
+  MediaFigure,
+  type MediaFigureAspect,
+  type MediaFigureRadius,
+} from './components/MediaFigure.tsx'
+export { MediaGrid, type MediaGridLayout } from './components/MediaGrid.tsx'
 export { ExternalLink } from './components/ExternalLink.tsx'
 export { BackLink } from './components/BackLink.tsx'
 export { PulseDot } from './components/PulseDot.tsx'

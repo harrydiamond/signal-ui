@@ -37,7 +37,14 @@ const preview: Preview = {
         order: [
           'Introduction',
           'Examples',
-          ['Portfolio', 'Article', 'Instrument', 'Settings', 'Studio'],
+          [
+            'Portfolio',
+            'Article',
+            'Gallery',
+            'Instrument',
+            'Settings',
+            'Studio',
+          ],
           'Foundations',
           ['Color', 'Heading', 'Text', 'Atmosphere', 'Theme'],
           'Components',
